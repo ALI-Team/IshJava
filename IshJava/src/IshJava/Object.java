@@ -20,13 +20,14 @@ import javax.swing.ImageIcon;
  */
 public class Object extends Point{
     public Image Sprite;
-    public Object(Game game,String Imagepath){
+    public Object(Game game,String Imagepath, int x, int y){
         try {                
           Sprite = ImageIO.read(new File(Imagepath));
        } catch (IOException ex) {
            System.out.println("Cant find file " + Imagepath);
        }
         game.objectManager.objects.add(this);
+        this.move(x,y);
         initobj();
     }
     public void initobj(){
