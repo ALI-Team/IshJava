@@ -19,7 +19,7 @@ public class TestGameMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-            Game game=Main.createGame(512,512);
+            Game game=Main.createGame(512,512, "test game");
     }
     
 }

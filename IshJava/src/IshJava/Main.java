@@ -16,20 +16,21 @@ import javax.swing.JPanel;
  * @author ivamat907
  */
 public class Main {
-    public static Game createGame(int w,int h){
-        //int w=512;
-        ///int h=512;
-        JFrame frame = new JFrame();
+    public static Game createGame(int w,int h, String title){
+        JFrame jFrame = new JFrame();
         
-        frame.setSize(w, h);
-        frame.setPreferredSize(new Dimension(w,h));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
-        Game jpanel = new Game();
-        frame.getContentPane().add(jpanel);
-        frame.pack();
-        frame.setVisible(true);
-        return jpanel;
+        jFrame.setSize(w, h);
+        jFrame.setTitle(title);
+        jFrame.setPreferredSize(new Dimension(w,h));
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setLayout(new BorderLayout());
+        
+        Game game = new Game();
+        jFrame.getContentPane().add(game);
+        jFrame.pack();
+        jFrame.setVisible(true);
+        
+        return game;
     }
     
 }
