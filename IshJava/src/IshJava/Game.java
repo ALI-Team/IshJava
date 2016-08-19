@@ -38,6 +38,7 @@ public class Game extends JPanel implements Runnable {
     @Override
     public void run() {
         while (true) {
+            this.objectManager.updateObjs();
             repaint();
             try {
                 synchronized (mainThread) {

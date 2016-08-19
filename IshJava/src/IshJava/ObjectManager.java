@@ -14,9 +14,17 @@ import java.util.ArrayList;
  * @author ivamat907
  */
 public class ObjectManager {
-    public ArrayList<Object> objects = new ArrayList<Object>();
+    public ArrayList<GameObject> objects = new ArrayList<GameObject>();
+    
+    public void updateObjs(){
+        for (GameObject obj : objects) {
+            obj.updateObj();
+        }
+    
+    }
+    
     public void drawObjs(Graphics g){
-        for (Object obj : objects) {
+        for (GameObject obj : objects) {
             obj.draw(g);
         }
     

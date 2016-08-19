@@ -8,7 +8,7 @@ package testgame;
 
 import IshJava.Game;
 import IshJava.Main;
-import IshJava.Object;
+import IshJava.GameObject;
 /**
  *
  * @author ivamat907
@@ -20,7 +20,7 @@ public class TestGameMain {
      */
     public static void main(String[] args) {
             Game game=Main.createGame(512,512, "test game");
-            game.objectManager.objects.add(new Object(game,""));
+            game.objectManager.objects.add(new Ball(game,"src/imgs/ball.png",0,0));
     }
     
 }

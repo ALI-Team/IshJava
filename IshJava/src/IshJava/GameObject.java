@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
  *
  * @author ivamat907
  */
-public class Object extends Point{
+public class GameObject extends Point{
     
     /*
     * @author Luka Jankovic NA15C 
@@ -29,10 +29,12 @@ public class Object extends Point{
     public double   direction;
     
     //Init function
-    public Object(Game game,String imagePath, int x, int y){
-        try {                
+    public GameObject(Game game,String imagePath, int x, int y){
+        try {            
           sprite = ImageIO.read(new File(imagePath));
        } catch (IOException ex) {
+           ex.printStackTrace();
+           
            System.out.println("Cant find file " + imagePath);
        }
         game.objectManager.objects.add(this);
@@ -40,11 +42,15 @@ public class Object extends Point{
         this.initobj();
     }
     
+    public void updateObj(){
+        
+    }
+    
     //To be overwritten. Called when object is initialized.
     public void initobj(){
     }
     public void draw(Graphics g){
-        g.drawRect(0, 0, 100, 100);
+        g.drawImage(sprite, x, y, null);
     }
 }
 
