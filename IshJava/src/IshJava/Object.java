@@ -28,7 +28,7 @@ public class Object extends Point{
        }
         game.objectManager.objects.add(this);
         this.move(x,y);
-        initobj();
+        this.initobj();
     }
     public void initobj(){
         
