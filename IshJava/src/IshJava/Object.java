@@ -27,6 +27,10 @@ public class Object extends Point{
            System.out.println("Cant find file " + Imagepath);
        }
         game.objectManager.objects.add(this);
+        initobj();
+    }
+    public void initobj(){
+        
         
     }
     public void draw(Graphics g){

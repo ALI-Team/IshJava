@@ -6,6 +6,7 @@
 
 package IshJava;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 /**
@@ -14,5 +15,10 @@ import java.util.ArrayList;
  */
 public class ObjectManager {
     public ArrayList<Object> objects = new ArrayList<Object>();
+    public void drawObjs(Graphics g){
+        for (Object obj : objects) {
+            obj.draw(g);
+        }
     
+    }
 }
