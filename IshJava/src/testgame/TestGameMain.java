@@ -20,7 +20,10 @@ public class TestGameMain {
      */
     public static void main(String[] args) {
             Game game=Main.createGame(512,512, "test game");
-            game.objectManager.objects.add(new Ball(game,"src/imgs/ball.png",0,0));
+            Ball ball=new Ball(game,0,0);
+            game.objectManager.addObject(ball);
+            game.objectManager.addObject(new boy(game,0,0,ball));
+            
     }
     
 }

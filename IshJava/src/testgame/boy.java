@@ -12,17 +12,16 @@ import IshJava.GameObject;
  *
  * @author Ivar
  */
-public class Ball extends GameObject{
-    
-    public Ball(Game game, int x, int y) {
+public class boy extends GameObject{
+    public Ball ball;
+    public boy(Game game, int x, int y,Ball b) {
         super(game, x, y);
-        this.setSprite("src/imgs/ball.png");
-        moveto(600, 200,200);
+        this.setSprite("src/imgs/boy.png");
+        ball=b;
     }
-    
-    @Override
+     @Override
     public void tick(){
-        
+        moveto(ball,120);
     } 
     
 }

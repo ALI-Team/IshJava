@@ -14,17 +14,34 @@ import java.util.ArrayList;
  * @author ivamat907
  */
 public class ObjectManager {
+    /*
+    Doing shit with addlist cuz if a ArrayList is edited @ the same time as its used shit goes to hell
+    */
+    
+    
+    
+    public void addObject(GameObject go){
+        addlist.add(go);
+    }
+    
+    public ArrayList<GameObject> addlist = new ArrayList<GameObject>();
     public ArrayList<GameObject> objects = new ArrayList<GameObject>();
     
     public void updateObjs(){
-        for (GameObject obj : objects) {
+        objects.addAll(addlist);
+        addlist.clear();
+        ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
+        staticobjects.addAll(objects);
+        for (GameObject obj : staticobjects) {
             obj.updateObj();
         }
     
     }
     
     public void drawObjs(Graphics g){
-        for (GameObject obj : objects) {
+        ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
+        staticobjects.addAll(objects);
+        for (GameObject obj : staticobjects) {
             obj.draw(g);
         }
     

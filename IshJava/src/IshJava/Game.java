@@ -18,7 +18,7 @@ public class Game extends JPanel implements Runnable {
 
     public ObjectManager objectManager;
     public Thread mainThread;
-
+    public int fps=60;
     public Game() {
         objectManager = new ObjectManager();
         this.setBackground(new java.awt.Color(255, 255, 255));
@@ -34,7 +34,10 @@ public class Game extends JPanel implements Runnable {
         g.drawRect(200, 200, 200, 200);
         this.objectManager.drawObjs(g);
     }
-
+    
+    public int pps2ppf(int pixels){
+        return (int)(pixels/fps);
+    }
     @Override
     public void run() {
         while (true) {
@@ -42,7 +45,7 @@ public class Game extends JPanel implements Runnable {
             repaint();
             try {
                 synchronized (mainThread) {
-                    mainThread.wait(100);
+                    mainThread.wait(1000/fps);
                 }
 
             } catch (InterruptedException ex) {
