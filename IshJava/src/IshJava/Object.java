@@ -23,8 +23,9 @@ public class Object extends Point{
     /*
     * @author Luka Jankovic NA15C 
     */
-    public Image sprite;
-    public boolean solid;
+    public Image    sprite;
+    public boolean  solid;
+    public double   direction;
     
     //Init function
     public Object(Game game,String imagePath, int x, int y){
@@ -40,12 +41,8 @@ public class Object extends Point{
     
     //To be overwritten. Called when object is initialized.
     public void initobj(){
-        
-        
     }
     public void draw(Graphics g){
         g.drawRect(0, 0, 100, 100);
-        
     }
-    
 }
