@@ -37,5 +37,7 @@ public class Object extends Point{
         g.drawRect(0, 0, 100, 100);
         
     }
+
+  
     
 }
