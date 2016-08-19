@@ -14,6 +14,7 @@ import javax.swing.JPanel;
  * @author ivamat907
  */
 public class Game extends JPanel{
+        public ObjectManager objectManager;
         public Game(){
             this.setBackground(new java.awt.Color(255, 255, 255));
             repaint();
