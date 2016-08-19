@@ -6,10 +6,13 @@
 
 package IshJava;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ivamat907
  */
 public class ObjectManager {
+    public ArrayList<Object> objects = new ArrayList<Object>();
     
 }
