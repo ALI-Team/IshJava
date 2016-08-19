@@ -10,6 +10,9 @@ package IshJava;
  *
  * @author ivamat907
  */
-public class Sprite {
+public class Object {
+    public Object(){
+        
+    }
     
 }
