@@ -11,7 +11,7 @@ package IshJava;
  * @author ivamat907
  */
 public class Object {
-    public Object(){
+    public Object() {
         
     }
     
