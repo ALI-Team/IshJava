@@ -6,6 +6,7 @@
 
 package testgame;
 
+import IshJava.Game;
 import IshJava.Main;
 
 /**
@@ -18,8 +19,7 @@ public class TestGameMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-            Main.createGame();
-        // TODO code application logic here
+            Game game=Main.createGame(512,512);
     }
     
 }

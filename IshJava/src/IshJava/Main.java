@@ -6,6 +6,8 @@
 
 package IshJava;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -14,11 +16,20 @@ import javax.swing.JPanel;
  * @author ivamat907
  */
 public class Main {
-    public static void createGame(){
+    public static Game createGame(int w,int h){
+        //int w=512;
+        ///int h=512;
         JFrame frame = new JFrame();
-        JPanel jpanel = new JPanel();
+        
+        frame.setSize(w, h);
+        frame.setPreferredSize(new Dimension(w,h));
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+        Game jpanel = new Game();
+        frame.getContentPane().add(jpanel);
+        frame.pack();
         frame.setVisible(true);
-        frame.add(jpanel); 
+        return jpanel;
     }
     
 }
