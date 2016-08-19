@@ -19,8 +19,14 @@ import javax.swing.ImageIcon;
  * @author ivamat907
  */
 public class Object extends Point{
+    
+    /*
+    * @author Luka Jankovic NA15C 
+    */
     public Image sprite;
     public boolean solid;
+    
+    //Init function
     public Object(Game game,String imagePath, int x, int y){
         try {                
           sprite = ImageIO.read(new File(imagePath));
@@ -31,6 +37,8 @@ public class Object extends Point{
         this.move(x,y);
         this.initobj();
     }
+    
+    //To be overwritten. Called when object is initialized.
     public void initobj(){
         
         
