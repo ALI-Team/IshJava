@@ -17,11 +17,11 @@ public class boy extends GameObject{
     public boy(Game game, int x, int y,Ball b) {
         super(game, x, y);
         this.setSprite("src/imgs/boy.png");
-        ball=b;
+        moveto(b,120);
     }
      @Override
     public void tick(){
-        moveto(ball,120);
+        
     } 
     
 }

@@ -28,7 +28,7 @@ public class GameObject extends Point {
     public double direction;
     public int speed;
     public Point target;
-    public byte movementmode;
+    public byte movementmode=0;
     public Game game;
 
     //Init function
