@@ -5,6 +5,7 @@
  */
 package IshJava;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 /**
@@ -19,5 +20,15 @@ public class UIManager {
     
     public void addElement(UIElement e) {
         this.UIElements.add(e);
+    }
+    
+    public void drawUI(Graphics g) {
+        ArrayList<UIElement> tempElements = new ArrayList<>();
+        tempElements.addAll(this.UIElements);
+        for (UIElement e : tempElements) {
+            if (e.visible) {
+                e.draw(g);
+            } 
+        }
     }
 }
