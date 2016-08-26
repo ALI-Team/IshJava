@@ -9,7 +9,7 @@ import java.awt.Point;
 
 /**
  *
- * @author ivamat907
+ * @author ALI-Team
  */
 public class GamePoint{
     public double x,y;
@@ -28,5 +28,9 @@ public class GamePoint{
     public double angleTo(GamePoint target){
         double dir = Math.atan2(target.y - this.y, target.x - this.x);
         return dir;
+    }
+    public double distance(GamePoint target){
+        double distance=Math.sqrt(Math.pow(this.x-target.x,2)+Math.pow(this.y-target.y,2));
+        return distance;
     }
 }

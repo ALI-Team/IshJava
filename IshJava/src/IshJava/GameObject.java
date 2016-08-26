@@ -123,7 +123,7 @@ public class GameObject extends GamePoint {
 
     public void draw(Graphics g) {
         if(sprite!=null){
-        g.drawImage(sprite, x, y, null);
+        g.drawImage(sprite, (int)x, (int)y, null);
         }
     }
 }
