@@ -9,6 +9,6 @@ package IshJava;
  *
  * @author axemat060
  */
-public class UIElement {
-    int x,y,w,h;
+public class UIManager {
+    
 }

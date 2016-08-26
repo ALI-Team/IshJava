@@ -17,10 +17,12 @@ import javax.swing.JPanel;
 public class Game extends JPanel implements Runnable {
 
     public ObjectManager objectManager;
+    public UIManager uiManager;
     public Thread mainThread;
     public int fps=60;
     public Game() {
         objectManager = new ObjectManager();
+        uiManager = new UIManager();
         this.setBackground(new java.awt.Color(255, 255, 255));
         mainThread = new Thread(this);
         mainThread.start();
