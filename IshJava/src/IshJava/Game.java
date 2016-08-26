@@ -39,7 +39,7 @@ public class Game extends JPanel implements Runnable, MouseListener {
         g.drawRect(200, 200, 200, 200);
         this.objectManager.drawObjs(g);
     }
-    
+
     public int pps2ppf(int pixels){
         return (int)(pixels/fps);
     }
@@ -64,6 +64,13 @@ public class Game extends JPanel implements Runnable, MouseListener {
         Point mousePosition = e.getPoint();
         int x = mousePosition.x;
         int y = mousePosition.y;
+
+        for (GameObject object : this.objectManager.objects) {
+
+            if (object.x == x && object.y == y) {
+                object.mousePressed();
+            }
+        }
     }
 
     @Override

@@ -21,7 +21,7 @@ import javax.swing.ImageIcon;
 public class GameObject extends Point {
 
     /*
-    * @author Luka Jankovic NA15C 
+    * @author Luka Jankovic NA15C
      */
     public Image sprite;
     public boolean solid;
@@ -37,8 +37,8 @@ public class GameObject extends Point {
         movementmode = 0;
         setSprite(imagePath);
         g.objectManager.objects.add(this);
-        
-        
+
+
         this.move(x, y);
         this.initobj();
     }
@@ -50,8 +50,8 @@ public class GameObject extends Point {
         this.move(x, y);
         this.initobj();
     }
-    
-    
+
+
     public void setSprite(String imagePath){
         try {
             sprite = ImageIO.read(new File(imagePath));
@@ -71,7 +71,7 @@ public class GameObject extends Point {
         movementmode = 1;
         target = p;
         speed=game.pps2ppf(v);
-        
+
     }
 
     public void moveobj() {
@@ -100,5 +100,9 @@ public class GameObject extends Point {
         if(sprite!=null){
         g.drawImage(sprite, x, y, null);
         }
+    }
+
+    public void mousePressed() {
+
     }
 }
