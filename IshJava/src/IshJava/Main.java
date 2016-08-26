@@ -9,7 +9,6 @@ package IshJava;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  *
@@ -24,8 +23,8 @@ public class Main {
         jFrame.setPreferredSize(new Dimension(w,h));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setLayout(new BorderLayout());
-        
         Game game = new Game();
+        game.setFocusable(true); 
         jFrame.getContentPane().add(game);
         jFrame.pack();
         jFrame.setVisible(true);
