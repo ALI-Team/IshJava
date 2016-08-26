@@ -5,10 +5,19 @@
  */
 package IshJava;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author axemat060
  */
 public class UIManager {
+    ArrayList<UIElement> UIElements;
+    public UIManager() {
+        this.UIElements = new ArrayList<>();
+    }
     
+    public void addElement(UIElement e) {
+        this.UIElements.add(e);
+    }
 }
