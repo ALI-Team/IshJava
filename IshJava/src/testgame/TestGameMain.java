@@ -16,8 +16,8 @@ public class TestGameMain {
             Ball ball=new Ball(game,0,0);
             game.objectManager.addObject(ball);
             game.objectManager.addObject(new boy(game,0,0,ball));
-            UITextView tw = new UITextView(16, 64, "dzien dobry kurwa");
-            tw.setColor(Color.green);
+            UITextView tw = new UITextView(16, 64, "hello world");
+            tw.setColor(255, 127, 0);
             tw.setFontFamily(UITextView.IMPACT);
             tw.setFontSize(36);
             game.uiManager.addElement(tw);

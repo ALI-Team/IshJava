@@ -62,14 +62,28 @@ public class UITextView extends UIElement{
         this.color = c; //Java Color object
     }
     
+    /**
+     * 
+     * @param r Red
+     * @param g Green
+     * @param b Blue
+     */
     public void setColor(int r, int g, int b) {
-        this.color = new Color(r,g,b); // RED, GREEN, BLUE
+        this.color = new Color(r,g,b);
     }
     
+    /**
+     * Ändrar texten
+     * @param text 
+     */
     public void setText(String text) {
         this.text = text;
     }
     
+    /**
+     * Sätter font size i pixlar
+     * @param size 
+     */
     public void setFontSize(int size) {
         Font old = this.font;
         String family = old.getFamily();
@@ -77,6 +91,10 @@ public class UITextView extends UIElement{
         this.font = new Font(family, style, size);
     }
     
+    /**
+     * Font style, använd konstanter i Font, ex Font.BOLD
+     * @param style 
+     */
     public void setFontStyle(int style) {
         Font old = this.font;
         String family = old.getFamily();
@@ -84,6 +102,10 @@ public class UITextView extends UIElement{
         this.font = new Font(family, style, size);
     }
     
+    /**
+     * Font family, ex "Helvetica" eller UITextView.COMIC_SANS_MS
+     * @param family 
+     */
     public void setFontFamily(String family) {
         Font old = this.font;
         int style = old.getStyle();
@@ -91,6 +113,9 @@ public class UITextView extends UIElement{
         this.font = new Font(family, style, size);
     }
     
+    /**
+     * Sätter font style till italic
+     */
     public void setItalic() {
         Font old = this.font;
         String family = old.getFamily();
@@ -98,6 +123,9 @@ public class UITextView extends UIElement{
         this.font = new Font(family, Font.ITALIC, size);
     }
     
+    /**
+     * Sätter font style till bold
+     */
     public void setBold() {
         Font old = this.font;
         String family = old.getFamily();
@@ -105,6 +133,9 @@ public class UITextView extends UIElement{
         this.font = new Font(family, Font.BOLD, size);
     }
     
+    /**
+     * Återställer font style till plain
+     */
     public void setPlain() {
         Font old = this.font;
         String family = old.getFamily();
@@ -112,6 +143,10 @@ public class UITextView extends UIElement{
         this.font = new Font(family, Font.PLAIN, size);
     }
     
+    /**
+     * Sätter font till UITextView
+     * @param font En instance av Font
+     */
     public void setFont(Font font) {
         this.font = font;
     }
