@@ -21,7 +21,11 @@ import javax.swing.ImageIcon;
 public class GameObject extends GamePoint {
 
     /*
+<<<<<<< HEAD
     * @author ALI-Team  
+=======
+    * @author Luka Jankovic NA15C
+>>>>>>> mouse-detection
      */
     public Image sprite;
     public boolean solid;
@@ -43,7 +47,7 @@ public class GameObject extends GamePoint {
         this.game=g;
         movementmode = 0;
         setSprite(imagePath);
-        
+
         this.move(x, y);
         this.initobj();
         g.objectManager.objects.add(this);
@@ -100,7 +104,7 @@ public class GameObject extends GamePoint {
         movementmode = 1;
         target = p;
         speed=game.pps2ppf(v);
-        
+
     }
 
     public void moveobj() {
@@ -133,5 +137,10 @@ public class GameObject extends GamePoint {
         if(sprite!=null){
         g.drawImage(sprite, (int)x, (int)y, null);
         }
+    }
+
+    //Also to be overwritten. Called when mouse clicks the object
+    public void mousePressed() {
+        
     }
 }

@@ -9,6 +9,7 @@ package IshJava;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +18,11 @@ import java.util.ArrayList;
  */
 public class ObjectManager implements KeyListener{
     
+    Game game;
     
+    public ObjectManager(Game game) {
+        this.game = game;
+    }
     
     public void addObject(GameObject go){
         addlist.add(go);
@@ -71,6 +76,21 @@ public class ObjectManager implements KeyListener{
         staticobjects.addAll(objects);
         for (GameObject obj : staticobjects) {
             obj.onKeyReleased(e.getKeyChar());
+        }
+    }
+    
+    public void mousePressed(int x, int y) {
+        
+        System.out.println("dick");
+        
+        for (GameObject object : this.objects) {
+            
+            int height = object.sprite.getHeight(this.game);
+            int width = object.sprite.getWidth(this.game);
+            
+            if ((x > (object.x - (width / 2)) && (x < object.x + (width / 2))) && (y > (object.y - (height / 2)) && (y < object.y + (height / 2)))) {
+                object.mousePressed();
+            }
         }
     }
 }
