@@ -102,7 +102,8 @@ public class GameObject extends Point {
         }
     }
 
+    //Also to be overwritten. Called when mouse clicks the object
     public void mousePressed() {
-
+        
     }
 }

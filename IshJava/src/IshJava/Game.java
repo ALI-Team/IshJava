@@ -24,7 +24,7 @@ public class Game extends JPanel implements Runnable, MouseListener {
     public Thread mainThread;
     public int fps=60;
     public Game() {
-        objectManager = new ObjectManager();
+        objectManager = new ObjectManager(this);
         uiManager = new UIManager();
         this.setBackground(new java.awt.Color(255, 255, 255));
         mainThread = new Thread(this);
@@ -64,13 +64,8 @@ public class Game extends JPanel implements Runnable, MouseListener {
         Point mousePosition = e.getPoint();
         int x = mousePosition.x;
         int y = mousePosition.y;
-
-        for (GameObject object : this.objectManager.objects) {
-
-            if (object.x == x && object.y == y) {
-                object.mousePressed();
-            }
-        }
+        
+        this.objectManager.mousePressed(x, y);
     }
 
     @Override
