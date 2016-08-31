@@ -81,14 +81,14 @@ public class ObjectManager implements KeyListener{
     
     public void mousePressed(int x, int y) {
         
-        System.out.println("dick");
-        
-        for (GameObject object : this.objects) {
+        for (int i = 0; i < this.objects.size(); i++) {
+            
+            GameObject object = this.objects.get(i);
             
             int height = object.sprite.getHeight(this.game);
             int width = object.sprite.getWidth(this.game);
             
-            if ((x > (object.x - (width / 2)) && (x < object.x + (width / 2))) && (y > (object.y - (height / 2)) && (y < object.y + (height / 2)))) {
+            if ((x > (object.x - (width / 1)) && (x < object.x + (width / 1))) && (y > (object.y - (height / 1)) && (y < object.y + (height / 1)))) {
                 object.mousePressed();
             }
         }

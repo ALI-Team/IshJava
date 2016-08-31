@@ -29,6 +29,7 @@ public class Game extends JPanel implements Runnable, MouseListener {
         uiManager = new UIManager();
         this.setBackground(new java.awt.Color(255, 255, 255));
         addKeyListener(objectManager);
+        this.addMouseListener(this);
         mainThread = new Thread(this);
         mainThread.start();
 
@@ -69,9 +70,7 @@ public class Game extends JPanel implements Runnable, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
-        System.out.println("sad");
-        
+               
         Point mousePosition = e.getPoint();
         int x = mousePosition.x;
         int y = mousePosition.y;

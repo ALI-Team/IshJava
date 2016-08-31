@@ -3,13 +3,14 @@ package testgame;
 
 import IshJava.Game;
 import IshJava.GameObject;
+import java.util.Random;
 
 public class Ball extends GameObject{
     
     public Ball(Game game, int x, int y) {
         super(game, x, y);
         this.setSprite("src/imgs/ball.png");
-        this.setDirection(45, 100);
+        //this.setDirection(45, 100);
         this.addKeyboard();
     }
     @Override
@@ -29,4 +30,12 @@ public class Ball extends GameObject{
         
         
     }  
+    
+    @Override
+    public void mousePressed() {
+        System.out.println("stop touching me!");
+        int x = new Random().nextInt(512);
+        int y = new Random().nextInt(512);
+        this.setDirection(270, 150);
+    }
 }

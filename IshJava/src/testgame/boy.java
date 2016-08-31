@@ -23,7 +23,7 @@ public class boy extends GameObject{
      @Override
     public void tick(){
         if(this.collide(ball)){
-            System.out.println("hit");
+            //System.out.println("hit");
         }
     } 
     
