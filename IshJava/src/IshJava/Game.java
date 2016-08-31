@@ -35,8 +35,6 @@ public class Game extends JPanel implements Runnable, MouseListener {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawString("BLAH", 20, 20);
-        g.drawRect(200, 200, 200, 200);
         this.objectManager.drawObjs(g);
         this.uiManager.drawUI(g);
     }

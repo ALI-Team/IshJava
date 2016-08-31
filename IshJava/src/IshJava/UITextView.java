@@ -9,9 +9,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.font.FontRenderContext;
+import java.awt.font.TextLayout;
+import java.awt.geom.AffineTransform;
 
 /**
- * Designed by Apple in Caligornia
+ * Designed by Apple in California
  * Assembled in China
  * @author ALI-team
  */
@@ -29,6 +34,8 @@ public class UITextView extends UIElement{
     public String text = "";
     public Color color = Color.BLACK;
     public Font font = new Font(UITextView.TIMES_NEW_ROMAN, Font.PLAIN, 12);
+    public boolean outline = false;
+    public Color outlineColor = Color.BLACK;
     
     public UITextView(int x, int y) {
         super(x,y);
@@ -58,15 +65,20 @@ public class UITextView extends UIElement{
         this.color = color;
     }
     
+    /**
+     * Sätter färgen för texten
+     * @param c <i>Java Color</i> ex Color.GREEN, new Color(r,g,b), new Color(0xRRGGBB)
+     * eller new Color(0xAARRGGBB, true)
+     */
     public void setColor(Color c) {
         this.color = c; //Java Color object
     }
     
     /**
-     * 
-     * @param r Red
-     * @param g Green
-     * @param b Blue
+     * Sätter färgen för texten
+     * @param r Röd komponent 0-255
+     * @param g Grön komponent 0-255
+     * @param b Blå komponent 0-255
      */
     public void setColor(int r, int g, int b) {
         this.color = new Color(r,g,b);
@@ -92,8 +104,10 @@ public class UITextView extends UIElement{
     }
     
     /**
-     * Font style, använd konstanter i Font, ex Font.BOLD
-     * @param style 
+     * @param style Font style, använd konstanter i Font:<br>
+     * Font.BOLD för <b>fet</b> text<br>
+     * Font.ITALIC för <i>kursiv</i> text<br>
+     * Font.PLAIN för normal text<br>
      */
     public void setFontStyle(int style) {
         Font old = this.font;
@@ -145,16 +159,60 @@ public class UITextView extends UIElement{
     
     /**
      * Sätter font till UITextView
-     * @param font En instance av Font
+     * @param font En instance av Font<br>
+     * new Font(String font, int style, int size)<br>
+     * UITextView inkluderar konstanter för olika typsnitt, ex
+     * UITextView.COMIC_SANS_MS<br>
+     * style är Font.BOLD för <b>fet</b> text<br>
+     * Font.ITALIC för <i>kursiv</i> text<br>
+     * Font.PLAIN för normal text<br>
+     * size är textstorleken i pixlar
      */
     public void setFont(Font font) {
         this.font = font;
     }
     
+    /**
+     * Sätter på eller av outline för UITextView
+     * @param outline <i>boolean</i>, <b>true</b> för att sätta på outline, <b>false</b> för att stänga av
+     */
+    public void setOutline(boolean outline) {
+        this.outline = outline;
+    }
+    
+    /**
+     * Sätter på och ändrar färgen för text outline
+     * @param c <i>Java Color</i> ex Color.GREEN, new Color(r,g,b), new Color(0xRRGGBB)
+     * eller new Color(0xAARRGGBB, true)
+     */
+    public void outlineText(Color c) {
+        this.outline = true;
+        this.outlineColor = c;
+    }
+    
+    /**
+     * Stänger av outline
+     */
+    public void disableOutline() {
+        this.outline = false;
+    }
+    
     @Override
     public void draw(Graphics g) {
-        g.setColor(color);
-        g.setFont(font);
-        g.drawString(text, x, y);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        
+        FontRenderContext frc = g2d.getFontRenderContext();
+        
+        TextLayout textLayout = new TextLayout(this.text, this.font, frc);
+        g2d.setColor(color);
+        textLayout.draw(g2d, this.x, this.y);
+        
+        if (this.outline) {
+            System.out.println("outline draw");
+            g2d.setColor(this.outlineColor);
+            g2d.draw(textLayout.getOutline(AffineTransform.getTranslateInstance((double) x, (double) y)));
+            
+        }
     }
 }

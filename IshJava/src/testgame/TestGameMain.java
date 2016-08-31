@@ -17,9 +17,10 @@ public class TestGameMain {
             game.objectManager.addObject(ball);
             game.objectManager.addObject(new boy(game,0,0,ball));
             UITextView tw = new UITextView(16, 64, "hello world");
-            tw.setColor(255, 127, 0);
+            tw.setColor(new Color(0xFFFFFF));
             tw.setFontFamily(UITextView.IMPACT);
             tw.setFontSize(36);
+            tw.outlineText(Color.BLACK);
             game.uiManager.addElement(tw);
     }
     
