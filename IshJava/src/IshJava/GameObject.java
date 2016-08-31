@@ -26,22 +26,27 @@ public class GameObject extends GamePoint {
     public Image sprite;
     public boolean solid;
     public double direction;
-    public int speed;
+    public double speed;
     public GamePoint target;
     public byte movementmode=0;
     public Game game;
-
+    public int width,height;
+    //detectHit
+    public boolean collide(GameObject obj){
+        boolean overlap= x < obj.x + obj.width && x + width > obj.x && y < obj.y + obj.height && y + height > obj.y;
+        return overlap;
+    }
+    
     
     //Init function
     public GameObject(Game g, String imagePath, int x, int y) {
         this.game=g;
         movementmode = 0;
         setSprite(imagePath);
-        g.objectManager.objects.add(this);
-        
         
         this.move(x, y);
         this.initobj();
+        g.objectManager.objects.add(this);
     }
     public void setDirection(int dir,int v){
         movementmode = 2;
@@ -76,6 +81,9 @@ public class GameObject extends GamePoint {
     public void setSprite(String imagePath){
         try {
             sprite = ImageIO.read(new File(imagePath));
+            width=sprite.getWidth(game);
+            height=sprite.getHeight(game);
+            //System.out.println(width);
         } catch (IOException ex) {
             ex.printStackTrace();
 
@@ -104,7 +112,7 @@ public class GameObject extends GamePoint {
         }else if(movementmode == 2){
             this.x += speed * Math.cos(direction);
             this.y += speed * Math.sin(direction);
-            System.out.println(speed);
+            //System.out.println(speed);
         }
     }
 
