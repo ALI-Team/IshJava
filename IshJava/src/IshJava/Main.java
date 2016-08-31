@@ -23,8 +23,8 @@ public class Main {
         jFrame.setPreferredSize(new Dimension(w,h));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setLayout(new BorderLayout());
-        
         Game game = new Game();
+        game.setFocusable(true); 
         jFrame.getContentPane().add(game);
         jFrame.pack();
         jFrame.setVisible(true);
