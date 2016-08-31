@@ -14,6 +14,8 @@ import java.awt.RenderingHints;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 
 /**
  * Designed by Apple in California
@@ -34,8 +36,13 @@ public class UITextView extends UIElement{
     public String text = "";
     public Color color = Color.BLACK;
     public Font font = new Font(UITextView.TIMES_NEW_ROMAN, Font.PLAIN, 12);
-    public boolean outline = false;
+    public boolean drawOutline = false;
     public Color outlineColor = Color.BLACK;
+    public boolean drawBackground = false;
+    public Color backgroundColor = Color.BLACK;
+    public int paddingTop = 4, paddingLeft = 4, 
+            paddingBottom = 4, paddingRight = 4;
+    public int borderRadius = 0;
     
     public UITextView(int x, int y) {
         super(x,y);
@@ -160,7 +167,7 @@ public class UITextView extends UIElement{
     /**
      * Sätter font till UITextView
      * @param font En instance av Font<br>
-     * new Font(String font, int style, int size)<br>
+     * <i>new Font(String font, int style, int size)</i><br>
      * UITextView inkluderar konstanter för olika typsnitt, ex
      * UITextView.COMIC_SANS_MS<br>
      * style är Font.BOLD för <b>fet</b> text<br>
@@ -177,7 +184,7 @@ public class UITextView extends UIElement{
      * @param outline <i>boolean</i>, <b>true</b> för att sätta på outline, <b>false</b> för att stänga av
      */
     public void setOutline(boolean outline) {
-        this.outline = outline;
+        this.drawOutline = outline;
     }
     
     /**
@@ -185,8 +192,8 @@ public class UITextView extends UIElement{
      * @param c <i>Java Color</i> ex Color.GREEN, new Color(r,g,b), new Color(0xRRGGBB)
      * eller new Color(0xAARRGGBB, true)
      */
-    public void outlineText(Color c) {
-        this.outline = true;
+    public void drawOutline(Color c) {
+        this.drawOutline = true;
         this.outlineColor = c;
     }
     
@@ -194,7 +201,82 @@ public class UITextView extends UIElement{
      * Stänger av outline
      */
     public void disableOutline() {
-        this.outline = false;
+        this.drawOutline = false;
+    }
+    
+    /**
+     * Sätter på eller av att rita bakgrund för UITextView
+     * @param drawBackground <i>boolean</i>, <b>true</b> för att sätta på background, <b>false</b> för att stänga av
+     */
+    public void setDrawBackground(boolean drawBackground) {
+        this.drawBackground = drawBackground;
+    }
+    
+    /**
+     * Sätter på och ändrar färgen för background
+     * @param c <i>Java Color</i> ex Color.GREEN, new Color(r,g,b), new Color(0xRRGGBB)
+     * eller new Color(0xAARRGGBB, true)
+     */
+    public void drawBackground(Color c) {
+        this.drawBackground = true;
+        this.backgroundColor = c;
+    }
+    
+    /**
+     * Stänger av att rita background
+     */
+    public void disableBackground() {
+        this.drawBackground = false;
+    }
+    
+    /**
+     * Sätter padding för UITextView
+     * @param p 1-4 argument
+     * <ul>
+     * <li><i>setPadding(25)</i>: alla sidor har 25px padding</li>
+     * <li><i>setPadding(25, 50)</i>: Top och bottom har 25px, 
+     * right och left har 50px</li>
+     * <li><i>setPadding(25, 50, 75)</i>: top har 25px padding, right och left
+     * har 50px, bottom har 75px</li>
+     * <li><i>setPadding(25,50,75,100)</i>: top har 25px, right har 50px,
+     * bottom har 75px och left har 100px
+     * </ul>
+     */
+    public void setPadding(int... p) {
+        switch (p.length) {
+            case 1:
+                this.paddingTop = p[0];
+                this.paddingRight = p[0];
+                this.paddingBottom = p[0];
+                this.paddingLeft = p[0];
+                break;
+            case 2:
+                this.paddingTop = p[0];
+                this.paddingRight = p[1];
+                this.paddingBottom = p[0];
+                this.paddingLeft = p[1];
+                break;
+            case 3:
+                this.paddingTop = p[0];
+                this.paddingRight = p[1];
+                this.paddingBottom = p[2];
+                this.paddingLeft = p[1];
+                break;
+            default:
+                this.paddingTop = p[0];
+                this.paddingRight = p[1];
+                this.paddingBottom = p[3];
+                this.paddingLeft = p[4];
+                break;
+        }
+    }
+    
+    /**
+     * Sätter hur mycket rundade hörnen är i px
+     * @param r Radien för hörnens rundning
+     */
+    public void setBorderRadius(int r) {
+        this.borderRadius = r;
     }
     
     @Override
@@ -205,14 +287,29 @@ public class UITextView extends UIElement{
         FontRenderContext frc = g2d.getFontRenderContext();
         
         TextLayout textLayout = new TextLayout(this.text, this.font, frc);
-        g2d.setColor(color);
-        textLayout.draw(g2d, this.x, this.y);
         
-        if (this.outline) {
-            System.out.println("outline draw");
-            g2d.setColor(this.outlineColor);
-            g2d.draw(textLayout.getOutline(AffineTransform.getTranslateInstance((double) x, (double) y)));
-            
+        if (this.drawBackground) {
+            Rectangle2D bounds = textLayout.getBounds();
+            RoundRectangle2D rr = new RoundRectangle2D.Float();
+            rr.setRoundRect(bounds.getX() + this.x - this.paddingLeft, 
+                    bounds.getY() + this.y - this.paddingTop, 
+                    bounds.getWidth() + this.paddingLeft + this.paddingRight,
+                    bounds.getHeight() + this.paddingTop + this.paddingBottom, 
+                    this.borderRadius, this.borderRadius);
+            g2d.setColor(this.backgroundColor);
+            g2d.fill(rr);
         }
+        
+        g2d.setColor(this.color);
+        g2d.fill(textLayout.getOutline(AffineTransform
+                .getTranslateInstance((double) x, (double) y)));
+        
+        if (this.drawOutline) {
+            g2d.setColor(this.outlineColor);
+            g2d.draw(textLayout.getOutline(AffineTransform
+                    .getTranslateInstance((double) x, (double) y)));
+        }
+        
+        //textLayout.draw(g2d, this.x, this.y);
     }
 }

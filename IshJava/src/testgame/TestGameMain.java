@@ -20,7 +20,10 @@ public class TestGameMain {
             tw.setColor(new Color(0xFFFFFF));
             tw.setFontFamily(UITextView.IMPACT);
             tw.setFontSize(36);
-            tw.outlineText(Color.BLACK);
+            tw.drawOutline(Color.BLACK);
+            tw.drawBackground(Color.GREEN);
+            tw.setPadding(4, 8, 16);
+            tw.setBorderRadius(16);
             game.uiManager.addElement(tw);
     }
     
