@@ -12,7 +12,7 @@ import java.awt.Point;
  *
  * @author axemat060
  */
-public class UIElement {
+public abstract class UIElement {
     public int x,y;
     public boolean visible;
     
@@ -40,8 +40,6 @@ public class UIElement {
         this.visible = false;
     }
     
-    public void draw(Graphics g) {
-        
-    }
+    public abstract void draw(Graphics g); 
     
 }
