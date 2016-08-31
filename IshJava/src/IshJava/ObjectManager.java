@@ -54,6 +54,8 @@ public class ObjectManager {
     
     public void mousePressed(int x, int y) {
         
+        System.out.println("dick");
+        
         for (GameObject object : this.objects) {
             
             int height = object.sprite.getHeight(this.game);

@@ -61,6 +61,9 @@ public class Game extends JPanel implements Runnable, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        
+        System.out.println("sad");
+        
         Point mousePosition = e.getPoint();
         int x = mousePosition.x;
         int y = mousePosition.y;
