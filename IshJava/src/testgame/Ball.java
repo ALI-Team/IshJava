@@ -14,6 +14,7 @@ public class Ball extends GameObject{
     }
     @Override
     public void onKeyPressed(char c){
+         
         if(c=='w'){
             this.setDirection(270, 150);
         }else if(c=='s'){

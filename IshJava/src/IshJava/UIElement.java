@@ -5,37 +5,26 @@
  */
 package IshJava;
 
+import java.awt.Graphics;
 import java.awt.Point;
 
 /**
  *
  * @author axemat060
  */
-public class UIElement {
-    public int x,y,w,h;
+public abstract class UIElement {
+    public int x,y;
     public boolean visible;
-    
-    public UIElement(int x, int y, int w, int h) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-        this.visible = true;
-    }
-    
-    public UIElement(Point p, int w, int h) {
-        this.x = p.x;
-        this.y = p.y;
-        this.w = w;
-        this.h = h;
-        this.visible = true;
-    }
     
     public UIElement(int x, int y) {
         this.x = x;
         this.y = y;
-        this.w = 32;
-        this.h = 16;
+        this.visible = true;
+    }
+    
+    public UIElement(Point p) {
+        this.x = p.x;
+        this.y = p.y;
         this.visible = true;
     }
     
@@ -50,5 +39,7 @@ public class UIElement {
     public void hide() {
         this.visible = false;
     }
+    
+    public abstract void draw(Graphics g); 
     
 }
