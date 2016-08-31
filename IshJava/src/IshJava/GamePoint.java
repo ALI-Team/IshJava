@@ -31,6 +31,6 @@ public class GamePoint{
     }
     public double distance(GamePoint target){
         double distance=Math.sqrt(Math.pow(this.x-target.x,2)+Math.pow(this.y-target.y,2));
-        return distance;
+        return distance; 
     }
 }

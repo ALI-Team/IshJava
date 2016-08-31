@@ -93,7 +93,7 @@ public class GameObject extends GamePoint {
 
             System.out.println("Cant find file " + imagePath);
         }
-    }
+    } 
 
     public void moveto(int x, int y,int v) {
         movementmode = 1;
@@ -116,7 +116,7 @@ public class GameObject extends GamePoint {
         }else if(movementmode == 2){
             this.x += speed * Math.cos(direction);
             this.y += speed * Math.sin(direction);
-            //System.out.println(speed);
+            
         }
     }
 
