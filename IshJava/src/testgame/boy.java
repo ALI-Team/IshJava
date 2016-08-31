@@ -16,12 +16,16 @@ public class boy extends GameObject{
     public Ball ball;
     public boy(Game game, int x, int y,Ball b) {
         super(game, x, y);
+        ball=b;
         this.setSprite("src/imgs/boy.png");
-        moveto(b,120);
+        moveto(b,100);
+        
     }
      @Override
     public void tick(){
-        
+        if(this.collide(ball)){
+            System.out.println("hit");
+        }
     } 
     
 }

@@ -14,10 +14,19 @@ public class Ball extends GameObject{
     }
     @Override
     public void onKeyPressed(char c){
-        System.out.println(c);
+        if(c=='w'){
+            this.setDirection(270, 150);
+        }else if(c=='s'){
+            this.setDirection(90, 150);
+        }else if(c=='a'){
+            this.setDirection(180, 150);
+        }else if(c=='d'){
+            this.setDirection(360, 150);
+        }
     }
     @Override
     public void tick(){
+        
         
     }  
 }
