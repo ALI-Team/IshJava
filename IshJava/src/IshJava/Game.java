@@ -55,6 +55,7 @@ public class Game extends JPanel implements Runnable{
     public void run() {
         while (true) {
             long tick=System.currentTimeMillis();
+            this.objectManager.executeMouseEvents();
             this.objectManager.updateObjs();
             repaint();
             try {

@@ -35,7 +35,8 @@ public class ObjectManager implements KeyListener, MouseListener{
     public ArrayList<GameObject> addlist = new ArrayList<>();
     public ArrayList<GameObject> objects = new ArrayList<>();
     public ArrayList<GameObject> keylisteners = new ArrayList<>();
-    public ArrayList<GameObject> mouselisteners = new ArrayList<>();
+    public ArrayList<GameObject> onclickisteners = new ArrayList<>();
+    public ArrayList<GameMouseEvent> mouseevents = new ArrayList<>();
     
     public void updateObjs(){
         objects.addAll(addlist);
@@ -46,6 +47,15 @@ public class ObjectManager implements KeyListener, MouseListener{
             obj.updateObj();
         }
     
+    }
+    public void executeMouseEvents(){
+        ArrayList<GameMouseEvent> staticobjects = new ArrayList<>();
+        staticobjects.addAll(mouseevents);
+        mouseevents.clear();
+        for (GameMouseEvent gme : staticobjects) {
+            gme.execute();
+        }
+        
     }
     
     public void drawObjs(Graphics g){
@@ -84,32 +94,30 @@ public class ObjectManager implements KeyListener, MouseListener{
         }
     }
     
-    public void mousePressed(int x, int y) {
-        
+    public void handleMousePress(MouseEvent e) {
+        Point mousePosition = e.getPoint();
+        int x = mousePosition.x;
+        int y = mousePosition.y;
         ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
-        staticobjects.addAll(mouselisteners);
+        staticobjects.addAll(this.onclickisteners);
         for (GameObject object : staticobjects) {
             
             int height = object.sprite.getHeight(this.game);
             int width = object.sprite.getWidth(this.game);
             
             if ((x > (object.x - (width / 2)) && (x < object.x + (width / 2))) && (y > (object.y - (height / 2)) && (y < object.y + (height / 2)))) {
-                object.mousePressed();
+                object.onClick();
+                mouseevents.add(new GameMouseEvent(e,object));
             }
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
-        Point mousePosition = e.getPoint();
-        int x = mousePosition.x;
-        int y = mousePosition.y;
+
         if(!this.game.uiManager.onClick(e)){
-            this.mousePressed(x, y);
-        }
-        
-        
+            this.handleMousePress(e);
+        } 
     }
 
     @Override

@@ -16,9 +16,11 @@ public class boy extends GameObject{
     public Ball ball;
     public boy(Game game, int x, int y,Ball b) {
         super(game, x, y);
+        
         ball=b;
         this.setSprite("src/imgs/boy.png");
         moveto(b,100);
+        addOnClick();
     }
      @Override
     public void tick(){
@@ -28,7 +30,8 @@ public class boy extends GameObject{
     } 
     
     @Override
-    public void mousePressed() {
+    public void onClick() {
+        
         System.out.println("stop touching me!");
         moveto(10, 10, 1);
     }
