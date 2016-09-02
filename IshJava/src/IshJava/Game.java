@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  *
  * @author ALI team
  */
-public class Game extends JPanel implements Runnable, MouseListener {
+public class Game extends JPanel implements Runnable{
 
     public ObjectManager objectManager;
     public UIManager uiManager;
@@ -29,6 +29,7 @@ public class Game extends JPanel implements Runnable, MouseListener {
         uiManager = new UIManager();
         this.setBackground(new java.awt.Color(255, 255, 255));
         addKeyListener(objectManager);
+        addMouseListener(objectManager);
         mainThread = new Thread(this);
         mainThread.start();
 
@@ -53,49 +54,19 @@ public class Game extends JPanel implements Runnable, MouseListener {
     @Override
     public void run() {
         while (true) {
+            long tick=System.currentTimeMillis();
             this.objectManager.updateObjs();
             repaint();
             try {
+                long tock=System.currentTimeMillis();
                 synchronized (mainThread) {
-                    mainThread.wait(1000 / fps);
+                    mainThread.wait(Math.max(0,(1000 / fps)-(tock-tick)));
                 }
 
             } catch (InterruptedException ex) {
 
             }
         }
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        
-        System.out.println("sad");
-        
-        Point mousePosition = e.getPoint();
-        int x = mousePosition.x;
-        int y = mousePosition.y;
-        
-        this.objectManager.mousePressed(x, y);
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -7,8 +7,11 @@
 package IshJava;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 
@@ -16,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author ivamat907
  */
-public class ObjectManager implements KeyListener{
+public class ObjectManager implements KeyListener, MouseListener{
     
     Game game;
     
@@ -28,9 +31,11 @@ public class ObjectManager implements KeyListener{
         addlist.add(go);
     }
     
+    
     public ArrayList<GameObject> addlist = new ArrayList<>();
     public ArrayList<GameObject> objects = new ArrayList<>();
     public ArrayList<GameObject> keylisteners = new ArrayList<>();
+    public ArrayList<GameObject> mouselisteners = new ArrayList<>();
     
     public void updateObjs(){
         objects.addAll(addlist);
@@ -81,9 +86,9 @@ public class ObjectManager implements KeyListener{
     
     public void mousePressed(int x, int y) {
         
-        System.out.println("dick");
-        
-        for (GameObject object : this.objects) {
+        ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
+        staticobjects.addAll(mouselisteners);
+        for (GameObject object : staticobjects) {
             
             int height = object.sprite.getHeight(this.game);
             int width = object.sprite.getWidth(this.game);
@@ -92,5 +97,38 @@ public class ObjectManager implements KeyListener{
                 object.mousePressed();
             }
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        
+        Point mousePosition = e.getPoint();
+        int x = mousePosition.x;
+        int y = mousePosition.y;
+        if(!this.game.uiManager.onClick(e)){
+            this.mousePressed(x, y);
+        }
+        
+        
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+       
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        
     }
 }
