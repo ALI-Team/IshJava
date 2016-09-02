@@ -22,8 +22,10 @@ public class TestGameMain {
             tw.setFontSize(36);
             tw.drawOutline(Color.BLACK);
             tw.drawBackground(Color.GREEN);
-            tw.setPadding(4, 8, 16);
+            tw.setPadding(8);
             tw.setBorderRadius(16);
+            tw.drawBorder(Color.CYAN);
+            tw.setBorderWidth(5);
             game.uiManager.addElement(tw);
     }
     

@@ -81,6 +81,9 @@ public class GameObject extends GamePoint {
     public void addKeyboard(){
         this.game.objectManager.keylisteners.add(this);
     }
+    public void addOnClick(){
+        this.game.objectManager.onclickisteners.add(this);
+    }
     
     public void setSprite(String imagePath){
         try {
@@ -140,7 +143,7 @@ public class GameObject extends GamePoint {
     }
 
     //Also to be overwritten. Called when mouse clicks the object
-    public void mousePressed() {
+    public void onClick() {
         
     }
 }
