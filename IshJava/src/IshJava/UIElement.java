@@ -28,14 +28,24 @@ public abstract class UIElement {
         this.visible = true;
     }
     
+    /**
+     * 
+     * @param v <i>true</i> for visible, </i>false</i> for hidden
+     */
     public void setVisible(boolean v) {
         this.visible = v;
     }
     
+    /**
+     * Shows the element
+     */
     public void show() {
         this.visible = true;
     }
    
+    /**
+     * Hides the element
+     */
     public void hide() {
         this.visible = false;
     }

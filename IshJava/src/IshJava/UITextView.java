@@ -5,12 +5,14 @@
  */
 package IshJava;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Stroke;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
@@ -42,7 +44,10 @@ public class UITextView extends UIElement{
     public Color backgroundColor = Color.BLACK;
     public int paddingTop = 4, paddingLeft = 4, 
             paddingBottom = 4, paddingRight = 4;
+    public boolean drawBorder = false;
     public int borderRadius = 0;
+    public Color borderColor = Color.BLACK;
+    public int borderWidth = 1;
     
     public UITextView(int x, int y) {
         super(x,y);
@@ -225,7 +230,7 @@ public class UITextView extends UIElement{
     /**
      * Stänger av att rita background
      */
-    public void disableBackground() {
+    public void hideBackground() {
         this.drawBackground = false;
     }
     
@@ -279,10 +284,44 @@ public class UITextView extends UIElement{
         this.borderRadius = r;
     }
     
+    /**
+     * Turns on border around background box and sets the color the c
+     * @param c <i>Java Color</i> ex Color.GREEN, new Color(r,g,b), new Color(0xRRGGBB)
+     * eller new Color(0xAARRGGBB, true)
+     */
+    public void drawBorder(Color c) {
+        this.drawBorder = true;
+        this.borderColor = c;
+    }
+    
+    /**
+     * Turns on or off border for UITextView
+     * @param drawBorder <i>boolean</i>, <b>true</b> för att sätta på outline, <b>false</b> för att stänga av
+     */
+    public void setDrawBorder(boolean drawBorder) {
+        this.drawBorder = drawBorder;
+    }
+    
+    /**
+     * Hides border around background box
+     */
+    public void hideBorder() {
+        this.drawBorder = false;
+    }
+    
+    /**
+     * Sets the borderWidth of UITextView
+     * @param borderWidth </i>int</i> width in px
+     */
+    public void setBorderWidth(int borderWidth) {
+        this.borderWidth = borderWidth;
+    }
+    
     @Override
     public void draw(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        final Stroke defaultStroke = g2d.getStroke();
         
         FontRenderContext frc = g2d.getFontRenderContext();
         
@@ -298,6 +337,12 @@ public class UITextView extends UIElement{
                     this.borderRadius, this.borderRadius);
             g2d.setColor(this.backgroundColor);
             g2d.fill(rr);
+            if (this.drawBorder) {
+                g2d.setColor(this.borderColor);
+                g2d.setStroke(new BasicStroke(this.borderWidth));
+                g2d.draw(rr);
+                g2d.setStroke(defaultStroke);
+            }
         }
         
         g2d.setColor(this.color);
