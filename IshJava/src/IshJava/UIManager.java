@@ -6,6 +6,7 @@
 package IshJava;
 
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 /**
@@ -13,9 +14,15 @@ import java.util.ArrayList;
  * @author axemat060
  */
 public class UIManager {
+    
     ArrayList<UIElement> UIElements;
     public UIManager() {
         this.UIElements = new ArrayList<>();
+    }
+    
+    public boolean onClick(MouseEvent ev){
+        
+        return false;
     }
     
     public void addElement(UIElement e) {
