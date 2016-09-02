@@ -6,6 +6,7 @@
 package IshJava;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -21,7 +22,15 @@ public class UIManager {
     }
     
     public boolean onClick(MouseEvent ev){
-        
+        Point p = ev.getPoint();
+        for (UIElement e : this.UIElements) {
+            if (e instanceof UIElement.Clickable) {
+                UIElement.Clickable c = ((UIElement.Clickable) e);
+                if (c.inArea(p)) {
+                    c.handleClick(ev);
+                }
+            }
+        }
         return false;
     }
     

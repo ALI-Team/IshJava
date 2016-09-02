@@ -5,6 +5,7 @@
  */
 package IshJava;
 
+import java.awt.Event;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -26,6 +27,11 @@ public abstract class UIElement {
         this.x = p.x;
         this.y = p.y;
         this.visible = true;
+    }
+    
+    public interface Clickable {
+        public boolean inArea(Point p);
+        public void handleClick(Event ev);
     }
     
     /**
