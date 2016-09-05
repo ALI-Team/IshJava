@@ -39,6 +39,10 @@ public class Game extends JPanel implements Runnable{
         this.objectManager.addObject(obj);
 
     }
+    
+    public void addUIElement(UIElement e) {
+        this.uiManager.addElement(e);
+    }
 
     @Override
     public void paintComponent(Graphics g) {

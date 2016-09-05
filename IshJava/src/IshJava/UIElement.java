@@ -8,6 +8,7 @@ package IshJava;
 import java.awt.Event;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -31,7 +32,7 @@ public abstract class UIElement {
     
     public interface Clickable {
         public boolean inArea(Point p);
-        public void handleClick(Event ev);
+        public void handleClick(MouseEvent ev);
     }
     
     /**

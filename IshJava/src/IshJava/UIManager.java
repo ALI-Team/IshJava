@@ -21,6 +21,8 @@ public class UIManager {
         this.UIElements = new ArrayList<>();
     }
     
+    //TODO: fix mouse release sending event and triggering buttons on more types
+    //of events and let Clickables handle events how they want.
     public boolean onClick(MouseEvent ev){
         Point p = ev.getPoint();
         for (UIElement e : this.UIElements) {
@@ -28,6 +30,7 @@ public class UIManager {
                 UIElement.Clickable c = ((UIElement.Clickable) e);
                 if (c.inArea(p)) {
                     c.handleClick(ev);
+                    return true;
                 }
             }
         }

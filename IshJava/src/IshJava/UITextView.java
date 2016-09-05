@@ -98,15 +98,15 @@ public class UITextView extends UIElement{
     
     /**
      * Ändrar texten
-     * @param text 
+     * @param text <i>String</i> som innehåller nya texten
      */
     public void setText(String text) {
         this.text = text;
     }
     
     /**
-     * Sätter font size i pixlar
-     * @param size 
+     * Sätter font size för UITextView
+     * @param size <i>int</i> in px
      */
     public void setFontSize(int size) {
         Font old = this.font;
@@ -129,8 +129,8 @@ public class UITextView extends UIElement{
     }
     
     /**
-     * Font family, ex "Helvetica" eller UITextView.COMIC_SANS_MS
-     * @param family 
+     * Sätter font family för UITextView
+     * @param family <i>String</i> ex "Helvetica" eller UITextView.COMIC_SANS_MS
      */
     public void setFontFamily(String family) {
         Font old = this.font;
@@ -140,7 +140,7 @@ public class UITextView extends UIElement{
     }
     
     /**
-     * Sätter font style till italic
+     * Sätter font style till <i>italic</i>
      */
     public void setItalic() {
         Font old = this.font;
@@ -150,7 +150,7 @@ public class UITextView extends UIElement{
     }
     
     /**
-     * Sätter font style till bold
+     * Sätter font style till <b>bold</b>
      */
     public void setBold() {
         Font old = this.font;
@@ -223,7 +223,7 @@ public class UITextView extends UIElement{
      * eller new Color(0xAARRGGBB, true)
      */
     public void drawBackground(Color c) {
-        this.drawBackground = true;
+        setDrawBackground(true);
         this.backgroundColor = c;
     }
     
@@ -231,7 +231,7 @@ public class UITextView extends UIElement{
      * Stänger av att rita background
      */
     public void hideBackground() {
-        this.drawBackground = false;
+        setDrawBackground(false);
     }
     
     /**
