@@ -11,11 +11,12 @@ public class Ball extends GameObject{
         this.setSprite("src/imgs/ball.png");
         this.setDirection(45, 100);
         this.addKeyboard();
+        this.moveto(game.mousePoint, 200);
     }
     @Override
     public void onKeyPressed(char c){
          
-        if(c=='w'){
+       /* if(c=='w'){
             this.setDirection(270, 150);
         }else if(c=='s'){
             this.setDirection(90, 150);
@@ -23,7 +24,7 @@ public class Ball extends GameObject{
             this.setDirection(180, 150);
         }else if(c=='d'){
             this.setDirection(360, 150);
-        }
+        }*/
     }
     @Override
     public void tick(){
