@@ -6,6 +6,7 @@
 package IshJava;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -20,8 +21,19 @@ public class UIManager {
         this.UIElements = new ArrayList<>();
     }
     
+    //TODO: fix mouse release sending event and triggering buttons on more types
+    //of events and let Clickables handle events how they want.
     public boolean onClick(MouseEvent ev){
-        
+        Point p = ev.getPoint();
+        for (UIElement e : this.UIElements) {
+            if (e instanceof UIElement.Clickable) {
+                UIElement.Clickable c = ((UIElement.Clickable) e);
+                if (c.inArea(p)) {
+                    c.handleClick(ev);
+                    return true;
+                }
+            }
+        }
         return false;
     }
     

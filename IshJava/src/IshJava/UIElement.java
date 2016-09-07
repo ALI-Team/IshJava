@@ -5,8 +5,10 @@
  */
 package IshJava;
 
+import java.awt.Event;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -26,6 +28,11 @@ public abstract class UIElement {
         this.x = p.x;
         this.y = p.y;
         this.visible = true;
+    }
+    
+    public interface Clickable {
+        public boolean inArea(Point p);
+        public void handleClick(MouseEvent ev);
     }
     
     /**
