@@ -11,7 +11,13 @@ import java.awt.Image;
 import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.ImageIcon;
 
 /**
@@ -145,5 +151,32 @@ public class GameObject extends GamePoint {
     //Also to be overwritten. Called when mouse clicks the object
     public void onClick() {
         
+    }
+    
+    public static synchronized void playSound(final String path) {
+        
+            /*
+             * Play sound on separate thread
+             */
+            new Thread(new Runnable() {
+            
+                public void run() {
+                
+                    try {
+                    
+                        /*
+                        * Crate the audioclip
+                        */
+                        Clip clip = AudioSystem.getClip();
+                        AudioInputStream inputStream = AudioSystem.getAudioInputStream(Main.class.getResourceAsStream(path));
+                    
+                        clip.open(inputStream);
+                        clip.start();
+                    
+                    } catch (Exception e) {
+                        System.err.println(e.getMessage());
+                    }
+                }
+        }).start();
     }
 }
