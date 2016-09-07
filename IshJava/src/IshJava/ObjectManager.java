@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.ImageObserver;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -36,9 +37,16 @@ public class ObjectManager implements KeyListener, MouseListener{
     public ArrayList<GameObject> objects = new ArrayList<>();
     public ArrayList<GameObject> keylisteners = new ArrayList<>();
     public ArrayList<GameObject> onclickisteners = new ArrayList<>();
+    public ArrayList<GameObject> movementListeners = new ArrayList<>();
+    public ArrayList<GameObject> keyMovementListeners = new ArrayList<>();
     public ArrayList<GameMouseEvent> mouseevents = new ArrayList<>();
-    
+    public ArrayList<GameKeyEvent> keyevents = new ArrayList<>();
+    public HashMap<Character, Boolean> keys = new HashMap<>();
+            
+   
+            
     public void updateObjs(){
+        updateKeyMovment();
         objects.addAll(addlist);
         addlist.clear();
         ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
@@ -48,12 +56,47 @@ public class ObjectManager implements KeyListener, MouseListener{
         }
     
     }
-    public void executeMouseEvents(){
+    public void updateKeyMovment(){
+        ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
+        staticobjects.addAll(keyMovementListeners);
+        for (GameObject obj : staticobjects) {
+            double dirTMP=0;
+            int i=0;
+            boolean keypressed=false;
+            int keyspressed=0;
+            while (i<4){
+                
+                if(keys.get(obj.movementKeys[i])!=null){
+                   
+                if(keys.get(obj.movementKeys[i])){
+                    System.out.println(obj.movementKeys[i]);
+                    keypressed=true;
+                    dirTMP=dirTMP+(i)*0.5*Math.PI;
+                    keyspressed++;
+                }
+                }
+                i++;
+            }
+            obj.direction=dirTMP/keyspressed;
+            if(keypressed){
+            obj.movementmode=2;
+            }else{
+                obj.movementmode=0;
+            }
+        }
+    }
+    public void executeEvents(){
         ArrayList<GameMouseEvent> staticobjects = new ArrayList<>();
         staticobjects.addAll(mouseevents);
         mouseevents.clear();
         for (GameMouseEvent gme : staticobjects) {
             gme.execute();
+        }
+        ArrayList<GameKeyEvent> statickeyobj = new ArrayList<>();
+        statickeyobj.addAll(keyevents);
+        keyevents.clear();
+        for (GameKeyEvent gke : statickeyobj) {
+            gke.execute();
         }
         
     }
@@ -72,7 +115,7 @@ public class ObjectManager implements KeyListener, MouseListener{
         ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
         staticobjects.addAll(objects);
         for (GameObject obj : staticobjects) {
-            obj.onKeyTyped(e.getKeyChar());
+            keyevents.add(new GameKeyEvent(e,obj,(byte)2));
         }
     }
 
@@ -81,8 +124,10 @@ public class ObjectManager implements KeyListener, MouseListener{
         ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
         staticobjects.addAll(objects);
         for (GameObject obj : staticobjects) {
-            obj.onKeyPressed(e.getKeyChar());
+            keyevents.add(new GameKeyEvent(e,obj,(byte)0));
         }
+        keys.put(e.getKeyChar(), true);
+        
     }
 
     @Override
@@ -90,8 +135,10 @@ public class ObjectManager implements KeyListener, MouseListener{
        ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
         staticobjects.addAll(objects);
         for (GameObject obj : staticobjects) {
-            obj.onKeyReleased(e.getKeyChar());
+            keyevents.add(new GameKeyEvent(e,obj,(byte)1));
         }
+        keys.put(e.getKeyChar(), false);
+        
     }
     
     public void handleMousePress(MouseEvent e) {

@@ -21,11 +21,7 @@ import javax.swing.ImageIcon;
 public class GameObject extends GamePoint {
 
     /*
-<<<<<<< HEAD
     * @author ALI-Team  
-=======
-    * @author Luka Jankovic NA15C
->>>>>>> mouse-detection
      */
     public Image sprite;
     public boolean solid;
@@ -35,6 +31,7 @@ public class GameObject extends GamePoint {
     public byte movementmode=0;
     public Game game;
     public int width,height;
+    public char[] movementKeys;
     //detectHit
     public boolean collide(GameObject obj){
         boolean overlap= x < obj.x + obj.width && x + width > obj.x && y < obj.y + obj.height && y + height > obj.y;
@@ -56,9 +53,18 @@ public class GameObject extends GamePoint {
         movementmode = 2;
         direction=(double) ((dir/360.0)*Math.PI*2);
         speed=game.pps2ppf(v);
-        
-        
     }
+    
+    public void addKeyMovment(char up,char down,char left,char right,int speed){
+        movementKeys=new char[4];
+        movementKeys[0]=right;
+        movementKeys[1]=down;
+        movementKeys[2]=left;
+        movementKeys[3]=up;
+        setSpeed(speed);
+        game.objectManager.keyMovementListeners.add(this);
+    }
+    
     public GameObject(Game g, double x, double y) {
         this.game=g;
         movementmode = 0;
@@ -67,6 +73,7 @@ public class GameObject extends GamePoint {
         this.move(x, y);
         this.initobj();
     }
+    
     
     public void onKeyPressed(char c){
         
@@ -108,6 +115,9 @@ public class GameObject extends GamePoint {
         target = p;
         speed=game.pps2ppf(v);
 
+    }
+    public void setSpeed(int speed){
+        this.speed=game.pps2ppf(speed);
     }
 
     public void moveobj() {

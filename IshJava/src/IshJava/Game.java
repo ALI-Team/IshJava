@@ -60,7 +60,7 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
     public void run() {
         while (true) {
             long tick=System.currentTimeMillis();
-            this.objectManager.executeMouseEvents();
+            this.objectManager.executeEvents();
             this.objectManager.updateObjs();
             repaint();
             try {
