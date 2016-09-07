@@ -95,18 +95,38 @@ public class ObjectManager implements KeyListener, MouseListener{
     }
     
     public void handleMousePress(MouseEvent e) {
+        
+        /*
+         * Get coordinates from mouseclick
+         */
         Point mousePosition = e.getPoint();
         int x = mousePosition.x;
         int y = mousePosition.y;
+        
+        /*
+         * Get click listeners
+         */
         ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
         staticobjects.addAll(this.onclickisteners);
+        
         for (GameObject object : staticobjects) {
             
+            /*
+             * Check if mouseclick occured in the object
+             */
             int height = object.sprite.getHeight(this.game);
             int width = object.sprite.getWidth(this.game);
             
             if ((x > (object.x - (width / 2)) && (x < object.x + (width / 2))) && (y > (object.y - (height / 2)) && (y < object.y + (height / 2)))) {
+                
+                /*
+                 * Send onClick event to the object
+                 */
                 object.onClick();
+                
+                /*
+                 * Queue the click event
+                 */
                 mouseevents.add(new GameMouseEvent(e,object));
             }
         }
@@ -114,7 +134,7 @@ public class ObjectManager implements KeyListener, MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        
         if(!this.game.uiManager.onClick(e)){
             this.handleMousePress(e);
         } 
