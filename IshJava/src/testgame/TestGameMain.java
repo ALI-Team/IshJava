@@ -18,7 +18,7 @@ public class TestGameMain {
         game.addObject(ball);
         game.addObject(new boy(game,0,0,ball));   
         
-        UITextView tw = new UITextView(16, 64, "hello world");
+        UITextView tw = new UITextView(game, 16, 64, "hello world");
         tw.setColor(new Color(0xFFFFFF));
         tw.setFontFamily(UITextView.IMPACT);
         tw.setFontSize(36);
@@ -30,7 +30,7 @@ public class TestGameMain {
         tw.setBorderWidth(5);
         game.addUIElement(tw);
         
-        MyButton button = new MyButton(16, 256);
+        MyButton button = new MyButton(game, 16, 256);
         button.setText("Press me");
         button.drawBackground(Color.RED);
         button.setFontSize(28);

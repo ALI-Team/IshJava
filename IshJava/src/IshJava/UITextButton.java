@@ -31,12 +31,20 @@ public class UITextButton extends UITextView implements UIElement.Clickable {
     Shape shape;
     boolean hasChanged = true;
 
-    public UITextButton(int x, int y) {
-        super(x, y);
+    public UITextButton(Game g, int x, int y) {
+        super(g, x, y);
     }
 
-    public UITextButton(Point p) {
-        super(p);
+    public UITextButton(Game g, Point p) {
+        super(g, p);
+    }
+    
+    public UITextButton(Game g, int x, int y, String t) {
+        super(g, x, y, t);
+    }
+    
+    public UITextButton(Game g, Point p, String t) {
+        super(g, p, t);
     }
    
     //Wrap some functions to optimize code, only set <i>this.shape</i> if it has changed

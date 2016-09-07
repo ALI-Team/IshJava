@@ -41,6 +41,10 @@ public class UIManager {
         this.UIElements.add(e);
     }
     
+    public UIElement getElement(int id) {
+        return UIElements.get(id);
+    }
+    
     public void drawUI(Graphics g) {
         ArrayList<UIElement> tempElements = new ArrayList<>();
         tempElements.addAll(this.UIElements);

@@ -49,32 +49,22 @@ public class UITextView extends UIElement{
     public Color borderColor = Color.BLACK;
     public int borderWidth = 1;
     
-    public UITextView(int x, int y) {
-        super(x,y);
+    public UITextView(Game g, int x, int y) {
+        super(g, x, y);
     }
     
-    public UITextView(Point p) {
-        super(p);
+    public UITextView(Game g, Point p) {
+        super(g, p);
     }
     
-    public UITextView(int x, int y, String text) {
-        super(x,y);
-        this.text = text;
+    public UITextView(Game g, int x, int y, String t) {
+        super(g, x, y);
+        this.text = t;
     }
     
-    public UITextView(int x, int y, String text, Color color) {
-        this(x,y,text);
-        this.color = color;
-    }
-    
-    public UITextView(Point p, String text) {
-        this(p);
-        this.text = text;
-    }
-    
-    public UITextView(Point p, String text, Color color) {
-        this(p, text);
-        this.color = color;
+    public UITextView(Game g, Point p, String t) {
+        super(g, p);
+        this.text = t;
     }
     
     /**
