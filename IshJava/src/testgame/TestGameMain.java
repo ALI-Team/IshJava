@@ -26,7 +26,7 @@ public class TestGameMain {
             tw.setBorderRadius(16);
             tw.drawBorder(Color.CYAN);
             tw.setBorderWidth(5);
-            game.uiManager.addElement(tw);
+            //game.uiManager.addElement(tw);
     }
     
 }

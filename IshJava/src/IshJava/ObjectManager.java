@@ -117,7 +117,15 @@ public class ObjectManager implements KeyListener, MouseListener{
             int height = object.sprite.getHeight(this.game);
             int width = object.sprite.getWidth(this.game);
             
-            if ((x > (object.x - (width / 2)) && (x < object.x + (width / 2))) && (y > (object.y - (height / 2)) && (y < object.y + (height / 2)))) {
+            System.out.println("Start");
+            System.out.println(width);
+            System.out.println(height);
+            System.out.println(object.x);
+            System.out.println(object.y);
+            System.out.println(x);
+            System.out.println(y);
+            
+            if ((x > object.x) && (x < (object.x + width)) && (y > object.y) && (y < (object.y + height))) {
                 
                 /*
                  * Send onClick event to the object
