@@ -7,6 +7,7 @@ package testgame;
 
 import IshJava.Game;
 import IshJava.UITextButton;
+import IshJava.UITextView;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
@@ -35,7 +36,8 @@ public class MyButton extends UITextButton{
     
     @Override
     public void handleClick(MouseEvent ev) {
-        clicks++;
+        UITextView tw = (UITextView) game.getUIElement("tw");
+        tw.setText("allahu akbaaaaar");
     }
     
 }

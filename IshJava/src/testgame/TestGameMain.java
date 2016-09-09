@@ -28,7 +28,7 @@ public class TestGameMain {
         tw.setBorderRadius(16);
         tw.drawBorder(Color.CYAN);
         tw.setBorderWidth(5);
-        game.addUIElement(tw);
+        game.addUIElement("tw", tw);
         
         MyButton button = new MyButton(game, 16, 256);
         button.setText("Press me");
@@ -37,7 +37,7 @@ public class TestGameMain {
         button.setFontFamily(UITextButton.MONOSPACE);
         button.setPadding(16);
         button.setBorderRadius(4);
-        game.addUIElement(button);
+        game.addUIElement("button", button);
     }
     
 }
