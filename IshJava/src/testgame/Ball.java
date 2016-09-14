@@ -9,12 +9,13 @@ public class Ball extends GameObject{
     public Ball(Game game, int x, int y) {
         super(game, x, y);
         this.setSprite("src/imgs/ball.png");
-        this.setDirection(45, 100);
+        //this.setDirection(45, 100);
         this.addKeyboard();
+        this.addOnClick();
     }
     @Override
     public void onKeyPressed(char c){
-         
+              
         if(c=='w'){
             this.setDirection(270, 150);
         }else if(c=='s'){
@@ -28,6 +29,9 @@ public class Ball extends GameObject{
     @Override
     public void tick(){
         
-        
     }  
+    
+    @Override
+    public void onClick() {
+    }
 }
