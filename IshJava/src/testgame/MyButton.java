@@ -5,7 +5,9 @@
  */
 package testgame;
 
+import IshJava.Game;
 import IshJava.UITextButton;
+import IshJava.UITextView;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
@@ -16,18 +18,26 @@ import java.awt.event.MouseEvent;
 public class MyButton extends UITextButton{
     int clicks = 0;
     
-    public MyButton(int x, int y) {
-        super(x, y);
+    public MyButton(Game g, int x, int y) {
+        super(g, x, y);
     }
     
-    public MyButton(Point p) {
-        super(p);
+    public MyButton(Game g, Point p) {
+        super(g, p);
+    }
+    
+    public MyButton(Game g, int x, int y, String t) {
+        super(g, x, y, t);
+    }
+    
+    public MyButton(Game g, Point p, String t) {
+        super(g, p, t);
     }
     
     @Override
     public void handleClick(MouseEvent ev) {
-        clicks++;
-        this.text = "allahu akbar " + Integer.toString(clicks);
+        UITextView tw = (UITextView) game.getUIElement("tw");
+        tw.setText("allahu akbaaaaar");
     }
     
 }

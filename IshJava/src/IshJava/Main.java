@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  *
  * @author ivamat907
  */
-public class Main {
+public abstract class Main {
     public static Game createGame(int w,int h, String title){
         JFrame jFrame = new JFrame();
         

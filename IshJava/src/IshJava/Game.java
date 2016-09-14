@@ -40,10 +40,13 @@ public class Game extends JPanel implements Runnable{
 
     }
     
-    public void addUIElement(UIElement e) {
-        this.uiManager.addElement(e);
+    public void addUIElement(String id, UIElement e) {
+        this.uiManager.addElement(id, e);
     }
-
+    
+    public UIElement getUIElement(String id) {
+        return this.uiManager.getElement(id);
+    }
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -15,16 +15,19 @@ import java.awt.event.MouseEvent;
  * @author axemat060
  */
 public abstract class UIElement {
+    protected Game game;
     public int x,y;
     public boolean visible;
     
-    public UIElement(int x, int y) {
+    public UIElement(Game g, int x, int y) {
+        this.game = g;
         this.x = x;
         this.y = y;
         this.visible = true;
     }
     
-    public UIElement(Point p) {
+    public UIElement(Game g, Point p) {
+        this.game = g;
         this.x = p.x;
         this.y = p.y;
         this.visible = true;
