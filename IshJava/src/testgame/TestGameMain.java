@@ -13,10 +13,8 @@ import java.awt.Color;
 public class TestGameMain {
 
     public static void main(String[] args) {
+         
         Game game=Main.createGame(512,512, "test game");
-        Ball ball=new Ball(game,200,200);
-        game.addObject(ball);
-        game.addObject(new boy(game,0,0));   
         
         UITextView tw = new UITextView(game, 16, 64, "hello world");
         tw.setColor(new Color(0xFFFFFF));
@@ -38,6 +36,10 @@ public class TestGameMain {
         button.setPadding(16);
         button.setBorderRadius(4);
         game.addUIElement("button", button);
+        
+        Ball ball=new Ball(game,200,200);
+        game.addObject(ball);
+        game.addObject(new boy(game,0,0, tw));  
     }
     
 }
