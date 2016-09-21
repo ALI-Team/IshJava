@@ -6,9 +6,14 @@
  */
 package IshJava;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.geom.GeneralPath;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -45,6 +50,8 @@ public class GameObject extends GamePoint {
     public byte movementmode = 0;
     public Game game;
     public int width, height;
+    public boolean pen;
+    public Graphics g;
 
     //detectHit
     public boolean collide(GameObject obj) {
@@ -116,6 +123,29 @@ public class GameObject extends GamePoint {
         movementmode = 1;
         target = new GamePoint(x, y);
         speed = game.pps2ppf(v);
+        
+        if (pen) {
+            
+            BufferedImage canvas = new BufferedImage(512, 512, BufferedImage.TYPE_INT_RGB);
+
+            Graphics2D g2 = canvas.createGraphics();
+            
+
+            
+            g2.setStroke(new BasicStroke(4.0f));
+            g2.setPaint(Color.GREEN);
+            
+            GeneralPath path = new GeneralPath(GeneralPath.WIND_EVEN_ODD, 2);
+            
+            path.moveTo(this.x, this.y);
+            path.lineTo(x, y);
+            path.closePath();
+            
+            g2.draw(path);
+            //g2.drawLine((int)this.x, (int)this.y, (int)x, (int)y);
+            
+            g.drawImage(canvas, 0, 0, null);
+        }
     }
 
     public void moveto(GamePoint p, int v) {
@@ -155,11 +185,12 @@ public class GameObject extends GamePoint {
         if (sprite != null) {
             g.drawImage(sprite, (int) x, (int) y, null);
         }
+        this.g = g;
     }
 
     //Also to be overwritten. Called when mouse clicks the object
     public void onClick() {
-
+        
     }
 
     public synchronized void playSound(final String path) {

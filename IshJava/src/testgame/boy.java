@@ -18,9 +18,10 @@ public class boy extends GameObject{
     public Ball ball;
     public UITextView tw;
     int count;
-    public boy(Game game, int x, int y, UITextView tw) {
+    public boy(Game game, int x, int y) {
         super(game, x, y);
-        this.tw = tw;
+        this.tw = null;
+        this.pen = true;
         
         //ball=b;
         this.setSprite("src/imgs/ball.png");
@@ -33,7 +34,7 @@ public class boy extends GameObject{
     
     @Override
     public void onClick() {
-        
+               
         this.playSound("sounds/test.wav");
         
         Random rand = new Random();
@@ -43,7 +44,7 @@ public class boy extends GameObject{
         
         moveto(n, n2, 500);
         
-        tw.setText("clicked: "+this.count);
+        //tw.setText("clicked: "+this.count);
         this.count += 1;
     }
 }
