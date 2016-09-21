@@ -28,9 +28,10 @@ import java.awt.geom.RoundRectangle2D;
  */
 public class UITextButton extends UITextView implements UIElement.Clickable {
 
-    Shape shape;
-    boolean hasChanged = true;
-
+    public UITextButton(Game g) {
+        super(g);
+    }
+    
     public UITextButton(Game g, int x, int y) {
         super(g, x, y);
     }

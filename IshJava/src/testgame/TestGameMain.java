@@ -18,7 +18,10 @@ public class TestGameMain {
         game.addObject(ball);
         game.addObject(new boy(game,0,0));   
         
-        UITextView tw = new UITextView(game, 16, 64, "hello world");
+        UITextView tw = new UITextView(game);
+        tw.setText("hello world");
+        tw.setLayoutAnchor(UIElement.ANCHOR_MIDDLE, UIElement.ANCHOR_START);
+        tw.setLayoutMargin(16, 16);
         tw.setColor(new Color(0xFFFFFF));
         tw.setFontFamily(UITextView.IMPACT);
         tw.setFontSize(36);
