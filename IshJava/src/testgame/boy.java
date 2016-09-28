@@ -8,6 +8,7 @@ package testgame;
 import IshJava.Game;
 import IshJava.GameObject;
 import IshJava.UITextView;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.util.Random;
 
@@ -41,6 +42,7 @@ public class boy extends GameObject{
         Random rand = new Random();
 
         this.penColor = new Color(rand.nextInt(254) + 1, rand.nextInt(254) + 1, rand.nextInt(254) + 1);
+        this.penStroke = new BasicStroke(rand.nextInt(10) + 1);
         
         int  n = rand.nextInt(460) + 1;
         int n2 = rand.nextInt(460) + 1;
