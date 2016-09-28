@@ -130,8 +130,10 @@ public class GameObject extends GamePoint {
             
             System.out.println("Pen");
             
-            canvas = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
-
+            if (canvas == null) {
+                canvas = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
+            }
+            
             Graphics2D g2 = canvas.createGraphics();
            
             /*g2.setComposite(AlphaComposite.Clear);
@@ -139,16 +141,8 @@ public class GameObject extends GamePoint {
             
             g2.setStroke(new BasicStroke(4.0f));
             g2.setPaint(Color.GREEN);
-           
-            GeneralPath path = new GeneralPath(GeneralPath.WIND_EVEN_ODD, 2);
-            
-            path.moveTo(this.x, this.y);
-            path.lineTo(x, y);
-            path.closePath();
-            
-            //g2.draw(path);
-            g2.drawLine((int)this.x, (int)this.y, (int)x, (int)y);
-            
+
+            g2.drawLine((int)this.x + this.width / 2, (int)this.y + this.height / 2, (int)x + this.width / 2, (int)y + this.height / 2);            
         }
     }
 
