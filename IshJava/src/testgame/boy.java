@@ -47,7 +47,7 @@ public class boy extends GameObject{
         int  n = rand.nextInt(460) + 1;
         int n2 = rand.nextInt(460) + 1;
         
-        moveto(n, n2, 500);
+        moveto(n, n2, rand.nextInt(3) * 100);
         
         //tw.setText("clicked: "+this.count);
         System.out.println("Clicked");
