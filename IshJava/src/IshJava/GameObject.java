@@ -6,6 +6,7 @@
  */
 package IshJava;
 
+import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -129,13 +130,16 @@ public class GameObject extends GamePoint {
             
             System.out.println("Pen");
             
-            canvas = new BufferedImage(512, 512, BufferedImage.TYPE_INT_RGB);
+            canvas = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
 
             Graphics2D g2 = canvas.createGraphics();
+           
+            /*g2.setComposite(AlphaComposite.Clear);
+            g2.fillRect(0, 0, 512, 512);*/
             
             g2.setStroke(new BasicStroke(4.0f));
             g2.setPaint(Color.GREEN);
-            
+           
             GeneralPath path = new GeneralPath(GeneralPath.WIND_EVEN_ODD, 2);
             
             path.moveTo(this.x, this.y);
