@@ -54,6 +54,7 @@ public class GameObject extends GamePoint {
     public boolean pen;
     public Graphics g;
     public BufferedImage canvas;
+    public int oldX, oldY;
 
     //detectHit
     public boolean collide(GameObject obj) {
@@ -125,44 +126,59 @@ public class GameObject extends GamePoint {
         movementmode = 1;
         target = new GamePoint(x, y);
         speed = game.pps2ppf(v);
-        
-        if (pen) {
-            
-            System.out.println("Pen");
-            
-            if (canvas == null) {
-                canvas = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
-            }
-            
-            Graphics2D g2 = canvas.createGraphics();
-           
-            /*g2.setComposite(AlphaComposite.Clear);
-            g2.fillRect(0, 0, 512, 512);*/
-            
-            g2.setStroke(new BasicStroke(4.0f));
-            g2.setPaint(Color.GREEN);
-
-            g2.drawLine((int)this.x + this.width / 2, (int)this.y + this.height / 2, (int)x + this.width / 2, (int)y + this.height / 2);            
-        }
     }
 
     public void moveto(GamePoint p, int v) {
         movementmode = 1;
         target = p;
         speed = game.pps2ppf(v);
-
     }
 
     public void moveobj() {
+        
+        oldX = (int) this.x;
+        oldY = (int) this.y;
+        
         if (movementmode == 1) {
             double dir = this.angleTo(target);
             double movelen = Math.min(speed, this.distance(target));
             this.x += movelen * Math.cos(dir);
             this.y += movelen * Math.sin(dir);
+            
+            if (pen) {
+            
+                System.out.println("Pen");
+            
+                if (canvas == null) {
+                    canvas = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
+                }
+            
+                Graphics2D g2 = canvas.createGraphics();
+            
+                g2.setStroke(new BasicStroke(4.0f));
+                g2.setPaint(Color.GREEN);
+
+                g2.drawLine((int)this.oldX + this.width / 2, (int)this.oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
+        }
         } else if (movementmode == 2) {
             this.x += speed * Math.cos(direction);
             this.y += speed * Math.sin(direction);
+            
+            if (pen) {
+            
+                System.out.println("Pen");
+            
+                if (canvas == null) {
+                    canvas = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
+                }
+            
+                Graphics2D g2 = canvas.createGraphics();
+            
+                g2.setStroke(new BasicStroke(4.0f));
+                g2.setPaint(Color.GREEN);
 
+                g2.drawLine((int)this.oldX + this.width / 2, (int)this.oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
+        }
         }
     }
 
@@ -180,11 +196,12 @@ public class GameObject extends GamePoint {
     }
 
     public void draw(Graphics g) {
-        if (sprite != null) {
-            g.drawImage(sprite, (int) x, (int) y, null);
-        }
         if (canvas != null) {
             g.drawImage(canvas, 0, 0, null);
+        }
+        
+        if (sprite != null) {
+            g.drawImage(sprite, (int) x, (int) y, null);
         }
         this.g = g;
     }
