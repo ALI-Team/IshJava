@@ -45,6 +45,7 @@ public class boy extends GameObject{
         moveto(n, n2, 500);
         
         //tw.setText("clicked: "+this.count);
+        System.out.println("Clicked");
         this.count += 1;
     }
 }

@@ -52,6 +52,7 @@ public class GameObject extends GamePoint {
     public int width, height;
     public boolean pen;
     public Graphics g;
+    public BufferedImage canvas;
 
     //detectHit
     public boolean collide(GameObject obj) {
@@ -126,11 +127,11 @@ public class GameObject extends GamePoint {
         
         if (pen) {
             
-            BufferedImage canvas = new BufferedImage(512, 512, BufferedImage.TYPE_INT_RGB);
+            System.out.println("Pen");
+            
+            canvas = new BufferedImage(512, 512, BufferedImage.TYPE_INT_RGB);
 
             Graphics2D g2 = canvas.createGraphics();
-            
-
             
             g2.setStroke(new BasicStroke(4.0f));
             g2.setPaint(Color.GREEN);
@@ -141,10 +142,9 @@ public class GameObject extends GamePoint {
             path.lineTo(x, y);
             path.closePath();
             
-            g2.draw(path);
-            //g2.drawLine((int)this.x, (int)this.y, (int)x, (int)y);
+            //g2.draw(path);
+            g2.drawLine((int)this.x, (int)this.y, (int)x, (int)y);
             
-            g.drawImage(canvas, 0, 0, null);
         }
     }
 
@@ -184,6 +184,9 @@ public class GameObject extends GamePoint {
     public void draw(Graphics g) {
         if (sprite != null) {
             g.drawImage(sprite, (int) x, (int) y, null);
+        }
+        if (canvas != null) {
+            g.drawImage(canvas, 0, 0, null);
         }
         this.g = g;
     }
