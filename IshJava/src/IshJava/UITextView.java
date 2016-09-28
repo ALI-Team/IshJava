@@ -343,7 +343,11 @@ public class UITextView extends UIElement{
                 bounds.getWidth() + this.paddingLeft + this.paddingRight,
                 bounds.getHeight() + this.paddingTop + this.paddingBottom,
                 this.borderRadius, this.borderRadius);
-        if (this.hasChanged) this.shape = rr;
+        if (this.hasChanged) {
+            this.shape = rr;
+            this.pack();
+            this.hasChanged = false;
+        }
 
         if (this.drawBackground) {
             g2d.setColor(this.backgroundColor);
@@ -378,6 +382,8 @@ public class UITextView extends UIElement{
 
     @Override
     public int getHeight() {
-        return (int) this.shape.getBounds2D().getHeight();
+        if (this.shape != null) {
+            return (int) this.shape.getBounds2D().getHeight();
+        } else return 0;
     }
 }

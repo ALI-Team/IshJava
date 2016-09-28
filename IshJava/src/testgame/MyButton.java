@@ -36,8 +36,9 @@ public class MyButton extends UITextButton{
     
     @Override
     public void handleClick(MouseEvent ev) {
+        clicks++;
         UITextView tw = (UITextView) game.getUIElement("tw");
-        tw.setText("allahu akbaaaaar");
+        tw.setText("clicks: " + clicks);
     }
     
 }

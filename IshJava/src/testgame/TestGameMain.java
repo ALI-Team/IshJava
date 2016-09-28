@@ -20,8 +20,9 @@ public class TestGameMain {
         
         UITextView tw = new UITextView(game);
         tw.setText("hello world");
-        tw.setLayoutAnchor(UIElement.ANCHOR_MIDDLE, UIElement.ANCHOR_START);
         tw.setLayoutMargin(16, 16);
+        tw.setLayoutAnchor(UIElement.ANCHOR_MIDDLE, UIElement.ANCHOR_START);    
+        //tw.setPosition(200, 200);
         tw.setColor(new Color(0xFFFFFF));
         tw.setFontFamily(UITextView.IMPACT);
         tw.setFontSize(36);
