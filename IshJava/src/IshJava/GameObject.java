@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Paint;
 import java.awt.Point;
 import java.awt.geom.GeneralPath;
 import java.awt.image.BufferedImage;
@@ -55,6 +56,7 @@ public class GameObject extends GamePoint {
     public boolean pen;
     public Graphics g;
     public BufferedImage canvas;
+    public Paint penColor;
 
     //detectHit
     public boolean collide(GameObject obj) {
@@ -154,7 +156,7 @@ public class GameObject extends GamePoint {
                 Graphics2D g2 = canvas.createGraphics();
             
                 g2.setStroke(new BasicStroke(4.0f));
-                g2.setPaint(Color.GREEN);
+                g2.setPaint(this.penColor);
 
                 g2.drawLine((int)oldX + this.width / 2, (int)oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
         }
@@ -173,7 +175,7 @@ public class GameObject extends GamePoint {
                 Graphics2D g2 = canvas.createGraphics();
             
                 g2.setStroke(new BasicStroke(4.0f));
-                g2.setPaint(Color.GREEN);
+                g2.setPaint(this.penColor);
 
                 g2.drawLine((int)oldX + this.width / 2, (int)oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
         }
