@@ -150,7 +150,7 @@ public class GameObject extends GamePoint {
             if (pen) {
             
                 if (canvas == null) {
-                    canvas = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
+                    canvas = new BufferedImage(game.width, game.height, BufferedImage.TYPE_INT_ARGB);
                 }
             
                 Graphics2D g2 = canvas.createGraphics();
@@ -169,7 +169,7 @@ public class GameObject extends GamePoint {
                 System.out.println("Pen");
             
                 if (canvas == null) {
-                    canvas = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
+                    canvas = new BufferedImage(game.width, game.height, BufferedImage.TYPE_INT_ARGB);
                 }
             
                 Graphics2D g2 = canvas.createGraphics();

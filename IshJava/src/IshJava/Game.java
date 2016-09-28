@@ -24,6 +24,7 @@ public class Game extends JPanel implements Runnable{
     public Thread mainThread;
     public int fps = 60;
     public Graphics g;
+    public int width, height;
 
     public Game() {
         objectManager = new ObjectManager(this);
