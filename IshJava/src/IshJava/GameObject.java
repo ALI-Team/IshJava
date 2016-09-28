@@ -7,6 +7,7 @@
 package IshJava;
 
 import java.awt.AlphaComposite;
+import static java.awt.AlphaComposite.CLEAR;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -236,5 +237,13 @@ public class GameObject extends GamePoint {
                 }
             }
         }).start();
+    }
+    
+    public void clearPen() {
+        if (canvas != null) {
+            Graphics2D g2 = canvas.createGraphics();
+            g2.setBackground(new Color(0, 0, 0, 0));
+            g2.clearRect(0, 0, 512, 512);
+        }
     }
 }

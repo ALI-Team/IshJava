@@ -35,6 +35,8 @@ public class boy extends GameObject{
     @Override
     public void onClick() {
                
+        this.clearPen();
+        
         this.playSound("sounds/test.wav");
         
         Random rand = new Random();
