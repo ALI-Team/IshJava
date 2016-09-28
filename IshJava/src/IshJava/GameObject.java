@@ -54,7 +54,6 @@ public class GameObject extends GamePoint {
     public boolean pen;
     public Graphics g;
     public BufferedImage canvas;
-    public int oldX, oldY;
 
     //detectHit
     public boolean collide(GameObject obj) {
@@ -136,8 +135,8 @@ public class GameObject extends GamePoint {
 
     public void moveobj() {
         
-        oldX = (int) this.x;
-        oldY = (int) this.y;
+        int oldX = (int) this.x;
+        int oldY = (int) this.y;
         
         if (movementmode == 1) {
             double dir = this.angleTo(target);
@@ -146,8 +145,6 @@ public class GameObject extends GamePoint {
             this.y += movelen * Math.sin(dir);
             
             if (pen) {
-            
-                System.out.println("Pen");
             
                 if (canvas == null) {
                     canvas = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
@@ -158,7 +155,7 @@ public class GameObject extends GamePoint {
                 g2.setStroke(new BasicStroke(4.0f));
                 g2.setPaint(Color.GREEN);
 
-                g2.drawLine((int)this.oldX + this.width / 2, (int)this.oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
+                g2.drawLine((int)oldX + this.width / 2, (int)oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
         }
         } else if (movementmode == 2) {
             this.x += speed * Math.cos(direction);
@@ -177,7 +174,7 @@ public class GameObject extends GamePoint {
                 g2.setStroke(new BasicStroke(4.0f));
                 g2.setPaint(Color.GREEN);
 
-                g2.drawLine((int)this.oldX + this.width / 2, (int)this.oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
+                g2.drawLine((int)oldX + this.width / 2, (int)oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
         }
         }
     }
