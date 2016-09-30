@@ -8,6 +8,8 @@ package testgame;
 import IshJava.Game;
 import IshJava.GameObject;
 import IshJava.UITextView;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.util.Random;
 
 /**
@@ -18,9 +20,10 @@ public class boy extends GameObject{
     public Ball ball;
     public UITextView tw;
     int count;
-    public boy(Game game, int x, int y, UITextView tw) {
+    public boy(Game game, int x, int y) {
         super(game, x, y);
-        this.tw = tw;
+        this.tw = null;
+        this.pen = true;
         
         //ball=b;
         this.setSprite("src/imgs/ball.png");
@@ -33,17 +36,21 @@ public class boy extends GameObject{
     
     @Override
     public void onClick() {
-        
+                    
         this.playSound("sounds/test.wav");
         
         Random rand = new Random();
 
+        this.penColor = new Color(rand.nextInt(254) + 1, rand.nextInt(254) + 1, rand.nextInt(254) + 1);
+        this.penStroke = new BasicStroke(rand.nextInt(10) + 1);
+        
         int  n = rand.nextInt(460) + 1;
         int n2 = rand.nextInt(460) + 1;
         
-        moveto(n, n2, 500);
+        moveto(n, n2, rand.nextInt(3) * 100);
         
-        tw.setText("clicked: "+this.count);
+        //tw.setText("clicked: "+this.count);
+        System.out.println("Clicked");
         this.count += 1;
     }
 }

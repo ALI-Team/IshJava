@@ -23,6 +23,8 @@ public class Game extends JPanel implements Runnable{
     public UIManager uiManager;
     public Thread mainThread;
     public int fps = 60;
+    public Graphics g;
+    public int width, height;
 
     public Game() {
         objectManager = new ObjectManager(this);
@@ -52,6 +54,7 @@ public class Game extends JPanel implements Runnable{
         super.paintComponent(g);
         this.objectManager.drawObjs(g);
         this.uiManager.drawUI(g);
+        this.g = g;
     }
     
     public int pps2ppf(int pixels) {
@@ -76,5 +79,4 @@ public class Game extends JPanel implements Runnable{
             }
         }
     }
-
 }

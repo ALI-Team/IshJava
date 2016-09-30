@@ -6,9 +6,18 @@
  */
 package IshJava;
 
+import java.awt.AlphaComposite;
+import static java.awt.AlphaComposite.CLEAR;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Paint;
 import java.awt.Point;
+import java.awt.Stroke;
+import java.awt.geom.GeneralPath;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -45,6 +54,11 @@ public class GameObject extends GamePoint {
     public byte movementmode = 0;
     public Game game;
     public int width, height;
+    public boolean pen;
+    public Graphics g;
+    public BufferedImage canvas;
+    public Paint penColor;
+    public Stroke penStroke;
 
     //detectHit
     public boolean collide(GameObject obj) {
@@ -122,19 +136,51 @@ public class GameObject extends GamePoint {
         movementmode = 1;
         target = p;
         speed = game.pps2ppf(v);
-
     }
 
     public void moveobj() {
+        
+        int oldX = (int) this.x;
+        int oldY = (int) this.y;
+        
         if (movementmode == 1) {
             double dir = this.angleTo(target);
             double movelen = Math.min(speed, this.distance(target));
             this.x += movelen * Math.cos(dir);
             this.y += movelen * Math.sin(dir);
+            
+            if (pen) {
+            
+                if (canvas == null) {
+                    canvas = new BufferedImage(game.width, game.height, BufferedImage.TYPE_INT_ARGB);
+                }
+            
+                Graphics2D g2 = canvas.createGraphics();
+            
+                g2.setStroke(this.penStroke);
+                g2.setPaint(this.penColor);
+
+                g2.drawLine((int)oldX + this.width / 2, (int)oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
+        }
         } else if (movementmode == 2) {
             this.x += speed * Math.cos(direction);
             this.y += speed * Math.sin(direction);
+            
+            if (pen) {
+            
+                System.out.println("Pen");
+            
+                if (canvas == null) {
+                    canvas = new BufferedImage(game.width, game.height, BufferedImage.TYPE_INT_ARGB);
+                }
+            
+                Graphics2D g2 = canvas.createGraphics();
+            
+                g2.setStroke(this.penStroke);
+                g2.setPaint(this.penColor);
 
+                g2.drawLine((int)oldX + this.width / 2, (int)oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
+        }
         }
     }
 
@@ -152,14 +198,19 @@ public class GameObject extends GamePoint {
     }
 
     public void draw(Graphics g) {
+        if (canvas != null) {
+            g.drawImage(canvas, 0, 0, null);
+        }
+        
         if (sprite != null) {
             g.drawImage(sprite, (int) x, (int) y, null);
         }
+        this.g = g;
     }
 
     //Also to be overwritten. Called when mouse clicks the object
     public void onClick() {
-
+        
     }
 
     public synchronized void playSound(final String path) {
@@ -190,5 +241,13 @@ public class GameObject extends GamePoint {
                 }
             }
         }).start();
+    }
+    
+    public void clearPen() {
+        if (canvas != null) {
+            Graphics2D g2 = canvas.createGraphics();
+            g2.setBackground(new Color(0, 0, 0, 0));
+            g2.clearRect(0, 0, 512, 512);
+        }
     }
 }
