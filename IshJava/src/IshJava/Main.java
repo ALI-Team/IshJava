@@ -24,7 +24,9 @@ public abstract class Main {
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setLayout(new BorderLayout());
         Game game = new Game();
-        game.setFocusable(true); 
+        game.setFocusable(true);
+        game.width = w;
+        game.height = h;
         jFrame.getContentPane().add(game);
         jFrame.pack();
         jFrame.setVisible(true);

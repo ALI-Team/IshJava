@@ -12,20 +12,15 @@ public class Ball extends GameObject{
         //this.setDirection(45, 100);
         this.addKeyboard();
         this.addOnClick();
+        this.addKeyMovment('w', 's', 'a', 'd', 110);
     }
     @Override
     public void onKeyPressed(char c){
               
-        if(c=='w'){
-            this.setDirection(270, 150);
-        }else if(c=='s'){
-            this.setDirection(90, 150);
-        }else if(c=='a'){
-            this.setDirection(180, 150);
-        }else if(c=='d'){
-            this.setDirection(360, 150);
-        }
+        
+        //this.moveto(game.mousePoint, 200);
     }
+   
     @Override
     public void tick(){
         
