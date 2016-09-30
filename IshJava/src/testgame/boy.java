@@ -7,6 +7,7 @@ package testgame;
 
 import IshJava.Game;
 import IshJava.GameObject;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,25 +15,29 @@ import IshJava.GameObject;
  */
 public class boy extends GameObject{
     public Ball ball;
-    public boy(Game game, int x, int y,Ball b) {
+    public boy(Game game, int x, int y) {
         super(game, x, y);
         
-        ball=b;
+        //ball=b;
         this.setSprite("src/imgs/boy.png");
-        moveto(b,100);
+        //moveto(b,100);
         addOnClick();
     }
      @Override
     public void tick(){
-        if(this.collide(ball)){ 
+        //if(this.collide(ball)){ 
             
-        }
+        //}
     } 
     
     @Override
     public void onClick() {
         
         System.out.println("stop touching me!");
-        moveto(10, 10, 1);
+        ArrayList<boy> boyz=game.gameGroupManager.getGroup("boyz");
+        for (boy b:boyz){
+            b.moveto(0, 0, 200);
+        }
+        //moveto(10, 10, 1);
     }
 }

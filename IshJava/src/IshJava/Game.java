@@ -25,11 +25,13 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
     public Thread mainThread;
     public int fps = 60;
     public GamePoint mousePoint;
+    public GameGroupManager gameGroupManager;
     
     
     public Game() {
         mousePoint=new GamePoint();
         objectManager = new ObjectManager(this);
+        gameGroupManager=new GameGroupManager();
         uiManager = new UIManager();
         this.setBackground(new java.awt.Color(255, 255, 255));
         addKeyListener(objectManager);

@@ -60,6 +60,10 @@ public class ObjectManager implements KeyListener, MouseListener{
         ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
         staticobjects.addAll(keyMovementListeners);
         for (GameObject obj : staticobjects) {
+            if((keys.get(obj.movementKeys[0])!=null)&&(keys.get(obj.movementKeys[0]))&&(keys.get(obj.movementKeys[3])!=null)&&(keys.get(obj.movementKeys[3]))){
+                obj.movementmode=2;
+                obj.direction=Math.PI*1.75;
+            }else{
             double dirTMP=0;
             int i=0;
             boolean keypressed=false;
@@ -83,6 +87,7 @@ public class ObjectManager implements KeyListener, MouseListener{
             }else{
                 obj.movementmode=0;
             }
+        }
         }
     }
     public void executeEvents(){
