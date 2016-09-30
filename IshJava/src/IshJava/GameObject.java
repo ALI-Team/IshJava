@@ -154,46 +154,31 @@ public class GameObject extends GamePoint {
         
         int oldX = (int) this.x;
         int oldY = (int) this.y;
-        
+        if (pen) {
+            
+                //if (canvas == null) {
+                //    canvas = new BufferedImage(game.width, game.height, BufferedImage.TYPE_INT_ARGB);
+                //}
+            
+                Graphics2D g2 = game.canvas.createGraphics();
+                g2.setStroke(this.penStroke);
+                g2.setPaint(this.penColor);
+
+                g2.drawLine((int)oldX + this.width / 2, (int)oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
+                
+                }
         if (movementmode == 1) {
             double dir = this.angleTo(target);
             double movelen = Math.min(speed, this.distance(target));
             this.x += movelen * Math.cos(dir);
             this.y += movelen * Math.sin(dir);
             
-            if (pen) {
             
-                if (canvas == null) {
-                    canvas = new BufferedImage(game.width, game.height, BufferedImage.TYPE_INT_ARGB);
-                }
-            
-                Graphics2D g2 = canvas.createGraphics();
-                if(this.penStroke!=null){
-                g2.setStroke(this.penStroke);
-                g2.setPaint(this.penColor);
-
-                g2.drawLine((int)oldX + this.width / 2, (int)oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
-                }
-                }
         } else if (movementmode == 2) {
             this.x += speed * Math.cos(direction);
             this.y += speed * Math.sin(direction);
             
-            if (pen) {
-            
-                System.out.println("Pen");
-            
-                if (canvas == null) {
-                    canvas = new BufferedImage(game.width, game.height, BufferedImage.TYPE_INT_ARGB);
-                }
-            
-                Graphics2D g2 = canvas.createGraphics();
-            
-                g2.setStroke(this.penStroke);
-                g2.setPaint(this.penColor);
-
-                g2.drawLine((int)oldX + this.width / 2, (int)oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
-        }
+         
         }
     }
 
@@ -212,7 +197,7 @@ public class GameObject extends GamePoint {
 
     public void draw(Graphics g) {
         if (canvas != null) {
-            g.drawImage(canvas, 0, 0, null);
+            //g.drawImage(canvas, 0, 0, null);
         }
         
         if (sprite != null) {

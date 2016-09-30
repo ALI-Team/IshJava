@@ -10,6 +10,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -29,9 +30,10 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
 
     public GamePoint mousePoint;
     public GameGroupManager gameGroupManager;
-    
+    public BufferedImage canvas;
 
     public Game() {
+        
         mousePoint=new GamePoint();
         objectManager = new ObjectManager(this);
         gameGroupManager=new GameGroupManager();
@@ -42,6 +44,7 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
         addMouseMotionListener(this);
         mainThread = new Thread(this);
         mainThread.start();
+        canvas = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
 
     }
 
@@ -62,6 +65,7 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
         super.paintComponent(g);
         this.objectManager.drawObjs(g);
         this.uiManager.drawUI(g);
+        g.drawImage(canvas, 0, 0, null);
         this.g = g;
     }
     
