@@ -40,11 +40,7 @@ import javax.sound.sampled.*;
 public class GameObject extends GamePoint {
 
     /*
-<<<<<<< HEAD
     * @author ALI-Team  
-=======
-    * @author Luka Jankovic NA15C
->>>>>>> mouse-detection
      */
     public Image sprite;
     public boolean solid;
@@ -60,6 +56,7 @@ public class GameObject extends GamePoint {
     public Paint penColor;
     public Stroke penStroke;
 
+    public char[] movementKeys;
     //detectHit
     public boolean collide(GameObject obj) {
         boolean overlap = x < obj.x + obj.width && x + width > obj.x && y < obj.y + obj.height && y + height > obj.y;
@@ -84,6 +81,17 @@ public class GameObject extends GamePoint {
 
     }
 
+    
+    public void addKeyMovment(char up,char down,char left,char right,int speed){
+        movementKeys=new char[4];
+        movementKeys[0]=right;
+        movementKeys[1]=down;
+        movementKeys[2]=left;
+        movementKeys[3]=up;
+        setSpeed(speed);
+        game.objectManager.keyMovementListeners.add(this);
+    }
+    
     public GameObject(Game g, double x, double y) {
         this.game = g;
         movementmode = 0;
@@ -94,6 +102,7 @@ public class GameObject extends GamePoint {
     }
 
     public void onKeyPressed(char c) {
+
 
     }
 
@@ -137,6 +146,9 @@ public class GameObject extends GamePoint {
         target = p;
         speed = game.pps2ppf(v);
     }
+    public void setSpeed(int speed){
+        this.speed=game.pps2ppf(speed);
+    }
 
     public void moveobj() {
         
@@ -156,12 +168,13 @@ public class GameObject extends GamePoint {
                 }
             
                 Graphics2D g2 = canvas.createGraphics();
-            
+                if(this.penStroke!=null){
                 g2.setStroke(this.penStroke);
                 g2.setPaint(this.penColor);
 
                 g2.drawLine((int)oldX + this.width / 2, (int)oldY + this.height / 2, (int)this.x + this.width / 2, (int)this.y + this.height / 2);            
-        }
+                }
+                }
         } else if (movementmode == 2) {
             this.x += speed * Math.cos(direction);
             this.y += speed * Math.sin(direction);
@@ -223,16 +236,14 @@ public class GameObject extends GamePoint {
             public void run() {
 
                 try {
-
-                    /*
-                     *
-                     */
+                    System.out.println(path);
                     URL url = getClass().getClassLoader().getResource(path);
                     System.out.println(url);
                     Clip clip = AudioSystem.getClip();
+                    //AudioInputStream inputStream =
+                    //        AudioSystem.getAudioInputStream(new File(url.toURI()));
                     AudioInputStream inputStream =
-                        AudioSystem.getAudioInputStream(new File(url.toURI()));
-
+                           AudioSystem.getAudioInputStream(new File("src/sounds/test.wav"));
                     clip.open(inputStream);
                     clip.start();
 

@@ -11,6 +11,7 @@ import IshJava.UITextView;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.util.Random;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,20 +26,22 @@ public class boy extends GameObject{
         this.tw = null;
         this.pen = true;
         
-        //ball=b;
-        this.setSprite("src/imgs/ball.png");
+        this.setSprite("src/imgs/boy.png");
+
         //moveto(b,100);
         addOnClick();
     }
      @Override
     public void tick(){
+
     } 
     
     @Override
     public void onClick() {
                     
-        this.playSound("sounds/test.wav");
+        //this.playSound("sounds/test.wav");
         
+
         Random rand = new Random();
 
         this.penColor = new Color(rand.nextInt(254) + 1, rand.nextInt(254) + 1, rand.nextInt(254) + 1);
@@ -52,5 +55,13 @@ public class boy extends GameObject{
         //tw.setText("clicked: "+this.count);
         System.out.println("Clicked");
         this.count += 1;
+        System.out.println("stop touching me!");
+        ArrayList<boy> boyz=game.gameGroupManager.getGroup("boyz");
+        for (boy b:boyz){
+            b.penColor = new Color(rand.nextInt(254) + 1, rand.nextInt(254) + 1, rand.nextInt(254) + 1);
+        b.penStroke = new BasicStroke(rand.nextInt(10) + 1);
+            b.moveto(0, 0, 200);
+        }
+        //moveto(10, 10, 1);
     }
 }
