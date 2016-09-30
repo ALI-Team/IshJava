@@ -38,14 +38,14 @@ public class boy extends GameObject{
     
     @Override
     public void onClick() {
-                    
+                     
         //this.playSound("sounds/test.wav");
         
 
         Random rand = new Random();
 
-        this.penColor = new Color(rand.nextInt(254) + 1, rand.nextInt(254) + 1, rand.nextInt(254) + 1);
-        this.penStroke = new BasicStroke(rand.nextInt(10) + 1);
+        //this.penColor = new Color(rand.nextInt(254) + 1, rand.nextInt(254) + 1, rand.nextInt(254) + 1);
+        //this.penStroke = new BasicStroke(rand.nextInt(10) + 1);
         
         //moveto(n, n2, rand.nextInt(3) * 100);
         
