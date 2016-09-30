@@ -338,8 +338,8 @@ public class UITextView extends UIElement{
         
         Rectangle2D bounds = textLayout.getBounds();
         RoundRectangle2D rr = new RoundRectangle2D.Float();
-        rr.setRoundRect(bounds.getX() + this.x - this.paddingLeft,
-                bounds.getY() + this.y - this.paddingTop,
+        rr.setRoundRect(this.x - this.paddingLeft,
+                this.y - this.paddingTop,
                 bounds.getWidth() + this.paddingLeft + this.paddingRight,
                 bounds.getHeight() + this.paddingTop + this.paddingBottom,
                 this.borderRadius, this.borderRadius);
@@ -359,15 +359,15 @@ public class UITextView extends UIElement{
                 g2d.setStroke(defaultStroke);
             }
         }
+        AffineTransform translate = AffineTransform
+                .getTranslateInstance(x - bounds.getX(), y - bounds.getY());
         
         g2d.setColor(this.color);
-        g2d.fill(textLayout.getOutline(AffineTransform
-                .getTranslateInstance((double) x, (double) y)));
+        g2d.fill(textLayout.getOutline(translate));
         
         if (this.drawOutline) {
             g2d.setColor(this.outlineColor);
-            g2d.draw(textLayout.getOutline(AffineTransform
-                    .getTranslateInstance((double) x, (double) y)));
+            g2d.draw(textLayout.getOutline(translate));
         }
         
         //textLayout.draw(g2d, this.x, this.y);

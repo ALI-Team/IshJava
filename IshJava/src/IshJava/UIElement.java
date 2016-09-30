@@ -170,7 +170,7 @@ public abstract class UIElement {
         }
         
         StackTraceHelper.printStackTrace();
-        System.out.println(y);
+        System.out.println("yPos " + y);
     }
     
     public abstract void draw(Graphics g); 

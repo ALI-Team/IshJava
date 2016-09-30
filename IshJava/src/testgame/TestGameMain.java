@@ -34,14 +34,20 @@ public class TestGameMain {
         tw.setBorderWidth(5);
         game.addUIElement("tw", tw);
         
-        MyButton button = new MyButton(game, 16, 256);
+        /*MyButton button = new MyButton(game, 16, 256);
         button.setText("Press me");
         button.drawBackground(Color.RED);
         button.setFontSize(28);
         button.setFontFamily(UITextButton.MONOSPACE);
         button.setPadding(16);
         button.setBorderRadius(4);
-        game.addUIElement("button", button);
+        game.addUIElement("button", button);*/
+        
+        UITextButton btn = new UITextButton(game);
+        btn.setLayoutMargin(16, 16);
+        btn.setText("im a button");
+        btn.drawBackground(Color.DARK_GRAY);
+        btn.setColor(Color.GREEN);
     }
     
 }
