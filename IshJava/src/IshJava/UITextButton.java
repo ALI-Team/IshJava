@@ -28,6 +28,7 @@ import java.awt.geom.RoundRectangle2D;
  */
 public class UITextButton extends UITextView implements UIElement.Clickable {
     
+    UIElement.OnClickListener onClickListener;
 
     public UITextButton(Game g) {
         super(g);
@@ -49,7 +50,13 @@ public class UITextButton extends UITextView implements UIElement.Clickable {
         super(g, p, t);
     }
    
+    public void setOnClickListener(UIElement.OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
     
+    public void removeOnClickListener() {
+        this.onClickListener = null;
+    }
     
     @Override
     public boolean inArea(Point p) {
@@ -58,6 +65,8 @@ public class UITextButton extends UITextView implements UIElement.Clickable {
 
     @Override
     public void handleClick(MouseEvent ev) {
-       
+       if (this.onClickListener != null) {
+           this.onClickListener.onClick(game);
+       }
     }
 }

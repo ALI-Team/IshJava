@@ -49,11 +49,6 @@ public abstract class UIElement {
         this.visible = true;
     }
     
-    public interface Clickable {
-        public boolean inArea(Point p);
-        public void handleClick(MouseEvent ev);
-    }
-    
     /**
      * 
      * @param v <i>true</i> for visible, </i>false</i> for hidden
@@ -177,4 +172,12 @@ public abstract class UIElement {
     public abstract int getWidth();
     public abstract int getHeight();
     
+    public interface Clickable {
+        public boolean inArea(Point p);
+        public void handleClick(MouseEvent ev);
+    }
+    
+    public interface OnClickListener {
+        public abstract void onClick(Game g);
+    }
 }

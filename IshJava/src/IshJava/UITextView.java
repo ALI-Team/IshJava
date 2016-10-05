@@ -38,7 +38,7 @@ public class UITextView extends UIElement{
     
     public String text = "";
     public Color color = Color.BLACK;
-    public Font font = new Font(UITextView.TIMES_NEW_ROMAN, Font.PLAIN, 12);
+    public Font font = new Font(UITextView.SANS_SERIF, Font.PLAIN, 14);
     public boolean drawOutline = false;
     public Color outlineColor = Color.BLACK;
     public boolean drawBackground = false;
