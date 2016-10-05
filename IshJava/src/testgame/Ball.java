@@ -3,6 +3,8 @@ package testgame;
 
 import IshJava.Game;
 import IshJava.GameObject;
+import java.awt.BasicStroke;
+import java.awt.Color;
 
 public class Ball extends GameObject{
     
@@ -13,10 +15,17 @@ public class Ball extends GameObject{
         this.addKeyboard();
         this.addOnClick();
         this.addKeyMovment('w', 's', 'a', 'd', 110);
+        
+        this.pen = true;
+        this.penColor = Color.BLUE;
+        this.penStroke = new BasicStroke(1.0f);
     }
     @Override
     public void onKeyPressed(char c){
               
+        if (c == ' ') {
+            this.pen = !this.pen;
+        }
         
         //this.moveto(game.mousePoint, 200);
     }

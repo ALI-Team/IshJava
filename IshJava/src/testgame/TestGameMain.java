@@ -41,7 +41,7 @@ public class TestGameMain {
         game.addObject(ball);
         game.addObject(new boy(game,0,0, tw));*/
         
-        game.addObject(new boy(game,0,0));
+        //game.addObject(new boy(game,0,0));
             //Game game=Main.createGame(512,512, "test game");
             Ball ball=new Ball(game,200,200);
             game.addObject(ball);
@@ -57,13 +57,13 @@ public class TestGameMain {
             tw.drawBorder(Color.CYAN);
             tw.setBorderWidth(5);*/
             //game.uiManager.addElement(tw);
-            int i=0;
-            while (i<200){
+            /*int i=0;
+            while (i<300){
                 int x=(int)(Math.random()*512.0);
                 int y=(int)(Math.random()*512.0);
                 game.gameGroupManager.addToGroup("boyz", new boy(game,x,y));
                 i++;
-            }
+            }*/
     }
     
 }
