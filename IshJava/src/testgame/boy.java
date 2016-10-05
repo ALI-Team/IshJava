@@ -24,7 +24,7 @@ public class boy extends GameObject{
     public boy(Game game, int x, int y) {
         super(game, x, y);
         this.tw = null;
-        this.pen = true;
+        this.pen = false;
         
         this.setSprite("src/imgs/boy.png");
 
@@ -55,8 +55,9 @@ public class boy extends GameObject{
         System.out.println("stop touching me!");
         ArrayList<boy> boyz=game.gameGroupManager.getGroup("boyz");
         for (boy b:boyz){
-            b.penColor = new Color(rand.nextInt(254) + 1, rand.nextInt(254) + 1, rand.nextInt(254) + 1);
-        b.penStroke = new BasicStroke(rand.nextInt(10) + 1);
+            b.pen = true;
+        b.penColor = new Color(254, 0, 0);
+        b.penStroke = new BasicStroke(4);
             b.moveto(0, 0, 200);
         }
         //moveto(10, 10, 1);
