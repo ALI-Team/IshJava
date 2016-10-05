@@ -38,7 +38,7 @@ public class boy extends GameObject{
     
     @Override
     public void onClick() {
-                    
+                     
         //this.playSound("sounds/test.wav");
         
 
