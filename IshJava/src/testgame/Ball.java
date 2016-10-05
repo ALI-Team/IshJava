@@ -27,6 +27,10 @@ public class Ball extends GameObject{
             this.pen = !this.pen;
         }
         
+        if (Character.isDigit(c)) {
+            this.penStroke = new BasicStroke(Float.parseFloat(Character.toString(c)));
+        }
+        
         //this.moveto(game.mousePoint, 200);
     }
    
