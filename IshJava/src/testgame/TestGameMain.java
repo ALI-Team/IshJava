@@ -58,7 +58,7 @@ public class TestGameMain {
             tw.setBorderWidth(5);*/
             //game.uiManager.addElement(tw);
             int i=0;
-            while (i<30){
+            while (i<200){
                 int x=(int)(Math.random()*512.0);
                 int y=(int)(Math.random()*512.0);
                 game.gameGroupManager.addToGroup("boyz", new boy(game,x,y));

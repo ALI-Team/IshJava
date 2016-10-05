@@ -32,7 +32,7 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
     public GameGroupManager gameGroupManager;
     public BufferedImage canvas;
 
-    public Game() {
+    public Game(int width,int height) {
         
         mousePoint=new GamePoint();
         objectManager = new ObjectManager(this);
@@ -44,7 +44,7 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
         addMouseMotionListener(this);
         mainThread = new Thread(this);
         mainThread.start();
-        canvas = new BufferedImage(this.width, this.height, BufferedImage.TYPE_INT_ARGB);
+        canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
     }
 
