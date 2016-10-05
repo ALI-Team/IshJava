@@ -61,7 +61,7 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
         return this.uiManager.getElement(id);
     }
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g) { 
         super.paintComponent(g);
         g.drawImage(canvas, 0, 0, null);
         this.objectManager.drawObjs(g);
