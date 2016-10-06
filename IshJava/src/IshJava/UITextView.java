@@ -12,6 +12,7 @@ import java.awt.Point;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.Stroke;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
@@ -37,7 +38,7 @@ public class UITextView extends UIElement{
     
     public String text = "";
     public Color color = Color.BLACK;
-    public Font font = new Font(UITextView.TIMES_NEW_ROMAN, Font.PLAIN, 12);
+    public Font font = new Font(UITextView.SANS_SERIF, Font.PLAIN, 14);
     public boolean drawOutline = false;
     public Color outlineColor = Color.BLACK;
     public boolean drawBackground = false;
@@ -48,6 +49,13 @@ public class UITextView extends UIElement{
     public int borderRadius = 0;
     public Color borderColor = Color.BLACK;
     public int borderWidth = 1;
+    
+    protected boolean hasChanged = true;
+    protected Shape shape;
+    
+    public UITextView(Game g) {
+        super(g);
+    }
     
     public UITextView(Game g, int x, int y) {
         super(g, x, y);
@@ -92,6 +100,7 @@ public class UITextView extends UIElement{
      */
     public void setText(String text) {
         this.text = text;
+        this.hasChanged = true;
     }
     
     /**
@@ -103,6 +112,7 @@ public class UITextView extends UIElement{
         String family = old.getFamily();
         int style = old.getStyle();
         this.font = new Font(family, style, size);
+        this.hasChanged = true;
     }
     
     /**
@@ -116,6 +126,7 @@ public class UITextView extends UIElement{
         String family = old.getFamily();
         int size = old.getSize();
         this.font = new Font(family, style, size);
+        this.hasChanged = true;
     }
     
     /**
@@ -127,6 +138,7 @@ public class UITextView extends UIElement{
         int style = old.getStyle();
         int size = old.getSize();
         this.font = new Font(family, style, size);
+        this.hasChanged = true;
     }
     
     /**
@@ -137,6 +149,7 @@ public class UITextView extends UIElement{
         String family = old.getFamily();
         int size = old.getSize();
         this.font = new Font(family, Font.ITALIC, size);
+        this.hasChanged = true;
     }
     
     /**
@@ -147,6 +160,7 @@ public class UITextView extends UIElement{
         String family = old.getFamily();
         int size = old.getSize();
         this.font = new Font(family, Font.BOLD, size);
+        this.hasChanged = true;
     }
     
     /**
@@ -157,6 +171,7 @@ public class UITextView extends UIElement{
         String family = old.getFamily();
         int size = old.getSize();
         this.font = new Font(family, Font.PLAIN, size);
+        this.hasChanged = true;
     }
     
     /**
@@ -172,6 +187,7 @@ public class UITextView extends UIElement{
      */
     public void setFont(Font font) {
         this.font = font;
+        this.hasChanged = true;
     }
     
     /**
@@ -180,6 +196,7 @@ public class UITextView extends UIElement{
      */
     public void setOutline(boolean outline) {
         this.drawOutline = outline;
+        this.hasChanged = true;
     }
     
     /**
@@ -264,6 +281,7 @@ public class UITextView extends UIElement{
                 this.paddingLeft = p[4];
                 break;
         }
+        this.hasChanged = true;
     }
     
     /**
@@ -272,6 +290,7 @@ public class UITextView extends UIElement{
      */
     public void setBorderRadius(int r) {
         this.borderRadius = r;
+        this.hasChanged = true;
     }
     
     /**
@@ -317,14 +336,20 @@ public class UITextView extends UIElement{
         
         TextLayout textLayout = new TextLayout(this.text, this.font, frc);
         
+        Rectangle2D bounds = textLayout.getBounds();
+        RoundRectangle2D rr = new RoundRectangle2D.Float();
+        rr.setRoundRect(this.x - this.paddingLeft,
+                this.y - this.paddingTop,
+                bounds.getWidth() + this.paddingLeft + this.paddingRight,
+                bounds.getHeight() + this.paddingTop + this.paddingBottom,
+                this.borderRadius, this.borderRadius);
+        if (this.hasChanged) {
+            this.shape = rr;
+            this.pack();
+            this.hasChanged = false;
+        }
+
         if (this.drawBackground) {
-            Rectangle2D bounds = textLayout.getBounds();
-            RoundRectangle2D rr = new RoundRectangle2D.Float();
-            rr.setRoundRect(bounds.getX() + this.x - this.paddingLeft, 
-                    bounds.getY() + this.y - this.paddingTop, 
-                    bounds.getWidth() + this.paddingLeft + this.paddingRight,
-                    bounds.getHeight() + this.paddingTop + this.paddingBottom, 
-                    this.borderRadius, this.borderRadius);
             g2d.setColor(this.backgroundColor);
             g2d.fill(rr);
             if (this.drawBorder) {
@@ -334,17 +359,31 @@ public class UITextView extends UIElement{
                 g2d.setStroke(defaultStroke);
             }
         }
+        AffineTransform translate = AffineTransform
+                .getTranslateInstance(x - bounds.getX(), y - bounds.getY());
         
         g2d.setColor(this.color);
-        g2d.fill(textLayout.getOutline(AffineTransform
-                .getTranslateInstance((double) x, (double) y)));
+        g2d.fill(textLayout.getOutline(translate));
         
         if (this.drawOutline) {
             g2d.setColor(this.outlineColor);
-            g2d.draw(textLayout.getOutline(AffineTransform
-                    .getTranslateInstance((double) x, (double) y)));
+            g2d.draw(textLayout.getOutline(translate));
         }
         
         //textLayout.draw(g2d, this.x, this.y);
+    }
+
+    @Override
+    public int getWidth() {
+        if (this.shape != null) {
+            return (int) this.shape.getBounds2D().getWidth();
+        } else return 0;
+    }
+
+    @Override
+    public int getHeight() {
+        if (this.shape != null) {
+            return (int) this.shape.getBounds2D().getHeight();
+        } else return 0;
     }
 }
