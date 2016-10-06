@@ -15,10 +15,11 @@ public class TestGameMain {
     public static void main(String[] args) {
          
         Game game=Main.createGame(512,512, "test game");
+        
         UITextView tw = new UITextView(game);
         tw.setText("hello world");
         tw.setLayoutMargin(16, 16);
-        tw.setLayoutAnchor(UIElement.ANCHOR_MIDDLE, UIElement.ANCHOR_START);    
+        tw.setLayoutAnchor(UIElement.ANCHOR_MIDDLE, UIElement.ANCHOR_START);
         tw.setColor(new Color(0xFFFFFF));
         tw.setFontFamily(UITextView.IMPACT);
         tw.setFontSize(36);
@@ -29,6 +30,11 @@ public class TestGameMain {
         tw.drawBorder(Color.CYAN);
         tw.setBorderWidth(5);
         game.addUIElement("tw", tw);
+        
+        Ball ball=new Ball(game,200,200);
+        game.addObject(ball);
+        
+        game.put("btnCount", 0);
         
         UITextButton btn = new UITextButton(game);
         btn.setLayoutMargin(16, 16);
@@ -42,21 +48,13 @@ public class TestGameMain {
             @Override
             public void onClick(Game g) {
                 UITextView t = (UITextView) g.getUIElement("tw");
-                t.setText("dik");
+                int btnCount = g.getInt("btnCount");
+                btnCount++;
+                g.put("btnCount", btnCount);
+                t.setText("count: " + Integer.toString(btnCount));
             }
         });
         game.addUIElement("btn", btn);
-        
-        
-            Ball ball=new Ball(game,200,200);
-            game.addObject(ball);
-            /*int i=0;
-            while (i<300){
-                int x=(int)(Math.random()*512.0);
-                int y=(int)(Math.random()*512.0);
-                game.gameGroupManager.addToGroup("boyz", new boy(game,x,y));
-                i++;
-            }*/
     }
     
 }
