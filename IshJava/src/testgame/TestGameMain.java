@@ -13,16 +13,12 @@ import java.awt.Color;
 public class TestGameMain {
 
     public static void main(String[] args) {
+         
         Game game=Main.createGame(512,512, "test game");
-        Ball ball=new Ball(game,200,200);
-        game.addObject(ball);
-        game.addObject(new boy(game,0,0));   
-        
         UITextView tw = new UITextView(game);
         tw.setText("hello world");
         tw.setLayoutMargin(16, 16);
         tw.setLayoutAnchor(UIElement.ANCHOR_MIDDLE, UIElement.ANCHOR_START);    
-        //tw.setPosition(200, 200);
         tw.setColor(new Color(0xFFFFFF));
         tw.setFontFamily(UITextView.IMPACT);
         tw.setFontSize(36);
@@ -50,6 +46,17 @@ public class TestGameMain {
             }
         });
         game.addUIElement("btn", btn);
+        
+        
+            Ball ball=new Ball(game,200,200);
+            game.addObject(ball);
+            /*int i=0;
+            while (i<300){
+                int x=(int)(Math.random()*512.0);
+                int y=(int)(Math.random()*512.0);
+                game.gameGroupManager.addToGroup("boyz", new boy(game,x,y));
+                i++;
+            }*/
     }
     
 }

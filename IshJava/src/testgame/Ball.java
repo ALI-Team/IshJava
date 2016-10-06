@@ -3,6 +3,8 @@ package testgame;
 
 import IshJava.Game;
 import IshJava.GameObject;
+import java.awt.BasicStroke;
+import java.awt.Color;
 
 public class Ball extends GameObject{
     
@@ -12,20 +14,26 @@ public class Ball extends GameObject{
         //this.setDirection(45, 100);
         this.addKeyboard();
         this.addOnClick();
+        this.addKeyMovment('w', 's', 'a', 'd', 110);
+        
+        this.pen = true;
+        this.penColor = Color.BLUE;
+        this.penStroke = new BasicStroke(1.0f);
     }
     @Override
     public void onKeyPressed(char c){
               
-        if(c=='w'){
-            this.setDirection(270, 150);
-        }else if(c=='s'){
-            this.setDirection(90, 150);
-        }else if(c=='a'){
-            this.setDirection(180, 150);
-        }else if(c=='d'){
-            this.setDirection(360, 150);
+        if (c == ' ') {
+            this.pen = !this.pen;
         }
+        
+        if (Character.isDigit(c)) {
+            this.penStroke = new BasicStroke(Float.parseFloat(Character.toString(c)));
+        }
+        
+        //this.moveto(game.mousePoint, 200);
     }
+   
     @Override
     public void tick(){
         
