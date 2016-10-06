@@ -34,6 +34,8 @@ public class TestGameMain {
         Ball ball=new Ball(game,200,200);
         game.addObject(ball);
         
+        game.put("btnCount", 0);
+        
         UITextButton btn = new UITextButton(game);
         btn.setLayoutMargin(16, 16);
         btn.setText("im a button");
@@ -46,7 +48,10 @@ public class TestGameMain {
             @Override
             public void onClick(Game g) {
                 UITextView t = (UITextView) g.getUIElement("tw");
-                t.setText("dik");
+                int btnCount = g.getInt("btnCount");
+                btnCount++;
+                g.put("btnCount", btnCount);
+                t.setText("count: " + Integer.toString(btnCount));
             }
         });
         game.addUIElement("btn", btn);
