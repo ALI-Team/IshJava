@@ -18,6 +18,10 @@ import java.awt.event.MouseEvent;
 public class MyButton extends UITextButton{
     int clicks = 0;
     
+    public MyButton(Game g) {
+        super(g);
+    }
+    
     public MyButton(Game g, int x, int y) {
         super(g, x, y);
     }
@@ -38,7 +42,9 @@ public class MyButton extends UITextButton{
     public void handleClick(MouseEvent ev) {
         clicks++;
         UITextView tw = (UITextView) game.getUIElement("tw");
-        tw.setText("clicks: " + clicks);
+        int i = game.getInt("number");
+        tw.setText(Integer.toString(i));
+        
     }
     
 }

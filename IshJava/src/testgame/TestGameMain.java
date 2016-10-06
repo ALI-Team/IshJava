@@ -19,7 +19,7 @@ public class TestGameMain {
         UITextView tw = new UITextView(game);
         tw.setText("hello world");
         tw.setLayoutMargin(16, 16);
-        tw.setLayoutAnchor(UIElement.ANCHOR_MIDDLE, UIElement.ANCHOR_START);
+        tw.setLayoutAnchor(UIElement.ANCHOR_CENTER, UIElement.ANCHOR_START);
         tw.setColor(new Color(0xFFFFFF));
         tw.setFontFamily(UITextView.IMPACT);
         tw.setFontSize(36);
@@ -29,7 +29,7 @@ public class TestGameMain {
         tw.setBorderRadius(16);
         tw.drawBorder(Color.CYAN);
         tw.setBorderWidth(5);
-        game.addUIElement("tw", tw);
+        tw.build("tw");
         
         Ball ball=new Ball(game,200,200);
         game.addObject(ball);
@@ -37,7 +37,9 @@ public class TestGameMain {
         game.put("btnCount", 0);
         
         UITextButton btn = new UITextButton(game);
+        btn.setLayoutAnchor(UIElement.ANCHOR_CENTER, UIElement.ANCHOR_END);
         btn.setLayoutMargin(16, 16);
+        btn.setPadding(16);
         btn.setText("im a button");
         btn.setFontSize(16);
         btn.setFontFamily("Comic Sans MS");
@@ -54,7 +56,8 @@ public class TestGameMain {
                 t.setText("count: " + Integer.toString(btnCount));
             }
         });
-        game.addUIElement("btn", btn);
+        btn.build("btn");
+
     }
     
 }

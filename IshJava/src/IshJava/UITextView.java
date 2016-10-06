@@ -50,7 +50,6 @@ public class UITextView extends UIElement{
     public Color borderColor = Color.BLACK;
     public int borderWidth = 1;
     
-    protected boolean hasChanged = true;
     protected Shape shape;
     
     public UITextView(Game g) {
@@ -207,6 +206,7 @@ public class UITextView extends UIElement{
     public void drawOutline(Color c) {
         this.drawOutline = true;
         this.outlineColor = c;
+        this.hasChanged = true;
     }
     
     /**
@@ -338,13 +338,16 @@ public class UITextView extends UIElement{
         
         Rectangle2D bounds = textLayout.getBounds();
         RoundRectangle2D rr = new RoundRectangle2D.Float();
-        rr.setRoundRect(this.x - this.paddingLeft,
-                this.y - this.paddingTop,
-                bounds.getWidth() + this.paddingLeft + this.paddingRight,
-                bounds.getHeight() + this.paddingTop + this.paddingBottom,
+        
+        rr.setRoundRect(Math.round(this.drawX),
+                Math.round(this.drawY),
+                Math.round(bounds.getWidth() + this.paddingLeft + this.paddingRight),
+                Math.round(bounds.getHeight() + this.paddingTop + this.paddingBottom),
                 this.borderRadius, this.borderRadius);
+        
+        this.shape = rr;
+        
         if (this.hasChanged) {
-            this.shape = rr;
             this.pack();
             this.hasChanged = false;
         }
@@ -360,7 +363,8 @@ public class UITextView extends UIElement{
             }
         }
         AffineTransform translate = AffineTransform
-                .getTranslateInstance(x - bounds.getX(), y - bounds.getY());
+                .getTranslateInstance(drawX - bounds.getX() + this.paddingLeft,
+                        drawY - bounds.getY() + this.paddingTop);
         
         g2d.setColor(this.color);
         g2d.fill(textLayout.getOutline(translate));
@@ -369,8 +373,6 @@ public class UITextView extends UIElement{
             g2d.setColor(this.outlineColor);
             g2d.draw(textLayout.getOutline(translate));
         }
-        
-        //textLayout.draw(g2d, this.x, this.y);
     }
 
     @Override
