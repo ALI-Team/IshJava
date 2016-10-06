@@ -163,9 +163,6 @@ public abstract class UIElement {
                 
                 break;
         }
-        
-        StackTraceHelper.printStackTrace();
-        System.out.println("yPos " + y);
     }
     
     public abstract void draw(Graphics g); 
