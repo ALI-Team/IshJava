@@ -47,7 +47,7 @@ public class boy extends GameObject{
         //this.penColor = new Color(rand.nextInt(254) + 1, rand.nextInt(254) + 1, rand.nextInt(254) + 1);
         //this.penStroke = new BasicStroke(rand.nextInt(10) + 1);
         
-        //moveto(n, n2, rand.nextInt(3) * 100);
+        //moveto(n, n2, rand.nextInt(3) * 100);       
         
         //tw.setText("clicked: "+this.count);
         System.out.println("Clicked");
