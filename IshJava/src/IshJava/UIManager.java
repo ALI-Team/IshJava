@@ -7,6 +7,8 @@ package IshJava;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +17,7 @@ import java.util.HashMap;
  *
  * @author axemat060
  */
-public class UIManager {
+public class UIManager implements ComponentListener{
     
     ArrayList<UIElement> UIElements;
     HashMap<String, UIElement> UIMap;
@@ -42,8 +44,9 @@ public class UIManager {
     
     
     /**
-     * Adds an element to UIManager
-     * @param e UIElement 
+     * Lägger till UIElement i UIManager
+     * @param id <i>String</i> används för att accessa elementet senare
+     * @param e <i>UIElement</i> elementet att lägga till
      */
     public void addElement(String id, UIElement e) {
         this.UIMap.put(id, e);
@@ -65,5 +68,33 @@ public class UIManager {
                 e.draw(g);
             } 
         }
+    }
+    
+    public void packAll() {
+        HashMap<String, UIElement> tempMap = new HashMap<>();
+        tempMap.putAll(this.UIMap);
+        for (UIElement e : tempMap.values()) {
+            e.pack();
+        }
+    }
+
+    @Override
+    public void componentResized(ComponentEvent e) {
+        packAll();
+    }
+
+    @Override
+    public void componentMoved(ComponentEvent e) {
+        //do nothing
+    }
+
+    @Override
+    public void componentShown(ComponentEvent e) {
+        //do nothing
+    }
+
+    @Override
+    public void componentHidden(ComponentEvent e) {
+        //do nothing
     }
 }

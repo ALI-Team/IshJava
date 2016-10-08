@@ -320,7 +320,7 @@ public class UITextView extends UIElement{
     
     /**
      * Sets the borderWidth of UITextView
-     * @param borderWidth </i>int</i> width in px
+     * @param borderWidth <i>int</i> width in px
      */
     public void setBorderWidth(int borderWidth) {
         this.borderWidth = borderWidth;
@@ -355,13 +355,15 @@ public class UITextView extends UIElement{
         if (this.drawBackground) {
             g2d.setColor(this.backgroundColor);
             g2d.fill(rr);
-            if (this.drawBorder) {
-                g2d.setColor(this.borderColor);
-                g2d.setStroke(new BasicStroke(this.borderWidth));
-                g2d.draw(rr);
-                g2d.setStroke(defaultStroke);
-            }
         }
+        
+        if (this.drawBorder) {
+            g2d.setColor(this.borderColor);
+            g2d.setStroke(new BasicStroke(this.borderWidth));
+            g2d.draw(rr);
+            g2d.setStroke(defaultStroke);
+        }
+        
         AffineTransform translate = AffineTransform
                 .getTranslateInstance(drawX - bounds.getX() + this.paddingLeft,
                         drawY - bounds.getY() + this.paddingTop);

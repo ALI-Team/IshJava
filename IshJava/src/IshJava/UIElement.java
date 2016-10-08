@@ -61,7 +61,7 @@ public abstract class UIElement {
     
     /**
      * 
-     * @param v <i>true</i> for visible, </i>false</i> for hidden
+     * @param v <i>true</i> for visible, <i>false</i> for hidden
      */
     public void setVisible(boolean v) {
         this.visible = v;

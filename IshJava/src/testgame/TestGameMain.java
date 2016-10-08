@@ -19,16 +19,13 @@ public class TestGameMain {
         UITextView tw = new UITextView(game);
         tw.setText("hello world");
         tw.setLayoutMargin(16, 16);
-        tw.setLayoutAnchor(UIElement.ANCHOR_CENTER, UIElement.ANCHOR_START);
-        tw.setColor(new Color(0xFFFFFF));
-        tw.setFontFamily(UITextView.IMPACT);
-        tw.setFontSize(36);
-        tw.drawOutline(Color.BLACK);
-        tw.drawBackground(Color.GREEN);
-        tw.setPadding(8);
-        tw.setBorderRadius(16);
-        tw.drawBorder(Color.CYAN);
-        tw.setBorderWidth(5);
+        tw.setLayoutAnchor(UIElement.ANCHOR_START, UIElement.ANCHOR_START);
+        tw.setColor(Color.BLACK);
+        tw.setFontFamily(UITextView.ARIAL);
+        tw.drawBorder(Color.BLACK);
+        tw.setPadding(16);
+        tw.setBorderWidth(1);
+        tw.setFontSize(14);
         tw.build("tw");
         
         Ball ball=new Ball(game,200,200);
@@ -39,12 +36,10 @@ public class TestGameMain {
         UITextButton btn = new UITextButton(game);
         btn.setLayoutAnchor(UIElement.ANCHOR_CENTER, UIElement.ANCHOR_END);
         btn.setLayoutMargin(16, 16);
-        btn.setPadding(16);
-        btn.setText("im a button");
+        btn.setText("if apple says im a button...");
         btn.setFontSize(16);
-        btn.setFontFamily("Comic Sans MS");
-        btn.drawBackground(Color.DARK_GRAY);
-        btn.setColor(Color.GREEN);
+        btn.setFontFamily("Helvetica Neue");
+        btn.setColor(new Color(0, 122, 255));
         btn.setOnClickListener(new UIElement.OnClickListener() {
 
             @Override

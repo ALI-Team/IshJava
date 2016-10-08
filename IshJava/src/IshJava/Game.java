@@ -44,6 +44,7 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
         addKeyListener(objectManager);
         addMouseListener(objectManager);
         addMouseMotionListener(this);
+        this.addComponentListener(uiManager);
         mainThread = new Thread(this);
         mainThread.start();
         canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
