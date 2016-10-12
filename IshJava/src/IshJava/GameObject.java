@@ -55,7 +55,8 @@ public class GameObject extends GamePoint {
     public BufferedImage canvas;
     public Paint penColor;
     public Stroke penStroke;
-
+    public int layer=0;
+    
     public char[] movementKeys;
     //detectHit
     public boolean collide(GameObject obj) {

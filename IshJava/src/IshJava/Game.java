@@ -32,9 +32,10 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
     public GamePoint mousePoint;
     public GameGroupManager gameGroupManager;
     public BufferedImage canvas;
+    public GameLayersManager gameLayersManager;
 
     public Game(int width,int height) {
-        
+        gameLayersManager=new GameLayersManager(this);
         mousePoint=new GamePoint();
         objectManager = new ObjectManager(this);
         gameGroupManager=new GameGroupManager();
@@ -125,6 +126,7 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
         super.paintComponent(g);
         g.drawImage(canvas, 0, 0, null);
         this.objectManager.drawObjs(g);
+        
         this.uiManager.drawUI(g);
         this.g = g;
     }
