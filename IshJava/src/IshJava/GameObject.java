@@ -55,6 +55,7 @@ public class GameObject extends GamePoint {
     public BufferedImage canvas;
     public Paint penColor;
     public Stroke penStroke;
+    public GameObject cooldownObject;
 
     public char[] movementKeys;
     //detectHit
@@ -78,9 +79,17 @@ public class GameObject extends GamePoint {
         movementmode = 2;
         direction = (double) ((dir / 360.0) * Math.PI * 2);
         speed = game.pps2ppf(v);
-
+        cooldownObject = null;
     }
-
+    
+    public void setDirection(int dir, int v, GameObject sender) {
+        if (!sender.equals(cooldownObject)) {
+            movementmode = 2;
+            direction = (double) ((dir / 360.0) * Math.PI * 2);
+            speed = game.pps2ppf(v);
+            cooldownObject = null;
+        }
+    }
     
     public void addKeyMovment(char up,char down,char left,char right,int speed){
         movementKeys=new char[4];
@@ -127,7 +136,7 @@ public class GameObject extends GamePoint {
             sprite = ImageIO.read(new File(imagePath));
             width = sprite.getWidth(game);
             height = sprite.getHeight(game);
-            //System.out.println(width);
+            System.out.println(height);
         } catch (IOException ex) {
             ex.printStackTrace();
 
@@ -227,8 +236,7 @@ public class GameObject extends GamePoint {
                     Clip clip = AudioSystem.getClip();
                     //AudioInputStream inputStream =
                     //        AudioSystem.getAudioInputStream(new File(url.toURI()));
-                    AudioInputStream inputStream =
-                           AudioSystem.getAudioInputStream(new File("src/sounds/test.wav"));
+                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(path));
                     clip.open(inputStream);
                     clip.start();
 
