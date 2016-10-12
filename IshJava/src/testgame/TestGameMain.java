@@ -16,7 +16,10 @@ public class TestGameMain {
          
         Game game=Main.createGame(512,512, "test game");
         
-        /*UITextView tw = new UITextView(game, 16, 64, "hello world");
+        UITextView tw = new UITextView(game);
+        tw.setText("hello world");
+        tw.setLayoutMargin(16, 16);
+        tw.setLayoutAnchor(UIElement.ANCHOR_MIDDLE, UIElement.ANCHOR_START);
         tw.setColor(new Color(0xFFFFFF));
         tw.setFontFamily(UITextView.IMPACT);
         tw.setFontSize(36);
@@ -26,44 +29,32 @@ public class TestGameMain {
         tw.setBorderRadius(16);
         tw.drawBorder(Color.CYAN);
         tw.setBorderWidth(5);
-        game.addUIElement("tw", tw);*/
+        game.addUIElement("tw", tw);
         
-        /*MyButton button = new MyButton(game, 16, 256);
-        button.setText("Press me");
-        button.drawBackground(Color.RED);
-        button.setFontSize(28);
-        button.setFontFamily(UITextButton.MONOSPACE);
-        button.setPadding(16);
-        button.setBorderRadius(4);
-        game.addUIElement("button", button);*/
-        
-        /*Ball ball=new Ball(game,200,200);
+        Ball ball=new Ball(game,200,200);
         game.addObject(ball);
-        game.addObject(new boy(game,0,0, tw));*/
         
-        game.addObject(new boy(game,0,0));
-            //Game game=Main.createGame(512,512, "test game");
-            Ball ball=new Ball(game,200,200);
-            game.addObject(ball);
-            //game.addObject(new boy(game,0,0,ball));
-            /*UITextView tw = new UITextView(game,16, 64, "hello world");
-            tw.setColor(new Color(0xFFFFFF));
-            tw.setFontFamily(UITextView.IMPACT);
-            tw.setFontSize(36);
-            tw.drawOutline(Color.BLACK);
-            tw.drawBackground(Color.GREEN);
-            tw.setPadding(8);
-            tw.setBorderRadius(16);
-            tw.drawBorder(Color.CYAN);
-            tw.setBorderWidth(5);*/
-            //game.uiManager.addElement(tw);
-            int i=0;
-            while (i<200){
-                int x=(int)(Math.random()*512.0);
-                int y=(int)(Math.random()*512.0);
-                game.gameGroupManager.addToGroup("boyz", new boy(game,x,y));
-                i++;
+        game.put("btnCount", 0);
+        
+        UITextButton btn = new UITextButton(game);
+        btn.setLayoutMargin(16, 16);
+        btn.setText("im a button");
+        btn.setFontSize(16);
+        btn.setFontFamily("Comic Sans MS");
+        btn.drawBackground(Color.DARK_GRAY);
+        btn.setColor(Color.GREEN);
+        btn.setOnClickListener(new UIElement.OnClickListener() {
+
+            @Override
+            public void onClick(Game g) {
+                UITextView t = (UITextView) g.getUIElement("tw");
+                int btnCount = g.getInt("btnCount");
+                btnCount++;
+                g.put("btnCount", btnCount);
+                t.setText("count: " + Integer.toString(btnCount));
             }
+        });
+        game.addUIElement("btn", btn);
     }
     
 }

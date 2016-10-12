@@ -26,7 +26,7 @@ public class GameKeyEvent {
         obj.onKeyPressed(ev.getKeyChar());
         }else if(type==1){
         obj.onKeyReleased(ev.getKeyChar());
-        }else if(type==1){
+        }else if(type==2){
         obj.onKeyTyped(ev.getKeyChar());
         }
     }

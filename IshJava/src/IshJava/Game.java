@@ -24,6 +24,7 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
     public ObjectManager objectManager;
     public UIManager uiManager;
     public Thread mainThread;
+    public GameVariables gVars;
     public int fps = 60;
     public Graphics g;
     public int width, height;
@@ -39,6 +40,7 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
         objectManager = new ObjectManager(this);
         gameGroupManager=new GameGroupManager();
         uiManager = new UIManager();
+        gVars = new GameVariables();
         this.setBackground(new java.awt.Color(255, 255, 255));
         addKeyListener(objectManager);
         addMouseListener(objectManager);
@@ -61,6 +63,64 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
     public UIElement getUIElement(String id) {
         return this.uiManager.getElement(id);
     }
+    
+    /**
+     * Sparar ett Object i Game så att det kan kommas åt i andra kontexts
+     * @param key <i>String</i> unikt id som används för att komma åt <b>o</b>
+     * vid senare tillfälle.
+     * @param o <i>Object</i> värde, kan vara vad som helst t.ex en int, float
+     * eller String
+     */
+    public void put(String key, Object o) {
+        this.gVars.put(key, o);
+    }
+    
+    /**
+     * Laddar object indexerat av key
+     * @param key <i>String</i> unikt id, samma som när värder lagrades
+     * @return <i>Object</i> generik Object, casta eller använd getInt, 
+     * getString mm
+     */
+    public Object get(String key) {
+        return this.gVars.get(key);
+    }
+    
+    public int getInt(String key) {
+        return (int) this.gVars.get(key);
+    }
+    
+    public long getLong(String key) {
+        return (long) this.gVars.get(key);
+    }
+    
+    public short getShort(String key) {
+        return (short) this.gVars.get(key);
+    }
+    
+    public byte getByte(String key) {
+        return (byte) this.gVars.get(key);
+    }
+    
+    public char getChar(String key) {
+        return (char) this.gVars.get(key);
+    }
+    
+    public float getFloat(String key) {
+        return (float) this.gVars.get(key);
+    }
+    
+    public double getDouble(String key) {
+        return (double) this.gVars.get(key);
+    }
+    
+    public boolean getBoolean(String key) {
+        return (boolean) this.gVars.get(key);
+    }
+    
+    public String getString(String key) {
+        return (String) this.gVars.get(key);
+    }
+    
     @Override
     public void paintComponent(Graphics g) { 
         super.paintComponent(g);
@@ -68,7 +128,6 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
         this.objectManager.drawObjs(g);
         
         this.uiManager.drawUI(g);
-        
         this.g = g;
     }
     

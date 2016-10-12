@@ -74,7 +74,7 @@ public class ObjectManager implements KeyListener, MouseListener{
                 if(keys.get(obj.movementKeys[i])!=null){
                    
                 if(keys.get(obj.movementKeys[i])){
-                    System.out.println(obj.movementKeys[i]);
+                    //System.out.println(obj.movementKeys[i]);
                     keypressed=true;
                     dirTMP=dirTMP+(i)*0.5*Math.PI;
                     keyspressed++;
@@ -130,7 +130,7 @@ public class ObjectManager implements KeyListener, MouseListener{
     @Override
     public void keyTyped(KeyEvent e) {
         ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
-        staticobjects.addAll(objects);
+        staticobjects.addAll(keylisteners);
         for (GameObject obj : staticobjects) {
             keyevents.add(new GameKeyEvent(e,obj,(byte)2));
         }
@@ -139,18 +139,18 @@ public class ObjectManager implements KeyListener, MouseListener{
     @Override
     public void keyPressed(KeyEvent e) {
         ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
-        staticobjects.addAll(objects);
+        staticobjects.addAll(keylisteners);
         for (GameObject obj : staticobjects) {
             keyevents.add(new GameKeyEvent(e,obj,(byte)0));
         }
         keys.put(e.getKeyChar(), true);
-        
+        System.out.println(keyevents);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
        ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
-        staticobjects.addAll(objects);
+        staticobjects.addAll(keylisteners);
         for (GameObject obj : staticobjects) {
             keyevents.add(new GameKeyEvent(e,obj,(byte)1));
         }
