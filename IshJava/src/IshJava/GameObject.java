@@ -16,6 +16,7 @@ import java.awt.Image;
 import java.awt.Paint;
 import java.awt.Point;
 import java.awt.Stroke;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -56,6 +57,8 @@ public class GameObject extends GamePoint {
     public Paint penColor;
     public Stroke penStroke;
     public int layer=0;
+    public boolean rotate=false;
+    public double rotation;
     
     public char[] movementKeys;
     //detectHit
@@ -80,6 +83,11 @@ public class GameObject extends GamePoint {
         direction = (double) ((dir / 360.0) * Math.PI * 2);
         speed = game.pps2ppf(v);
 
+    }
+    
+    public void rotate(int deg){
+        rotate=true;
+        this.rotation=Math.toRadians(deg);
     }
 
     
@@ -202,7 +210,16 @@ public class GameObject extends GamePoint {
         }
         
         if (sprite != null) {
+            if(!rotate){
             g.drawImage(sprite, (int) x, (int) y, null);
+            }else{
+                Graphics2D g2d=(Graphics2D)g;
+                AffineTransform transform = g2d.getTransform();
+                g2d.translate(width/2, height/2);
+                g2d.rotate(rotation);
+                g.drawImage(sprite, (int) x, (int) y, null);
+                g2d.setTransform(transform);
+                        }
         }
         this.g = g;
     }
