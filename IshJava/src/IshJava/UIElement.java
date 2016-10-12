@@ -67,6 +67,10 @@ public abstract class UIElement {
         this.visible = v;
     }
     
+    public boolean getVisibility() {
+        return this.visible;
+    }
+    
     /**
      * Shows the element
      */
@@ -96,10 +100,41 @@ public abstract class UIElement {
         this.hasChanged = true;
     }
     
+    public Point getPosition() {
+        return new Point(x,y);
+    }
+    
+    public int[] getPositionAsArray() {
+        return new int[]{x,y};
+    }
+    
+    /**
+     * Antagligen inte vad du vill ha. Använd getPosition eller 
+     * getPositionAsArray.
+     * @return position, UIElement.POSITION_ABSOLUTE eller
+     * UIElement.POSITION_RELATIVE
+     */
+    public int getPositioning() {
+        return this.position;
+    }
+    
+    /**
+     * Antagligen inte vad du vill ha. Använd setPosition istället
+     * @param position UIElement.POSITION_ABSOLUTE eller
+     * UIElement.POSITION_RELATIVE
+     */
+    public void setPositioning(int position) {
+        this.position = position;
+    }
+    
     public void setX(int x) {
         this.position = POSITION_ABSOLUTE;
         this.x = x;
         this.hasChanged = true;
+    }
+    
+    public int getX() {
+        return this.x;
     }
     
     public void setY(int y) {
@@ -108,11 +143,19 @@ public abstract class UIElement {
         this.hasChanged = true;
     }
     
+    public int getY() {
+        return this.y;
+    }
+    
     public void setLayoutAnchor(int xAnchor, int yAnchor) {
         this.setLayoutXAnchor(xAnchor, false);
         this.setLayoutYAnchor(yAnchor, false);
         this.pack();
         this.hasChanged = true;
+    }
+    
+    public int[] getLayoutAnchors() {
+        return new int[]{this.xAnchor, this.yAnchor};
     }
     
     private void setLayoutXAnchor(int xAnchor, boolean pack) {
@@ -135,6 +178,10 @@ public abstract class UIElement {
         if (pack) this.pack();
     }
     
+    public int getLayoutXAnchor() {
+        return this.xAnchor;
+    }
+    
     private void setLayoutYAnchor(int yAnchor, boolean pack) {
         this.position = POSITION_RELATIVE;
         this.yAnchor = yAnchor;
@@ -155,6 +202,10 @@ public abstract class UIElement {
         if (pack) this.pack();
     }
     
+    public int getLayoutYAnchor() {
+        return this.yAnchor;
+    }
+    
     public void setLayoutXAnchor(int XAnchor) {
         this.setLayoutXAnchor(XAnchor, true);
     }
@@ -170,6 +221,9 @@ public abstract class UIElement {
         this.pack();
         this.hasChanged = true;
     }
+    public int[] getLayoutMarginsAsArray() {
+        return new int[]{this.xMargin, this.yMargin};
+    }
     
     public void setLayoutXMargin(int xMargin) {
         this.position = POSITION_RELATIVE;
@@ -178,11 +232,19 @@ public abstract class UIElement {
         this.hasChanged = true;
     }
     
+    public int getLayoutXMargin() {
+        return this.xMargin;
+    }
+    
     public void setLayoutYMargin(int yMargin) {
         this.position = POSITION_RELATIVE;
         this.yMargin = yMargin;
         this.pack();
         this.hasChanged = true;
+    }
+    
+    public int getLayoutYMargin() {
+        return this.yMargin;
     }
     
     public void setOrigo(int origoX, int origoY) {

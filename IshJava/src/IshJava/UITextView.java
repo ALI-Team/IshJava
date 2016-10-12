@@ -76,8 +76,8 @@ public class UITextView extends UIElement{
     
     /**
      * Sätter färgen för texten
-     * @param c <i>Java Color</i> ex Color.GREEN, new Color(r,g,b), new Color(0xRRGGBB)
-     * eller new Color(0xAARRGGBB, true)
+     * @param c <i>Java Color</i> ex Color.GREEN, new Color(r,g,b),
+     * new Color(0xRRGGBB) eller new Color(0xAARRGGBB, true)
      */
     public void setColor(Color c) {
         this.color = c; //Java Color object
@@ -191,7 +191,8 @@ public class UITextView extends UIElement{
     
     /**
      * Sätter på eller av outline för UITextView
-     * @param outline <i>boolean</i>, <b>true</b> för att sätta på outline, <b>false</b> för att stänga av
+     * @param outline <i>boolean</i>, <b>true</b> för att sätta på outline,
+     * <b>false</b> för att stänga av
      */
     public void setOutline(boolean outline) {
         this.drawOutline = outline;
@@ -200,8 +201,8 @@ public class UITextView extends UIElement{
     
     /**
      * Sätter på och ändrar färgen för text outline
-     * @param c <i>Java Color</i> ex Color.GREEN, new Color(r,g,b), new Color(0xRRGGBB)
-     * eller new Color(0xAARRGGBB, true)
+     * @param c <i>Java Color</i> ex Color.GREEN, new Color(r,g,b),
+     * new Color(0xRRGGBB) eller new Color(0xAARRGGBB, true)
      */
     public void drawOutline(Color c) {
         this.drawOutline = true;
@@ -218,7 +219,8 @@ public class UITextView extends UIElement{
     
     /**
      * Sätter på eller av att rita bakgrund för UITextView
-     * @param drawBackground <i>boolean</i>, <b>true</b> för att sätta på background, <b>false</b> för att stänga av
+     * @param drawBackground <i>boolean</i>, <b>true</b> för att sätta på 
+     * background, <b>false</b> för att stänga av
      */
     public void setDrawBackground(boolean drawBackground) {
         this.drawBackground = drawBackground;
@@ -226,8 +228,8 @@ public class UITextView extends UIElement{
     
     /**
      * Sätter på och ändrar färgen för background
-     * @param c <i>Java Color</i> ex Color.GREEN, new Color(r,g,b), new Color(0xRRGGBB)
-     * eller new Color(0xAARRGGBB, true)
+     * @param c <i>Java Color</i> ex Color.GREEN, new Color(r,g,b),
+     * new Color(0xRRGGBB) eller new Color(0xAARRGGBB, true)
      */
     public void drawBackground(Color c) {
         setDrawBackground(true);
@@ -295,8 +297,8 @@ public class UITextView extends UIElement{
     
     /**
      * Turns on border around background box and sets the color the c
-     * @param c <i>Java Color</i> ex Color.GREEN, new Color(r,g,b), new Color(0xRRGGBB)
-     * eller new Color(0xAARRGGBB, true)
+     * @param c <i>Java Color</i> ex Color.GREEN, new Color(r,g,b),
+     * new Color(0xRRGGBB) eller new Color(0xAARRGGBB, true)
      */
     public void drawBorder(Color c) {
         this.drawBorder = true;
@@ -305,7 +307,8 @@ public class UITextView extends UIElement{
     
     /**
      * Turns on or off border for UITextView
-     * @param drawBorder <i>boolean</i>, <b>true</b> för att sätta på outline, <b>false</b> för att stänga av
+     * @param drawBorder <i>boolean</i>, <b>true</b> för att sätta på outline,
+     * <b>false</b> för att stänga av
      */
     public void setDrawBorder(boolean drawBorder) {
         this.drawBorder = drawBorder;
@@ -329,7 +332,8 @@ public class UITextView extends UIElement{
     @Override
     public void draw(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
+                RenderingHints.VALUE_ANTIALIAS_ON);
         final Stroke defaultStroke = g2d.getStroke();
         
         FontRenderContext frc = g2d.getFontRenderContext();

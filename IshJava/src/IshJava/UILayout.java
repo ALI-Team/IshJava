@@ -1,0 +1,40 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package IshJava;
+
+import java.awt.Graphics;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author axemat060
+ */
+public abstract class UILayout extends UIElement{
+
+    protected ArrayList<UIElement> children;
+    
+    public UILayout(Game g) {
+        super(g);
+        this.children = new ArrayList<>();
+    }
+    
+    public void addUIElement(UIElement e) {
+        children.add(e);
+    }
+    
+    public void addUIElement(UIElement e, int index) {
+        children.add(index, e);
+    }
+    
+    public void removeUIElement(UIElement e) {
+        children.remove(e);
+    }
+    
+    public void removeUIElement(int index) {
+        children.remove(index);
+    }
+    
+}
