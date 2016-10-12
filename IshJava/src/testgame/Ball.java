@@ -8,6 +8,7 @@ public class Ball extends GameObject{
     
     public Ball(Game game, int x, int y) {
         super(game, x, y);
+        this.layer=1;
         this.setSprite("src/imgs/ball.png");
         //this.setDirection(45, 100);
         this.addKeyboard();

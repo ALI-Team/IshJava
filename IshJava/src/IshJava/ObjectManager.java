@@ -7,6 +7,7 @@
 package IshJava;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -42,7 +43,7 @@ public class ObjectManager implements KeyListener, MouseListener{
     public ArrayList<GameMouseEvent> mouseevents = new ArrayList<>();
     public ArrayList<GameKeyEvent> keyevents = new ArrayList<>();
     public HashMap<Character, Boolean> keys = new HashMap<>();
-            
+          
    
             
     public void updateObjs(){
@@ -105,15 +106,26 @@ public class ObjectManager implements KeyListener, MouseListener{
         }
         
     }
-    
     public void drawObjs(Graphics g){
+        game.gameLayersManager.clearLayers();
+        ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
+        staticobjects.addAll(objects);
+        for (GameObject obj : staticobjects) {
+            Graphics g2=game.gameLayersManager.getLayerCanvas(obj.layer).createGraphics();
+            obj.draw(g2);
+        }
+        game.gameLayersManager.drawLayers(g);
+        
+    }
+    
+    /*public void drawObjs(Graphics g){
         ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
         staticobjects.addAll(objects);
         for (GameObject obj : staticobjects) {
             obj.draw(g);
         }
     
-    }
+    }*/
 
     @Override
     public void keyTyped(KeyEvent e) {

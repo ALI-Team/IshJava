@@ -5,10 +5,12 @@
  */
 package IshJava;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author ivamat907
  */
 public class GameLayer {
-    
+    public BufferedImage canvas;
 }
