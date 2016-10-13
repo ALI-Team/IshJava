@@ -7,6 +7,7 @@ import IshJava.Main;
 import IshJava.GameObject;
 import IshJava.UITextButton;
 import IshJava.UIElement;
+import IshJava.UILinearLayout;
 import IshJava.UITextView;
 import java.awt.Color;
 
@@ -15,7 +16,6 @@ public class TestGameMain {
     public static void main(String[] args) {
          
         Game game=Main.createGame(512,512, "test game");
-        
         UITextView tw = new UITextView(game);
         tw.setText("hello world");
         tw.setLayoutMargin(16, 16);
@@ -44,14 +44,43 @@ public class TestGameMain {
 
             @Override
             public void onClick(Game g) {
-                UITextView t = (UITextView) g.getUIElement("tw");
-                int btnCount = g.getInt("btnCount");
-                btnCount++;
-                g.put("btnCount", btnCount);
-                t.setText("count: " + Integer.toString(btnCount));
+                UILinearLayout lin = (UILinearLayout) g.getUIElement("lin");
+                lin.pack();
             }
         });
         btn.build("btn");
+        
+        UITextButton btn1 = new UITextButton(game);
+        btn1.setLayoutMargin(16, 16);
+        btn1.setText("i am button 1");
+        btn1.drawBackground(Color.BLACK);
+        btn1.setColor(Color.WHITE);
+        btn1.build("btn1");
+        
+        UITextButton btn2 = new UITextButton(game);
+        btn2.setLayoutMargin(16, 16);
+        btn2.setText("i am button 2");
+        btn2.drawBackground(Color.BLACK);
+        btn2.setColor(Color.WHITE);
+        btn2.build("btn2");
+        
+        UITextButton btn3 = new UITextButton(game);
+        btn3.setLayoutMargin(16, 16);
+        btn3.setText("i am button 3");
+        btn3.drawBackground(Color.BLACK);
+        btn3.setColor(Color.WHITE);
+        btn3.build("btn3");
+        
+        UILinearLayout lin = new UILinearLayout(game);
+        lin.setOrientation(UILinearLayout.VERTICAL);
+        lin.setAlignment(UILinearLayout.ALIGN_CENTER);
+        lin.setLayoutAnchor(UIElement.ANCHOR_CENTER, UIElement.ANCHOR_START);
+        lin.setLayoutMargin(16, 16);
+        lin.build("lin");
+        
+        lin.addUIElement(btn1);
+        lin.addUIElement(btn2);
+        lin.addUIElement(btn3);
 
     }
     

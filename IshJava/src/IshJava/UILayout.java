@@ -22,19 +22,25 @@ public abstract class UILayout extends UIElement{
     }
     
     public void addUIElement(UIElement e) {
+        e.setPositioning(UIElement.POSITION_ABSOLUTE);
         children.add(e);
+        this.pack();
     }
     
     public void addUIElement(UIElement e, int index) {
+        e.setPositioning(UIElement.POSITION_ABSOLUTE);
         children.add(index, e);
+        this.pack();
     }
     
     public void removeUIElement(UIElement e) {
         children.remove(e);
+        this.pack();
     }
     
     public void removeUIElement(int index) {
         children.remove(index);
+        this.pack();
     }
     
 }

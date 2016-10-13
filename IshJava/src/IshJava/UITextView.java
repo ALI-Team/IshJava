@@ -99,7 +99,7 @@ public class UITextView extends UIElement{
      */
     public void setText(String text) {
         this.text = text;
-        this.hasChanged = true;
+        this.change();
     }
     
     /**
@@ -111,7 +111,7 @@ public class UITextView extends UIElement{
         String family = old.getFamily();
         int style = old.getStyle();
         this.font = new Font(family, style, size);
-        this.hasChanged = true;
+        this.change();
     }
     
     /**
@@ -125,7 +125,7 @@ public class UITextView extends UIElement{
         String family = old.getFamily();
         int size = old.getSize();
         this.font = new Font(family, style, size);
-        this.hasChanged = true;
+        this.change();
     }
     
     /**
@@ -137,7 +137,7 @@ public class UITextView extends UIElement{
         int style = old.getStyle();
         int size = old.getSize();
         this.font = new Font(family, style, size);
-        this.hasChanged = true;
+        this.change();
     }
     
     /**
@@ -148,7 +148,7 @@ public class UITextView extends UIElement{
         String family = old.getFamily();
         int size = old.getSize();
         this.font = new Font(family, Font.ITALIC, size);
-        this.hasChanged = true;
+        this.change();
     }
     
     /**
@@ -159,7 +159,7 @@ public class UITextView extends UIElement{
         String family = old.getFamily();
         int size = old.getSize();
         this.font = new Font(family, Font.BOLD, size);
-        this.hasChanged = true;
+        this.change();
     }
     
     /**
@@ -170,7 +170,7 @@ public class UITextView extends UIElement{
         String family = old.getFamily();
         int size = old.getSize();
         this.font = new Font(family, Font.PLAIN, size);
-        this.hasChanged = true;
+        this.change();
     }
     
     /**
@@ -186,7 +186,7 @@ public class UITextView extends UIElement{
      */
     public void setFont(Font font) {
         this.font = font;
-        this.hasChanged = true;
+        this.change();
     }
     
     /**
@@ -196,7 +196,7 @@ public class UITextView extends UIElement{
      */
     public void setOutline(boolean outline) {
         this.drawOutline = outline;
-        this.hasChanged = true;
+        this.change();
     }
     
     /**
@@ -207,7 +207,7 @@ public class UITextView extends UIElement{
     public void drawOutline(Color c) {
         this.drawOutline = true;
         this.outlineColor = c;
-        this.hasChanged = true;
+        this.change();
     }
     
     /**
@@ -283,7 +283,7 @@ public class UITextView extends UIElement{
                 this.paddingLeft = p[4];
                 break;
         }
-        this.hasChanged = true;
+        this.change();
     }
     
     /**
@@ -292,7 +292,7 @@ public class UITextView extends UIElement{
      */
     public void setBorderRadius(int r) {
         this.borderRadius = r;
-        this.hasChanged = true;
+        this.change();
     }
     
     /**
@@ -352,7 +352,7 @@ public class UITextView extends UIElement{
         this.shape = rr;
         
         if (this.hasChanged) {
-            this.pack();
+            this.pack();  
             this.hasChanged = false;
         }
 

@@ -16,7 +16,7 @@ import java.awt.event.MouseEvent;
  */
 public abstract class UIElement {
     protected Game game;
-    private int x = 0,y = 0;
+    protected int x = 0,y = 0;
     protected int drawX = 0, drawY = 0;
     public boolean visible;
     private int xAnchor;
@@ -39,6 +39,8 @@ public abstract class UIElement {
     public static final int ORIGO_END = 2;
     
     protected boolean hasChanged = true;
+    
+    protected UIElement.OnChangeListener onChangeListener;
     
     public UIElement(Game g) {
         this.game = g;
@@ -76,6 +78,7 @@ public abstract class UIElement {
      */
     public void show() {
         this.visible = true;
+        this.change();
     }
    
     /**
@@ -83,21 +86,32 @@ public abstract class UIElement {
      */
     public void hide() {
         this.visible = false;
+        this.change();
     }
     
-    
     public void setPosition(Point p) {
+        this.setPosition(p, true);
+    }
+    
+    public void setPosition(Point p, boolean change) {
         this.position = POSITION_ABSOLUTE;
         this.x = p.x;
         this.y = p.y;
-        this.hasChanged = true;
+        if (change) this.change();
     }
     
     public void setPosition(int x, int y) {
+        this.setPosition(x, y, true);
+    }
+    
+    public void setPosition(int x, int y, boolean change) {
         this.position = POSITION_ABSOLUTE;
         this.x = x;
         this.y = y;
-        this.hasChanged = true;
+        System.out.println("x: " + this.x);
+        System.out.println("y: " + this.y);
+        if (change) this.change();
+            else this.hasChanged = true;
     }
     
     public Point getPosition() {
@@ -130,7 +144,7 @@ public abstract class UIElement {
     public void setX(int x) {
         this.position = POSITION_ABSOLUTE;
         this.x = x;
-        this.hasChanged = true;
+        this.change();
     }
     
     public int getX() {
@@ -140,7 +154,7 @@ public abstract class UIElement {
     public void setY(int y) {
         this.position = POSITION_ABSOLUTE;
         this.y = y;
-        this.hasChanged = true;
+        this.change();
     }
     
     public int getY() {
@@ -151,7 +165,7 @@ public abstract class UIElement {
         this.setLayoutXAnchor(xAnchor, false);
         this.setLayoutYAnchor(yAnchor, false);
         this.pack();
-        this.hasChanged = true;
+        this.change();
     }
     
     public int[] getLayoutAnchors() {
@@ -161,7 +175,7 @@ public abstract class UIElement {
     private void setLayoutXAnchor(int xAnchor, boolean pack) {
         this.position = POSITION_RELATIVE;
         this.xAnchor = xAnchor;
-        this.hasChanged = true;
+        this.change();
         
         switch (this.xAnchor) {
             case UIElement.ANCHOR_START:
@@ -185,7 +199,7 @@ public abstract class UIElement {
     private void setLayoutYAnchor(int yAnchor, boolean pack) {
         this.position = POSITION_RELATIVE;
         this.yAnchor = yAnchor;
-        this.hasChanged = true;
+        this.change();
         
         switch (this.yAnchor) {
             case UIElement.ANCHOR_START:
@@ -215,21 +229,19 @@ public abstract class UIElement {
     }
     
     public void setLayoutMargin(int xMargin, int yMargin) {
-        this.position = POSITION_RELATIVE;
         this.xMargin = xMargin;
         this.yMargin = yMargin;
         this.pack();
-        this.hasChanged = true;
+        this.change();
     }
     public int[] getLayoutMarginsAsArray() {
         return new int[]{this.xMargin, this.yMargin};
     }
     
     public void setLayoutXMargin(int xMargin) {
-        this.position = POSITION_RELATIVE;
         this.xMargin = xMargin;
         this.pack();
-        this.hasChanged = true;
+        this.change();
     }
     
     public int getLayoutXMargin() {
@@ -237,10 +249,9 @@ public abstract class UIElement {
     }
     
     public void setLayoutYMargin(int yMargin) {
-        this.position = POSITION_RELATIVE;
         this.yMargin = yMargin;
         this.pack();
-        this.hasChanged = true;
+        this.change();
     }
     
     public int getLayoutYMargin() {
@@ -251,23 +262,31 @@ public abstract class UIElement {
         this.origoX = origoX;
         this.origoY = origoY;
         this.pack();
-        this.hasChanged = true;
+        this.change();
     }
     
     public void setOrigoX(int origoX) {
         this.origoX = origoX;
         this.pack();
-        this.hasChanged = true;
+        this.change();
     }
     
     public void setOrigoY(int origoY) {
         this.origoY = origoY;
         this.pack();
-        this.hasChanged = true;
+        this.change();
     }
     
     public void build(String key) {
         this.game.addUIElement(key, this);
+    }
+    
+    public void setOnChangeListener(UIElement.OnChangeListener onChangeListener) {
+       this.onChangeListener = onChangeListener;
+    }
+    
+    public void removeOnChangeListener() {
+        this.onChangeListener = null;
     }
     
     protected void pack() {
@@ -328,6 +347,13 @@ public abstract class UIElement {
         
     }
     
+    public void change() {
+        this.hasChanged = true;
+        if (this.onChangeListener != null) {
+            this.onChangeListener.onChange();
+        }
+    }
+    
     public abstract void draw(Graphics g); 
     public abstract int getWidth();
     public abstract int getHeight();
@@ -339,5 +365,9 @@ public abstract class UIElement {
     
     public interface OnClickListener {
         public abstract void onClick(Game g);
+    }
+    
+    public interface OnChangeListener {
+        public abstract void onChange();
     }
 }
