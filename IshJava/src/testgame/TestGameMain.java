@@ -65,8 +65,11 @@ public class TestGameMain {
                 i++;
             }*/
             
-            Wall wall = new Wall(game, 50, 400);
+            Wall wall = new Wall(game, 50, 10);
             game.addObject(wall);
+            
+            Wall wall2 = new Wall(game, 50, 400);
+            game.addObject(wall2);
     }
     
 }
