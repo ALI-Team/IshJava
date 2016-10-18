@@ -129,15 +129,18 @@ public class ObjectManager implements KeyListener, MouseListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
+        if(!game.paused){
         ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
         staticobjects.addAll(keylisteners);
         for (GameObject obj : staticobjects) {
             keyevents.add(new GameKeyEvent(e,obj,(byte)2));
         }
+        }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(!game.paused){
         ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
         staticobjects.addAll(keylisteners);
         for (GameObject obj : staticobjects) {
@@ -146,19 +149,22 @@ public class ObjectManager implements KeyListener, MouseListener{
         keys.put(e.getKeyChar(), true);
         System.out.println(keyevents);
     }
+    }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        if(!game.paused){
        ArrayList<GameObject> staticobjects = new ArrayList<GameObject>();
         staticobjects.addAll(keylisteners);
         for (GameObject obj : staticobjects) {
             keyevents.add(new GameKeyEvent(e,obj,(byte)1));
         }
         keys.put(e.getKeyChar(), false);
-        
+        }
     }
     
     public void handleMousePress(MouseEvent e) {
+        if(!game.paused){
         
         /*
          * Get coordinates from mouseclick
@@ -190,13 +196,18 @@ public class ObjectManager implements KeyListener, MouseListener{
             }
         }
     }
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+       
         
         if(!this.game.uiManager.onClick(e)){
-            this.handleMousePress(e);
+            if(!game.paused){
+                this.handleMousePress(e);
+            }
         } 
+        
     }
 
     @Override

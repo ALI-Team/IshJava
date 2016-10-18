@@ -33,8 +33,9 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
     public GameGroupManager gameGroupManager;
     public BufferedImage canvas;
     public GameLayersManager gameLayersManager;
-
+    public boolean paused;
     public Game(int width,int height) {
+        paused=false;
         gameLayersManager=new GameLayersManager(this);
         mousePoint=new GamePoint();
         objectManager = new ObjectManager(this);
@@ -49,6 +50,15 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
         mainThread.start();
         canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
+    }
+    public void pauseGame(){
+        paused=true;
+    }
+    public void unpauseGame(){
+        paused=true;
+    }
+    public void pauseToggle(){
+        paused=!paused;
     }
 
     public void addObject(GameObject obj) {
@@ -139,8 +149,10 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
     public void run() {
         while (true) {
             long tick=System.currentTimeMillis();
+            if(!this.paused){
             this.objectManager.executeEvents();
             this.objectManager.updateObjs();
+            }
             repaint();
             try {
                 long tock=System.currentTimeMillis();
