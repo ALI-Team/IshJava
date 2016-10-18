@@ -8,6 +8,7 @@ package ButtStuff;
 import IshJava.Game;
 import IshJava.Main;
 import IshJava.UIElement;
+import IshJava.UITextButton;
 import IshJava.UITextView;
 import java.awt.Color;
 
@@ -55,6 +56,23 @@ public class GameMain {
         tw2.drawBorder(Color.CYAN);
         tw2.setBorderWidth(5);
         game.addUIElement("hp", tw2);
+        
+        UITextButton btn = new UITextButton(game);
+        btn.setLayoutMargin(16, 16);
+        btn.setText("pause");
+        btn.setFontSize(16);
+        btn.setFontFamily("Comic Sans MS");
+        btn.drawBackground(Color.DARK_GRAY);
+        btn.setColor(Color.GREEN);
+        btn.setOnClickListener(new UIElement.OnClickListener() {
+
+            @Override
+            public void onClick(Game g) {
+                g.pauseToggle();
+            }
+        });
+        game.addUIElement("btn", btn);
+        
         
         game.addObject(new ButtManager(game,0,0));
         game.addObject(hand);
