@@ -26,13 +26,13 @@ public class GameMain {
         Game game=Main.createGame(512,512, "Butt stuff");
         Hand hand=new Hand(game,50,400);
          UITextView tw = new UITextView(game);
-        tw.setText("score");
+        tw.setText("score:0");
         tw.setLayoutMargin(16, 16);
         tw.setLayoutAnchor(UIElement.ANCHOR_MIDDLE, UIElement.ANCHOR_START);
         game.put("score", 0);
         tw.setColor(Color.green);
         tw.setFontFamily(UITextView.IMPACT);
-        tw.setFontSize(36);
+        tw.setFontSize(46);
         tw.drawOutline(Color.BLACK);
         tw.setPadding(8);
         tw.setBorderRadius(16);
@@ -42,13 +42,13 @@ public class GameMain {
         
         
         UITextView tw2 = new UITextView(game);
-        tw2.setText("hp");
+        tw2.setText("hp:3");
         tw2.setLayoutMargin(16, 64);
         tw2.setLayoutAnchor(UIElement.ANCHOR_MIDDLE, UIElement.ANCHOR_END);
         game.put("hp", 3);
         tw2.setColor(Color.red);
         tw2.setFontFamily(UITextView.IMPACT);
-        tw2.setFontSize(36);
+        tw2.setFontSize(46);
         tw2.drawOutline(Color.BLACK);
         tw2.setPadding(8);
         tw2.setBorderRadius(16);
