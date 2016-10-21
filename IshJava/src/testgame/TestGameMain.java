@@ -43,7 +43,7 @@ public class TestGameMain {
         
         //game.addObject(new boy(game,0,0));
             //Game game=Main.createGame(512,512, "test game");
-            Ball ball=new Ball(game,50,200);
+            Ball ball=new Ball(game,200,200);
             game.addObject(ball);
             //game.addObject(new boy(game,0,0,ball));
             /*UITextView tw = new UITextView(game,16, 64, "hello world");

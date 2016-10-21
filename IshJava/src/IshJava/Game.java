@@ -69,8 +69,8 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
         this.g = g;
     }
     
-    public int pps2ppf(int pixels) {
-        return (int) (pixels / fps);
+    public double pps2ppf(int pixels) {
+        return (double) (pixels / fps);
     }
 
     @Override

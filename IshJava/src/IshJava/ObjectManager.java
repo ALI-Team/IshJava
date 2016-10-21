@@ -50,42 +50,46 @@ public class ObjectManager implements KeyListener, MouseListener {
         for (GameObject obj : staticobjects) {
             for (GameObject obj2 : staticobjects) {
                 if (!obj2.equals(obj)) {
-                    int asd = (int) obj.y + (int) obj.height;
-
-                    //if ((obj.x > obj2.x) && (obj.x < (obj2.x + obj2.width)) && (obj.y > obj2.y) && (obj.y < (obj2.y + obj2.height))) {
-                    /*System.out.println("obj1y"+obj.y+"\nobj1h"+obj.height);
-                    System.out.println("obj1:"+asd+"\nobj2:"+obj2.y);*/
-                    //System.out.println(Math.toDegrees(obj.direction));
                     if (obj.x > obj2.x && obj.x < obj2.x + obj2.width) {
                         if ((int) (obj.y + obj.height) == (int) obj2.y) {
                             if (obj.speed != 0) {
-                                obj.setDirection((int) (360 - Math.toDegrees(obj.direction)), 100, obj2);
+                                System.out.println("1hit");
+                                obj.setDirection((int) (360 - Math.toDegrees(obj.direction)), (int)obj.velocity, obj2);
                                 obj.cooldownObject = obj2;
+                                obj.hit();
+                                obj2.hit();
                             }
                         }
 
                         if ((int) obj.y == (int) (obj2.y + obj2.height)) {
                             if (obj.speed != 0) {
-                                obj.setDirection((int) (360 - Math.toDegrees(obj.direction)), 100, obj2);
+                                System.out.println("2hit");
+                                obj.setDirection((int) (360 - Math.toDegrees(obj.direction)), (int)obj.velocity, obj2);
                                 obj.cooldownObject = obj2;
+                                obj.hit();
+                                obj2.hit();
                             }
                         }
                     }
 
                     if (obj.y > obj2.y && obj.y < obj2.y + obj2.height) {
                         if ((int) obj.x == (int) (obj2.x + obj2.width)) {
-                            System.out.println("hit");
                             if (obj.speed != 0) {
-                                obj.setDirection((int) (180 - Math.toDegrees(obj.direction)), 100, obj2);
+                                System.out.println("3hit");
+                                obj.setDirection((int) (180 - Math.toDegrees(obj.direction)), (int)obj.velocity, obj2);
                                 obj.cooldownObject = obj2;
+                                obj.hit();
+                                obj2.hit();
                             }
                         }
 
                         if ((int) (obj.x + obj.width) == (int) obj2.x) {
-                            System.out.println("hit2");
                             if (obj.speed != 0) {
-                                obj.setDirection((int) (180 - Math.toDegrees(obj.direction)), 100, obj2);
+                                System.out.println("4hit");
+                                obj.setDirection((int) (180 - Math.toDegrees(obj.direction)), (int)obj.velocity, obj2);
                                 obj.cooldownObject = obj2;
+                                obj.hit();
+                                obj2.hit();
                             }
                         }
 

@@ -3,10 +3,13 @@ package testgame;
 
 import IshJava.Game;
 import IshJava.GameObject;
+import IshJava.GamePoint;
 import java.awt.BasicStroke;
 import java.awt.Color;
 
 public class Ball extends GameObject{
+    
+    int i;
     
     public Ball(Game game, int x, int y) {
         super(game, x, y);
@@ -14,13 +17,14 @@ public class Ball extends GameObject{
         //this.setDirection(45, 100);
         //this.addKeyboard();
         //this.addOnClick();
-        //this.addKeyMovment('w', 's', 'a', 'd', 110);
+        //this.addKeyMovment('w', 's', 'a', 'd', 100);
         
         this.pen = true;
         this.penColor = Color.BLUE;
-        this.penStroke = new BasicStroke(1.0f);
+        this.penStroke = new BasicStroke(2.0f);
         
-        this.setDirection(45, 100);
+        this.moveto(new GamePoint(0, 200), 100);
+        //this.setDirection(54, -60);
     }
     @Override
     public void onKeyPressed(char c){
@@ -48,5 +52,12 @@ public class Ball extends GameObject{
     
     @Override
     public void onClick() {
+    }
+    
+    @Override
+    public void hit() {
+        System.out.println("hit"+i);
+        i = i + 1;
+        this.penColor = new Color((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255));
     }
 }

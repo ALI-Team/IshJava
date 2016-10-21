@@ -50,6 +50,7 @@ public class GameObject extends GamePoint {
     public byte movementmode = 0;
     public Game game;
     public int width, height;
+    public int velocity;
     public boolean pen;
     public Graphics g;
     public BufferedImage canvas;
@@ -74,8 +75,9 @@ public class GameObject extends GamePoint {
         this.initobj();
         g.objectManager.objects.add(this);
     }
-
+    
     public void setDirection(int dir, int v) {
+        velocity = v;
         movementmode = 2;
         direction = (double) ((dir / 360.0) * Math.PI * 2);
         speed = game.pps2ppf(v);
@@ -84,6 +86,7 @@ public class GameObject extends GamePoint {
     
     public void setDirection(int dir, int v, GameObject sender) {
         if (!sender.equals(cooldownObject)) {
+            velocity = v;
             movementmode = 2;
             direction = (double) ((dir / 360.0) * Math.PI * 2);
             speed = game.pps2ppf(v);
@@ -145,12 +148,14 @@ public class GameObject extends GamePoint {
     }
 
     public void moveto(int x, int y, int v) {
+        velocity = v;
         movementmode = 1;
         target = new GamePoint(x, y);
         speed = game.pps2ppf(v);
     }
 
     public void moveto(GamePoint p, int v) {
+        velocity = v;
         movementmode = 1;
         target = p;
         speed = game.pps2ppf(v);
@@ -253,5 +258,9 @@ public class GameObject extends GamePoint {
             g2.setBackground(new Color(0, 0, 0, 0));
             g2.clearRect(0, 0, 512, 512);
         }
+    }
+    
+    public void hit() {
+        //Called when object is hit. To be overwritten
     }
 }
