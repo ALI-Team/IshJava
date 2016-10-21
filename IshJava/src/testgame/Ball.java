@@ -20,7 +20,7 @@ public class Ball extends GameObject{
         this.penColor = Color.BLUE;
         this.penStroke = new BasicStroke(1.0f);
         
-        this.setDirection(300, 100);
+        this.setDirection(45, 100);
     }
     @Override
     public void onKeyPressed(char c){

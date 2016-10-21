@@ -43,7 +43,7 @@ public class TestGameMain {
         
         //game.addObject(new boy(game,0,0));
             //Game game=Main.createGame(512,512, "test game");
-            Ball ball=new Ball(game,0,200);
+            Ball ball=new Ball(game,50,200);
             game.addObject(ball);
             //game.addObject(new boy(game,0,0,ball));
             /*UITextView tw = new UITextView(game,16, 64, "hello world");
@@ -70,6 +70,12 @@ public class TestGameMain {
             
             Wall wall2 = new Wall(game, 50, 400);
             game.addObject(wall2);
+            
+            Wallvert wall3 = new Wallvert(game, 400, 50);
+            game.addObject(wall3);
+            
+            Wallvert wall4 = new Wallvert(game, 0, 50);
+            game.addObject(wall4);
     }
     
 }
