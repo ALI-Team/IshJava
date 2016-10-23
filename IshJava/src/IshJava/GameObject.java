@@ -86,6 +86,7 @@ public class GameObject extends GamePoint {
     
     public void setDirection(int dir, int v, GameObject sender) {
         if (!sender.equals(cooldownObject)) {
+            System.out.println("move: "+this+ " dir: "+dir);
             velocity = v;
             movementmode = 2;
             direction = (double) ((dir / 360.0) * Math.PI * 2);

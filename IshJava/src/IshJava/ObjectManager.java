@@ -50,49 +50,68 @@ public class ObjectManager implements KeyListener, MouseListener {
         for (GameObject obj : staticobjects) {
             for (GameObject obj2 : staticobjects) {
                 if (!obj2.equals(obj)) {
-                    if (obj.x > obj2.x && obj.x < obj2.x + obj2.width) {
-                        if ((int) (obj.y + obj.height) == (int) obj2.y) {
-                            if (obj.speed != 0) {
+                    //System.out.println("1.x:"+obj.x+"\n1.w"+obj.width+"\n2.x"+obj2.x+"\n2.w"+obj2.width);
+                    if ((obj.x > obj2.x && obj.x < obj2.x + obj2.width) || (int)obj.x == (int)obj2.x) {
+                        if (((int) (obj.y + obj.height) == (int) obj2.y) || ((int) obj.y == (int) (obj2.y + obj2.height))) {
+                            if (obj.speed != 0 && !obj2.equals(obj.cooldownObject) && obj2.speed == 0) {
                                 System.out.println("1hit");
                                 obj.setDirection((int) (360 - Math.toDegrees(obj.direction)), (int)obj.velocity, obj2);
                                 obj.cooldownObject = obj2;
                                 obj.hit();
                                 obj2.hit();
                             }
-                        }
-
-                        if ((int) obj.y == (int) (obj2.y + obj2.height)) {
-                            if (obj.speed != 0) {
-                                System.out.println("2hit");
+                            
+                            if (obj2.speed != 0 && !obj.equals(obj2.cooldownObject) && obj.speed == 0) {
+                                System.out.println("12hit");
+                                obj2.setDirection((int) (360 - Math.toDegrees(obj2.direction)), (int)obj2.velocity, obj);
+                                obj2.cooldownObject = obj;
+                                obj2.hit();
+                                obj.hit();
+                            }
+                            
+                            if (obj.speed != 0 && obj2.speed != 0 && !obj.equals(obj2.cooldownObject) && !obj2.equals(obj.cooldownObject)) {
+                                System.out.println("13hit");
                                 obj.setDirection((int) (360 - Math.toDegrees(obj.direction)), (int)obj.velocity, obj2);
                                 obj.cooldownObject = obj2;
                                 obj.hit();
+                                obj2.setDirection((int) (360 - Math.toDegrees(obj2.direction)), (int)obj2.velocity, obj2);
+                                obj2.cooldownObject = obj;
                                 obj2.hit();
+                                obj.hit();
                             }
                         }
+                        
                     }
-
-                    if (obj.y > obj2.y && obj.y < obj2.y + obj2.height) {
-                        if ((int) obj.x == (int) (obj2.x + obj2.width)) {
-                            if (obj.speed != 0) {
+                    
+                    if ((obj.y > obj2.y && obj.y < obj2.y + obj2.height) || (int)obj.y == (int)obj2.y) {
+                        if (((int) obj.x == (int) (obj2.x + obj2.width)) || ((int) (obj.x + obj.width) == (int) obj2.x)) {
+                            if (obj.speed != 0 && !obj2.equals(obj.cooldownObject) && obj2.speed == 0) {
                                 System.out.println("3hit");
                                 obj.setDirection((int) (180 - Math.toDegrees(obj.direction)), (int)obj.velocity, obj2);
                                 obj.cooldownObject = obj2;
                                 obj.hit();
                                 obj2.hit();
                             }
-                        }
-
-                        if ((int) (obj.x + obj.width) == (int) obj2.x) {
-                            if (obj.speed != 0) {
-                                System.out.println("4hit");
-                                obj.setDirection((int) (180 - Math.toDegrees(obj.direction)), (int)obj.velocity, obj2);
+                            
+                            if (obj2.speed != 0 && !obj.equals(obj2.cooldownObject) && obj.speed == 0) {
+                                System.out.println("32hit");
+                                obj2.setDirection((int) (180 - Math.toDegrees(obj2.direction)), (int)obj2.velocity, obj);
+                                obj2.cooldownObject = obj;
+                                obj2.hit();
+                                obj.hit();
+                            }
+                            
+                            if (obj.speed != 0 && obj2.speed != 0 && !obj.equals(obj2.cooldownObject) && !obj2.equals(obj.cooldownObject)) {
+                                System.out.println("33hit");
+                                obj.setDirection((int) (360 - Math.toDegrees(obj.direction)), (int)obj.velocity, obj2);
                                 obj.cooldownObject = obj2;
                                 obj.hit();
+                                obj2.setDirection((int) (360 - Math.toDegrees(obj2.direction)), (int)obj2.velocity, obj2);
+                                obj2.cooldownObject = obj;
                                 obj2.hit();
+                                obj.hit();
                             }
                         }
-
                     }
                 }
             }
