@@ -74,7 +74,7 @@ public class TestGameMain {
         UILinearLayout lin = new UILinearLayout(game);
         lin.setOrientation(UILinearLayout.VERTICAL);
         lin.setAlignment(UILinearLayout.ALIGN_CENTER);
-        lin.setLayoutAnchor(UIElement.ANCHOR_CENTER, UIElement.ANCHOR_START);
+        lin.setLayoutAnchor(UIElement.ANCHOR_CENTER, UIElement.ANCHOR_CENTER);
         lin.setLayoutMargin(16, 16);
         lin.build("lin");
         

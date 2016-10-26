@@ -70,9 +70,13 @@ public class UILinearLayout extends UILayout{
                 this.width = e.getWidth() + e.getLayoutXMargin() * 2;
             }
         }
+        System.out.println("w: " + width);
+        System.out.println("h: " + height);
         int currentY = this.y;
         int centerX = this.x + this.width / 2;
-        for (UIElement e: this.children) {;
+        for (UIElement e: this.children) {
+            System.out.println("NEW ELEMENT");
+            System.out.println("ELEMENT #" + this.children.indexOf(e));
             int elX = 0, elY = 0;
             switch (this.orientation) {
                 case UILinearLayout.VERTICAL:
@@ -92,7 +96,7 @@ public class UILinearLayout extends UILayout{
                     elY = currentY + e.getLayoutYMargin();
                     System.out.println("elY: " + elY);
                     System.out.println("e.getHeight(): " + e.getHeight());
-                    currentY += elY + e.getHeight() + e.getLayoutYMargin();
+                    currentY = elY + e.getHeight() + e.getLayoutYMargin();
                     break;
                 case UILinearLayout.HORIZONTAL:
                     
@@ -114,11 +118,13 @@ public class UILinearLayout extends UILayout{
 
     @Override
     public int getWidth() {
+        System.out.println(width);
         return width;
     }
 
     @Override
     public int getHeight() {
+        System.out.println(height);
         return height;
     }
     
