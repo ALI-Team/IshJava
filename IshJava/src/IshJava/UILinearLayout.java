@@ -70,10 +70,14 @@ public class UILinearLayout extends UILayout{
                 this.width = e.getWidth() + e.getLayoutXMargin() * 2;
             }
         }
+        super.pack();
+        
         System.out.println("w: " + width);
         System.out.println("h: " + height);
-        int currentY = this.y;
-        int centerX = this.x + this.width / 2;
+        System.out.println("drawX" + this.drawX);
+        System.out.println("drawY" + this.drawY);
+        int currentY = this.drawY;
+        int centerX = this.drawX + this.width / 2;
         for (UIElement e: this.children) {
             System.out.println("NEW ELEMENT");
             System.out.println("ELEMENT #" + this.children.indexOf(e));
@@ -82,13 +86,13 @@ public class UILinearLayout extends UILayout{
                 case UILinearLayout.VERTICAL:
                     switch (this.alignment) {
                         case UILinearLayout.ALIGN_START:
-                            elX = this.x + e.getLayoutXMargin();
+                            elX = this.drawX + e.getLayoutXMargin();
                             break;
                         case UILinearLayout.ALIGN_CENTER:
                             elX = centerX - e.getWidth() / 2;
                             break;
                         case UILinearLayout.ALIGN_END:
-                            elX = this.x + width - e.getLayoutXMargin();
+                            elX = this.drawX + width - e.getLayoutXMargin();
                             break;
                     }
                     System.out.println("currentY: " + currentY);
@@ -104,7 +108,6 @@ public class UILinearLayout extends UILayout{
             }
             e.setPosition(elX, elY, false);
         }
-        super.pack();
         System.out.println("----PACK END----");
     }
 
@@ -114,6 +117,8 @@ public class UILinearLayout extends UILayout{
             this.pack();
             this.hasChanged = false;
         }
+        g.setColor(Color.RED);
+        g.drawRect(drawX, drawY, width, height);
     }
 
     @Override
