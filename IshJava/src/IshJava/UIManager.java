@@ -30,7 +30,7 @@ public class UIManager implements ComponentListener{
     //of events and let Clickables handle events how they want.
     public boolean onClick(MouseEvent ev){
         Point p = ev.getPoint();
-        for (UIElement e : this.UIMap.values()) {
+        /*for (UIElement e : this.UIMap.values()) {
             if (e instanceof UIElement.Clickable) {
                 UIElement.Clickable c = ((UIElement.Clickable) e);
                 if (c.inArea(p)) {
@@ -38,8 +38,14 @@ public class UIManager implements ComponentListener{
                     return true;
                 }
             }
-        }
-        return false;
+        }*/
+        return UIMap.values().stream().filter(e -> e instanceof UIElement.Clickable)
+                .map(e -> {
+                    return (UIElement.Clickable) e;
+                }).filter(c -> c.inArea(p)).map(c -> {
+                    c.handleClick(ev);
+                    return c;
+                }).count() > 0;
     }
     
     

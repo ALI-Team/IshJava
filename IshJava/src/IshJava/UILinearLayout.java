@@ -43,9 +43,9 @@ public class UILinearLayout extends UILayout{
             @Override
             public void onChange() {
                 pack();
+                System.out.println("CHANGE");
             }
         });
-        this.pack();
     }
     
     public void addUIElement(UIElement e, int index) {
@@ -54,9 +54,9 @@ public class UILinearLayout extends UILayout{
             @Override
             public void onChange() {
                 pack();
+                System.out.println("CHANGE");
             }
         });
-        this.pack();
     }
     
     @Override
@@ -64,12 +64,16 @@ public class UILinearLayout extends UILayout{
         System.out.println("----PACK START----");
         this.height = 0;
         this.width = 0;
-        for (UIElement e : this.children) {
+        this.children.forEach(e -> {
             this.height += e.getHeight() + e.getLayoutYMargin() * 2;
             if ((e.getWidth() + e.getLayoutXMargin() * 2) > this.width) {
                 this.width = e.getWidth() + e.getLayoutXMargin() * 2;
             }
-        }
+            System.out.println("w: " + e.getWidth() + ", h: " + e.getHeight());
+            if (e.getWidth() == 0 || e.getHeight() == 0) {
+                this.hasChanged = true;
+            }
+        });
         super.pack();
         
         System.out.println("w: " + width);

@@ -107,10 +107,11 @@ public class UITextView extends UIElement{
      * @param size <i>int</i> in px
      */
     public void setFontSize(int size) {
-        Font old = this.font;
+        /*Font old = this.font;
         String family = old.getFamily();
         int style = old.getStyle();
-        this.font = new Font(family, style, size);
+        this.font = new Font(family, style, size);*/
+        this.font = font.deriveFont((float) size);
         this.change();
     }
     
@@ -121,10 +122,11 @@ public class UITextView extends UIElement{
      * Font.PLAIN för normal text<br>
      */
     public void setFontStyle(int style) {
-        Font old = this.font;
+        /*Font old = this.font;
         String family = old.getFamily();
         int size = old.getSize();
-        this.font = new Font(family, style, size);
+        this.font = new Font(family, style, size);*/
+        this.font = font.deriveFont(style);
         this.change();
     }
     
@@ -144,33 +146,36 @@ public class UITextView extends UIElement{
      * Sätter font style till <i>italic</i>
      */
     public void setItalic() {
-        Font old = this.font;
+        /*Font old = this.font;
         String family = old.getFamily();
         int size = old.getSize();
         this.font = new Font(family, Font.ITALIC, size);
-        this.change();
+        this.change();*/
+        setFontStyle(Font.ITALIC);
     }
     
     /**
      * Sätter font style till <b>bold</b>
      */
     public void setBold() {
-        Font old = this.font;
+        /*Font old = this.font;
         String family = old.getFamily();
         int size = old.getSize();
-        this.font = new Font(family, Font.BOLD, size);
-        this.change();
+        this.font = new Font(family, Font.BOLD, size);*/
+        //this.change();
+        setFontStyle(Font.BOLD);
     }
     
     /**
      * Återställer font style till plain
      */
     public void setPlain() {
-        Font old = this.font;
+        /*Font old = this.font;
         String family = old.getFamily();
         int size = old.getSize();
         this.font = new Font(family, Font.PLAIN, size);
-        this.change();
+        this.change();*/
+        setFontStyle(Font.PLAIN);
     }
     
     /**

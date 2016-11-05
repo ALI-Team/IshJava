@@ -351,6 +351,7 @@ public abstract class UIElement {
         this.hasChanged = true;
         if (this.onChangeListener != null) {
             this.onChangeListener.onChange();
+            System.out.println("change?");
         }
     }
     
