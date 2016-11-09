@@ -51,7 +51,7 @@ public class ObjectManager implements KeyListener, MouseListener {
             for (GameObject obj2 : staticobjects) {
                 if (!obj2.equals(obj)) {
                     //System.out.println("1.x:"+obj.x+"\n1.w"+obj.width+"\n2.x"+obj2.x+"\n2.w"+obj2.width);
-                    if ((obj.x > obj2.x && obj.x < obj2.x + obj2.width) || (int)obj.x == (int)obj2.x) {
+                    if ((obj.x > obj2.x && obj.x < obj2.x + obj2.width) || (obj2.x > obj.x && obj2.x < obj.x + obj.width) || (int)obj.x == (int)obj2.x) {
                         if (((int) (obj.y + obj.height) == (int) obj2.y) || ((int) obj.y == (int) (obj2.y + obj2.height))) {
                             if (obj.speed != 0 && !obj2.equals(obj.cooldownObject) && obj2.speed == 0) {
                                 System.out.println("1hit");
@@ -83,7 +83,7 @@ public class ObjectManager implements KeyListener, MouseListener {
                         
                     }
                     
-                    if ((obj.y > obj2.y && obj.y < obj2.y + obj2.height) || (int)obj.y == (int)obj2.y) {
+                    if ((obj.y > obj2.y && obj.y < obj2.y + obj2.height) || (obj2.y > obj.y && obj2.y < obj.y + obj.height) || (int)obj.y == (int)obj2.y) {
                         if (((int) obj.x == (int) (obj2.x + obj2.width)) || ((int) (obj.x + obj.width) == (int) obj2.x)) {
                             if (obj.speed != 0 && !obj2.equals(obj.cooldownObject) && obj2.speed == 0) {
                                 System.out.println("3hit");
