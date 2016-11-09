@@ -46,7 +46,7 @@ public class TestGameMain {
         game.addObject(ball2);
         ball2.setDirection(200, 60);*/
         
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 2; i++) {
             Ball ball = new Ball(game, randomWithRange(150, 250), randomWithRange(150, 250));
             game.addObject(ball);
             ball.setDirection(randomWithRange(1, 360), 60);
@@ -71,13 +71,13 @@ public class TestGameMain {
                 i++;
             }*/
 
-        Wall wall = new Wall(game, 50, 10);
+        Wall wall = new Wall(game, 50, 50);
         game.addObject(wall);
 
-        Wall wall2 = new Wall(game, 50, 400);
+        Wall wall2 = new Wall(game, 50, 300);
         game.addObject(wall2);
 
-        Wallvert wall3 = new Wallvert(game, 400, 50);
+        Wallvert wall3 = new Wallvert(game, 350, 50);
         game.addObject(wall3);
 
         Wallvert wall4 = new Wallvert(game, 0, 50);

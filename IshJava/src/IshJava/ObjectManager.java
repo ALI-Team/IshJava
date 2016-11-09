@@ -103,10 +103,10 @@ public class ObjectManager implements KeyListener, MouseListener {
                             
                             if (obj.speed != 0 && obj2.speed != 0 && !obj.equals(obj2.cooldownObject) && !obj2.equals(obj.cooldownObject)) {
                                 System.out.println("33hit");
-                                obj.setDirection((int) (360 - Math.toDegrees(obj.direction)), (int)obj.velocity, obj2);
+                                obj.setDirection((int) (180 - Math.toDegrees(obj.direction)), (int)obj.velocity, obj2);
                                 obj.cooldownObject = obj2;
                                 obj.hit();
-                                obj2.setDirection((int) (360 - Math.toDegrees(obj2.direction)), (int)obj2.velocity, obj2);
+                                obj2.setDirection((int) (180 - Math.toDegrees(obj2.direction)), (int)obj2.velocity, obj2);
                                 obj2.cooldownObject = obj;
                                 obj2.hit();
                                 obj.hit();
@@ -114,6 +114,7 @@ public class ObjectManager implements KeyListener, MouseListener {
                         }
                     }
                 }
+                //obj2.updateObj();
             }
             obj.updateObj();
         }
