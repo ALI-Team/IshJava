@@ -15,6 +15,15 @@ import javax.swing.JFrame;
  * @author ivamat907
  */
 public abstract class Main {
+    
+    /**
+     * Creates an instance of game
+     * @param w width of game
+     * @param h height of game
+     * @param title title of window
+     * @return instance of game
+     * @deprecated Use {@link Game#createGame(int, int, String)} instead.
+     */
     public static Game createGame(int w,int h, String title){
         JFrame jFrame = new JFrame();
         

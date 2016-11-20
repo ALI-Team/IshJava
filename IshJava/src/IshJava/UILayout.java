@@ -32,6 +32,7 @@ public abstract class UILayout extends UIElement{
     }
     
     /**
+     * Lägger till UIElement i layout på posistionen <i>index</i>
      * @param e UIElement att lägga till
      * @param index Positionen att lägga till på
      */

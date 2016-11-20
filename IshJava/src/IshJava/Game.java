@@ -5,6 +5,8 @@
  */
 package IshJava;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -13,6 +15,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -163,5 +166,31 @@ public class Game extends JPanel implements Runnable,MouseMotionListener{
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         mousePoint.x=e.getX();
         mousePoint.y=e.getY();
+    }
+    
+    /**
+     * Creates an instance of game
+     * @param w width of game
+     * @param h height of game
+     * @param title title of window
+     * @return instance of game
+     */
+    public static Game createGame(int w,int h, String title){
+        JFrame jFrame = new JFrame();
+        
+        jFrame.setSize(w, h);
+        jFrame.setTitle(title);
+        jFrame.setPreferredSize(new Dimension(w,h));
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setLayout(new BorderLayout());
+        Game game = new Game(w,h);
+        game.setFocusable(true);
+        game.width = w;
+        game.height = h;
+        jFrame.getContentPane().add(game);
+        jFrame.pack();
+        jFrame.setVisible(true);
+        
+        return game;
     }
 }

@@ -14,7 +14,6 @@ import java.awt.Color;
 public class TestGameMain {
 
     public static void main(String[] args) {
-         
         Game game=Main.createGame(512,512, "test game");
         UITextView tw = new UITextView(game);
         tw.setText("hello world");
